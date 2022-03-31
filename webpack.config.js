@@ -1,32 +1,30 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    entry: "./src/index.tsx",
     mode: 'development',
     devServer: {
         historyApiFallback: true,
         open: true,
         compress: true,
         hot: true,
-        port: 8080,
-        static: {
-            directory: path.join(__dirname, './dist'),
-        },
+        port: 3000,
     },
-    entry: {
-        main: path.resolve(__dirname, './src/index.tsx'),
-    },
-    output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'bundle.js',
+    output:{
+        path: path.resolve(__dirname, './public'),     // путь к каталогу выходных файлов - папка public
+        publicPath: '/public/',
+        filename: "bundle.js"       // название создаваемого файла
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js"]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
+            filename: './index.html',
+            favicon: './public/favicon.ico'
+        })
     ],
     module: {
         rules: [
