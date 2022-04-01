@@ -19,8 +19,16 @@ code {
   position: relative;
 }
 
-:root {
+:root[data-theme="light"] {
   --light-color: #dcdcdd;
+  --dark-color: #1d2424;
+  --green-color: #3d6a66;
+  --primory-color: #69849b;
+  --beige: #d0c3bd;
+}
+
+:root[data-theme="dark"] {
+  --light-color: #123456;
   --dark-color: #1d2424;
   --green-color: #3d6a66;
   --primory-color: #69849b;
