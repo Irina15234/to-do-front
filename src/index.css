@@ -20,7 +20,10 @@ code {
 }
 
 :root[data-theme="light"] {
-  --light-color: #dcdcdd;
+  --background-color: #ffffff;
+  --text-color: #444444;
+  --border-color: #dcdcdd;
+
   --dark-color: #1d2424;
   --green-color: #3d6a66;
   --primory-color: #69849b;
@@ -28,7 +31,10 @@ code {
 }
 
 :root[data-theme="dark"] {
-  --light-color: #123456;
+  --background-color: #444444;
+  --text-color: #ffffff;
+  --border-color: #dcdcdd;
+
   --dark-color: #1d2424;
   --green-color: #3d6a66;
   --primory-color: #69849b;

@@ -1,5 +1,7 @@
 .header {
     width: 100%;
     height: 56px;
-    border-bottom: 1px solid var(--light-color);
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
