@@ -1,17 +1,22 @@
 import './header.css';
 import { CustomIconButton } from "../../custom-components/icon-button/icon-button";
-import { Apps } from "@material-ui/icons";
+import { Apps, Home } from "@material-ui/icons";
 
 export const Header = () => {
   return (
     <header className="header">
-      <div className="header__panel">
+      <div className="header__left-section">
+        <div className="item-with-right-margin">
+          <CustomIconButton>
+            <Apps />
+          </CustomIconButton>
+        </div>
         <CustomIconButton>
-          <Apps />
+          <Home />
         </CustomIconButton>
       </div>
       <div className="header__user-block">
-
+        <img src="https://avatanplus.com/files/resources/mid/5e634fd5c1002170b3efdb1f.jpg" alt="" />
       </div>
     </header>
   );

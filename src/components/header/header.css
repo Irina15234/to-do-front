@@ -1,7 +1,24 @@
 .header {
+    display: flex;
     width: 100%;
-    height: 56px;
+    padding: 10px 12px;
     border-bottom: 1px solid var(--border-color);
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: var(--dark-background-color);
+    color: var(--light-text-color);
+}
+
+.header__left-section {
+    display: flex;
+}
+
+.header__user-block {
+    height: 40px;
+    width: 40px;
+    margin-left: auto;
+}
+
+.header__user-block > img {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
 }

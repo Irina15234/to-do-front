@@ -1,0 +1,15 @@
+.main-page {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding: 12px;
+}
+
+.main-page__dashboards-containers {
+    width: 40%;
+    margin-right: 20px;
+}
+
+.main-page__tasks-containers {
+    width: 60%;
+}

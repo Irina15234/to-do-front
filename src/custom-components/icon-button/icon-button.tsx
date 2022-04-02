@@ -1,11 +1,22 @@
-import { IconButtonProps } from "@mui/material/IconButton/IconButton";
+import { IconButtonProps } from '@mui/material/IconButton/IconButton';
 import { IconButton } from '@mui/material';
+import { withStyles } from '@material-ui/core';
 
-export const CustomIconButton = (props: IconButtonProps) => {
+const StylesIconButton = withStyles(() => ({
+  root: {
+    borderRadius: '4px !important',
+    backgroundColor: 'rgba(255, 255, 255, 0.1) !important',
 
+    '& > .MuiSvgIcon-root': {
+      fill: 'var(--light-icon-color)',
+    }
+  },
+}))(IconButton);
+
+export const CustomIconButton = ({ ...props }: IconButtonProps) => {
   return (
-    <IconButton>
+    <StylesIconButton {...props}>
       {props.children}
-    </IconButton>
+    </StylesIconButton>
   );
-}
+};

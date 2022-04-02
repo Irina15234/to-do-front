@@ -19,24 +19,32 @@ code {
   position: relative;
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.item-with-right-margin {
+  margin-right: 7px;
+}
+.item-with-bottom-margin {
+  margin-bottom: 20px;
+}
+
 :root[data-theme="light"] {
-  --background-color: #ffffff;
-  --text-color: #444444;
+  --dark-background-color: #296884;
+  --light-background-color: #74a3b8;
+  --neutral-background-color: #ffffff;
+
+  --light-text-color: #ffffff;
+  --dark-text-color: #444444;
+
   --border-color: #dcdcdd;
 
-  --dark-color: #1d2424;
-  --green-color: #3d6a66;
-  --primory-color: #69849b;
-  --beige: #d0c3bd;
+  --light-icon-color: #ffffff;
+  --light-active-icon-color: #ffffff;
 }
 
 :root[data-theme="dark"] {
-  --background-color: #444444;
-  --text-color: #ffffff;
-  --border-color: #dcdcdd;
 
-  --dark-color: #1d2424;
-  --green-color: #3d6a66;
-  --primory-color: #69849b;
-  --beige: #d0c3bd;
 }
