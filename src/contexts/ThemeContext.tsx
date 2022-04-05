@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 export const themes = {
   dark: 'dark',
-  light: 'light',
-}
+  light: 'light'
+};
 
-export const ThemeContext = React.createContext({})
+export const ThemeContext = React.createContext({});

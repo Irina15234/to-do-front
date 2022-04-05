@@ -8,15 +8,15 @@ const StylesIconButton = withStyles(() => ({
     backgroundColor: 'rgba(255, 255, 255, 0.1) !important',
 
     '& > .MuiSvgIcon-root': {
-      fill: 'var(--light-icon-color)',
+      fill: 'var(--light-icon-color)'
+    },
+
+    '&:hover': {
+      backgroundColor: 'rgba(255, 255, 255, 0.25) !important'
     }
-  },
+  }
 }))(IconButton);
 
 export const CustomIconButton = ({ ...props }: IconButtonProps) => {
-  return (
-    <StylesIconButton {...props}>
-      {props.children}
-    </StylesIconButton>
-  );
+  return <StylesIconButton {...props}>{props.children}</StylesIconButton>;
 };

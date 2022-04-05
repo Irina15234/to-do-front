@@ -1,5 +1,5 @@
 import './card.css';
-import clsx from "clsx";
+import clsx from 'clsx';
 
 interface CardProps {
   title: string;
@@ -7,19 +7,13 @@ interface CardProps {
   className?: string;
 }
 
-export const Card = ({title, sourceList, className}: CardProps) => {
+export const Card = ({ title, sourceList, className }: CardProps) => {
   return (
     <div className={clsx('card-container', className)}>
-      <div className="card-container__header">
-        {title}
-      </div>
+      <div className="card-container__header">{title}</div>
       <div className="card-container__main">
-        {!sourceList.length && (
-          <div className="card-container__empty">
-            Нет данных
-          </div>
-        )}
+        {!sourceList.length && <div className="card-container__empty">Нет данных</div>}
       </div>
     </div>
   );
-}
+};

@@ -3,13 +3,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: "./src/index.tsx",
-    mode: 'development',
+    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     devServer: {
         historyApiFallback: true,
         open: true,
         compress: true,
         hot: true,
         port: 3000,
+        client: {
+            progress: true,
+            overlay: {
+                errors: true,
+                warnings: false,
+            }
+        },
     },
     output:{
         path: path.resolve(__dirname, './public'),     // путь к каталогу выходных файлов - папка public
@@ -20,11 +27,7 @@ module.exports = {
         extensions: [".ts", ".tsx", ".js"]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './public/index.html',
-            filename: './index.html',
-            favicon: './public/favicon.ico'
-        })
+        new HtmlWebpackPlugin()
     ],
     module: {
         rules: [
@@ -52,6 +55,14 @@ module.exports = {
                 test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
                 type: 'asset/resource',
             },
+            {
+                test: /\.stories\.tsx?$/,
+                use: [
+                    {
+                        loader: require.resolve("storybook-addon-package-json/loader")
+                    }
+                ]
+            }
         ],
     }
 }

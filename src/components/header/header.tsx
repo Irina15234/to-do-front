@@ -1,13 +1,17 @@
 import './header.css';
-import { CustomIconButton } from "../../custom-components/icon-button/icon-button";
-import { Apps, Home } from "@material-ui/icons";
+import { CustomIconButton } from '../../custom-components/icon-button/icon-button';
+import { Apps, Home } from '@material-ui/icons';
 
 export const Header = () => {
+  const handleClickMenu = () => {
+    // menu open
+  };
+
   return (
     <header className="header">
       <div className="header__left-section">
         <div className="item-with-right-margin">
-          <CustomIconButton>
+          <CustomIconButton onClick={handleClickMenu}>
             <Apps />
           </CustomIconButton>
         </div>
@@ -20,4 +24,4 @@ export const Header = () => {
       </div>
     </header>
   );
-}
+};
