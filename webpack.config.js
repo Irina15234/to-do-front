@@ -11,7 +11,6 @@ module.exports = {
         hot: true,
         port: 3000,
         client: {
-            progress: true,
             overlay: {
                 errors: true,
                 warnings: false,
