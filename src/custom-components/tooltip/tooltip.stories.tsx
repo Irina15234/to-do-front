@@ -4,7 +4,7 @@ import { TooltipProps } from '@mui/material';
 
 export default {
   component: CustomTooltip,
-  name: 'CustomTooltip'
+  title: 'CustomTooltip'
 } as ComponentMeta<typeof CustomTooltip>;
 
 const Template: ComponentStory<typeof CustomTooltip> = (args: TooltipProps) => (
