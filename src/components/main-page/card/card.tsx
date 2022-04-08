@@ -1,9 +1,11 @@
 import './card.css';
 import clsx from 'clsx';
+import { Board, Task } from '../../../slices/types';
+import { CardListItem } from './card-list-item';
 
 interface CardProps {
   title: string;
-  sourceList: any[];
+  sourceList: Board[] | Task[];
   className?: string;
 }
 
@@ -13,6 +15,10 @@ export const Card = ({ title, sourceList, className }: CardProps) => {
       <div className="card-container__header">{title}</div>
       <div className="card-container__main">
         {!sourceList.length && <div className="card-container__empty">Нет данных</div>}
+
+        {sourceList.map((source) => (
+          <CardListItem name={source.name} />
+        ))}
       </div>
     </div>
   );

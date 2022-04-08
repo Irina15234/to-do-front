@@ -23,6 +23,10 @@ body {
   overflow: hidden;
 }
 
+a {
+  text-decoration: none;
+}
+
 .item-with-right-margin {
   margin-right: 7px;
 }
@@ -38,10 +42,14 @@ body {
   --light-text-color: #ffffff;
   --dark-text-color: #444444;
 
-  --border-color: #dcdcdd;
+  --light-border-color: #dcdcdd;
+  --dark-border-color: #74a3b8;
 
   --light-icon-color: #ffffff;
   --light-active-icon-color: #ffffff;
+
+  --red-color: #c7444a;
+  --grey-color: #b2b2b0;
 }
 
 :root[data-theme='dark'] {

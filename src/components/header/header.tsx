@@ -12,11 +12,11 @@ export const Header = () => {
       <div className="header__left-section">
         <div className="item-with-right-margin">
           <CustomIconButton onClick={handleClickMenu}>
-            <Apps />
+            <Apps style={{ color: '#ffffff' }} />
           </CustomIconButton>
         </div>
         <CustomIconButton>
-          <Home />
+          <Home style={{ color: '#ffffff' }} />
         </CustomIconButton>
       </div>
       <div className="header__user-block">

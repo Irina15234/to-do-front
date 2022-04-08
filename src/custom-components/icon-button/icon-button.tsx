@@ -1,22 +1,37 @@
 import { IconButtonProps } from '@mui/material/IconButton/IconButton';
-import { IconButton } from '@mui/material';
-import { withStyles } from '@material-ui/core';
+import { IconButton, styled } from '@mui/material';
 
-const StylesIconButton = withStyles(() => ({
-  root: {
-    borderRadius: '4px !important',
-    backgroundColor: 'rgba(255, 255, 255, 0.1) !important',
+export enum IconButtonVariant {
+  icon = 'icon',
+  square = 'square'
+}
 
-    '& > .MuiSvgIcon-root': {
-      fill: 'var(--light-icon-color)'
-    },
+export interface StyledIconButtonProps extends IconButtonProps {
+  variant?: IconButtonVariant;
+}
 
-    '&:hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.25) !important'
-    }
+const Square = styled(IconButton)({
+  borderRadius: '4px !important',
+  backgroundColor: 'rgba(255, 255, 255, 0.1) !important',
+
+  '&:hover': {
+    backgroundColor: 'rgba(255, 255, 255, 0.25) !important'
   }
-}))(IconButton);
+});
 
-export const CustomIconButton = ({ ...props }: IconButtonProps) => {
-  return <StylesIconButton {...props}>{props.children}</StylesIconButton>;
+const Icon = styled(IconButton)({
+  padding: '5px !important',
+
+  '&:hover': {
+    backgroundColor: 'rgba(0, 0, 0, 0.05) !important'
+  }
+});
+
+export const CustomIconButton = ({ variant = IconButtonVariant.square, ...props }: StyledIconButtonProps) => {
+  switch (variant) {
+    case IconButtonVariant.square:
+      return <Square {...props}>{props.children}</Square>;
+    case IconButtonVariant.icon:
+      return <Icon {...props}>{props.children}</Icon>;
+  }
 };

@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   padding: 10px 12px;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--light-border-color);
   background-color: var(--dark-background-color);
   color: var(--light-text-color);
 }
