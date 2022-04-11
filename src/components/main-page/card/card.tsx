@@ -17,7 +17,7 @@ export const Card = ({ title, sourceList, className }: CardProps) => {
         {!sourceList.length && <div className="card-container__empty">Нет данных</div>}
 
         {sourceList.map((source) => (
-          <CardListItem name={source.name} />
+          <CardListItem key={`title-${source.name}`} name={source.name} />
         ))}
       </div>
     </div>

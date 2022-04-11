@@ -1,6 +1,6 @@
 import './header.css';
 import { CustomIconButton } from '../../custom-components/icon-button/icon-button';
-import { Apps, Home } from '@material-ui/icons';
+import { Apps, Home } from '@mui/icons-material';
 
 export const Header = () => {
   const handleClickMenu = () => {

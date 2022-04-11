@@ -4,11 +4,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMainPageAction } from '../../slices/main-page/main-page-slice';
 import { State } from '../../slices/types';
+import { test1 } from '../../services/test';
 
 export const MainPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    test1()
+      .then((res) => console.log(res))
+      .catch();
+
     // todo
     dispatch(
       setMainPageAction({
@@ -35,10 +40,6 @@ export const MainPage = () => {
   }, []);
 
   const mainPageState = useSelector((state: State) => state.mainPage);
-
-  useEffect(() => {
-    console.log(mainPageState);
-  }, [mainPageState]);
 
   return (
     <div className="main-page">

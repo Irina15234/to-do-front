@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CustomIconButton, IconButtonVariant } from '../../../custom-components/icon-button/icon-button';
-import { Delete, Edit } from '@material-ui/icons';
+import { Delete, Edit } from '@mui/icons-material';
 
 interface CardListItemProps {
   name: string;
