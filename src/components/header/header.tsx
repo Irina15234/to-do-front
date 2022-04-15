@@ -20,7 +20,10 @@ export const Header = () => {
         </CustomIconButton>
       </div>
       <div className="header__user-block">
-        <img src="https://avatanplus.com/files/resources/mid/5e634fd5c1002170b3efdb1f.jpg" alt="" />
+        <img
+          src="https://catherineasquithgallery.com/uploads/posts/2021-03/thumbs/1614761198_31-p-vanilnii-fon-36.jpg"
+          alt=""
+        />
       </div>
     </header>
   );

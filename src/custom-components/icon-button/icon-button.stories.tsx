@@ -1,5 +1,5 @@
 import { CustomIconButton, IconButtonVariant, StyledIconButtonProps } from './icon-button';
-import { Apps, Edit } from '@material-ui/icons';
+import { Apps, Edit } from '@mui/icons-material';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
