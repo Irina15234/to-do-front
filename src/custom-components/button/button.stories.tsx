@@ -30,3 +30,10 @@ Neutral.args = {
   children: 'button',
   buttonType: 'neutral'
 };
+
+export const Add = Template.bind({});
+
+Add.args = {
+  children: 'add',
+  buttonType: 'add'
+};

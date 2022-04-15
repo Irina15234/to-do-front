@@ -38,3 +38,9 @@
 .card-list-item__buttons {
   margin-left: auto;
 }
+
+.card-container__add-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}

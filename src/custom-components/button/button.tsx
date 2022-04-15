@@ -1,7 +1,9 @@
 import { Button, ButtonProps, styled } from '@mui/material';
+import { AddCircleOutline } from '@mui/icons-material';
 
 export interface CustomButtonProps extends ButtonProps {
-  buttonType: 'standard' | 'delete' | 'neutral';
+  buttonType: 'standard' | 'delete' | 'neutral' | 'add';
+  startIconColor?: string;
 }
 
 const StandardButton = styled(Button)({
@@ -45,6 +47,20 @@ const NeutralButton = styled(Button)({
   }
 });
 
+const AddButton = styled(Button)({
+  padding: '7px 10px',
+  backgroundColor: 'var(--neutral-background-color, #ffffff)',
+  color: 'var(--dark-text-color, #444444)',
+  border: '1px solid var(--light-border-color, #d2c8bc)',
+  boxShadow: 'none',
+  textTransform: 'capitalize',
+
+  '&:hover': {
+    boxShadow: 'none',
+    backgroundColor: 'var(--secondary-button-color, #ba9a88)'
+  }
+});
+
 export const CustomButton = ({ ...props }: CustomButtonProps) => {
   switch (props.buttonType) {
     case 'standard':
@@ -64,6 +80,18 @@ export const CustomButton = ({ ...props }: CustomButtonProps) => {
         <NeutralButton {...props} variant="contained">
           {props.children}
         </NeutralButton>
+      );
+    case 'add':
+      return (
+        <AddButton
+          {...props}
+          variant="contained"
+          startIcon={
+            <AddCircleOutline style={{ color: props.startIconColor || 'var(--dark-background-color, #5b828e)' }} />
+          }
+        >
+          {props.children}
+        </AddButton>
       );
   }
 };
