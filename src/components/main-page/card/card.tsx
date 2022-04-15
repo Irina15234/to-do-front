@@ -7,9 +7,10 @@ interface CardProps {
   title: string;
   sourceList: Board[] | Task[];
   className?: string;
+  isBoards?: boolean;
 }
 
-export const Card = ({ title, sourceList, className }: CardProps) => {
+export const Card = ({ title, sourceList, className, isBoards = false }: CardProps) => {
   return (
     <div className={clsx('card-container', className)}>
       <div className="card-container__header">{title}</div>
@@ -17,7 +18,7 @@ export const Card = ({ title, sourceList, className }: CardProps) => {
         {!sourceList.length && <div className="card-container__empty">Нет данных</div>}
 
         {sourceList.map((source) => (
-          <CardListItem key={`title-${source.name}`} name={source.name} />
+          <CardListItem key={`title-${source.name}`} name={source.name} isBoards={isBoards} />
         ))}
       </div>
     </div>

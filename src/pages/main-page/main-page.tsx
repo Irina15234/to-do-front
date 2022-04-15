@@ -44,7 +44,7 @@ export const MainPage = () => {
   return (
     <div className="main-page">
       <div className="main-page__dashboards-containers">
-        <Card title="Boards" sourceList={mainPageState.boards} />
+        <Card title="Boards" sourceList={mainPageState.boards} isBoards={true} />
       </div>
       <div className="main-page__tasks-containers">
         <Card title="Tasks" sourceList={mainPageState.tasks} className="item-with-bottom-margin" />
