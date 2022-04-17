@@ -24,7 +24,7 @@ export const Card = ({ title, sourceList, className, isBoards = false }: CardPro
 
         {isBoards && (
           <div className="card-container__add-container">
-            <CustomButton buttonType="add" startIconColor="var(--dark-background-color)">
+            <CustomButton buttonType="add" startIconColor="var(--dark-background-color)" href="/board/new">
               Add new board
             </CustomButton>
           </div>

@@ -7,18 +7,27 @@ export interface MainPage {
   tasks: Task[];
 }
 
-export interface Board {
-  id: string | number;
-  authorId: string | number;
+export interface BoardColumn {
+  id: number;
   name: string;
 }
 
-export interface Task {
-  id: string | number;
-  authorId: string | number;
-  executorId?: string | number;
+export interface Board {
+  id: number | null;
+  authorId: number;
   name: string;
-  priority: 'minor' | 'major' | 'middle';
-  statusId: number; // список статусов будет лежать в бд (соответствовать количесву колонок на доске) и приходить по запросу
+  userIds: number[];
+  columns: BoardColumn[];
+}
+
+export interface Task {
+  id: number | null;
+  authorId: string | number;
+  executorId: number | null;
+  name: string;
+  priorityName: 'minor' | 'major' | 'middle';
+  priorityIcon?: string;
+  columnId: number;
   date: string;
+  boardId: number;
 }

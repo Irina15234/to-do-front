@@ -1,0 +1,13 @@
+.board-page__header-container {
+    padding: 12px 16px;
+}
+
+.board-page__title {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--dark-text-color);
+}
+
+.board-page__main {
+    padding: 12px 16px;
+}

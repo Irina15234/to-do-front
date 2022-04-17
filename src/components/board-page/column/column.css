@@ -1,0 +1,27 @@
+.column {
+    min-width: 300px;
+    max-width: 300px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.column:last-child {
+    margin-right: 0;
+}
+
+.column__title-container {
+    padding: 7px 12px;
+    background-color: var(--dark-background-color);
+    color: var(--light-text-color);
+}
+
+.column__title {
+    font-size: 14px;
+}
+
+.column__main {
+    padding: 5px 5px;
+    background-color: var(--neutral-background-color);
+    min-height: 50px;
+}

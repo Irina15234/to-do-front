@@ -15,28 +15,6 @@ export const MainPage = () => {
       .catch();
 
     // todo
-    dispatch(
-      setMainPageAction({
-        boards: [
-          {
-            id: 0,
-            authorId: 0,
-            name: 'Тестовая доска'
-          }
-        ],
-        tasks: [
-          {
-            id: 0,
-            authorId: 1,
-            executorId: 1,
-            name: 'Задача1',
-            priority: 'middle',
-            statusId: 0,
-            date: '12.12.2022'
-          }
-        ]
-      })
-    );
   }, []);
 
   const mainPageState = useSelector((state: State) => state.mainPage);

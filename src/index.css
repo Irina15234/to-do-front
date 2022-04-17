@@ -37,6 +37,7 @@ a {
 :root[data-theme='light'] {
   --dark-background-color: #5b828e;
   --light-background-color: #bbcfd7;
+  --light-background-color-opacity: rgba(187, 207, 215, 0.6);
   --neutral-background-color: #ffffff;
 
   --light-text-color: #ffffff;
@@ -46,6 +47,7 @@ a {
   --dark-border-color: #bbcfd7;
 
   --light-icon-color: #ffffff;
+  --dark-icon-color: #ac7e62;
   --light-active-icon-color: #ffffff;
 
   --button-color: #ac7e62;
