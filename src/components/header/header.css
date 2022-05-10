@@ -12,13 +12,23 @@
 }
 
 .header__user-block {
-  height: 40px;
-  width: 40px;
+  display: flex;
+  align-items: center;
   margin-left: auto;
 }
 
-.header__user-block > img {
+.header__user-img-container {
+  height: 40px;
+  width: 40px;
+}
+
+.header__user-img-container > img {
   border-radius: 50%;
   height: 100%;
   width: 100%;
+}
+
+.header__user-name {
+  color: var(--light-text-color);
+  margin: 0 10px;
 }

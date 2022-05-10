@@ -2,7 +2,7 @@ import './card.css';
 import clsx from 'clsx';
 import { Board, Task } from '../../../slices/types';
 import { CardListItem } from './card-list-item';
-import { CustomButton } from '../../../custom-components/button/button';
+import { ButtonType, CustomButton } from '../../../custom-components/button/button';
 
 interface CardProps {
   title: string;
@@ -24,7 +24,7 @@ export const Card = ({ title, sourceList, className, isBoards = false }: CardPro
 
         {isBoards && (
           <div className="card-container__add-container">
-            <CustomButton buttonType="add" startIconColor="var(--dark-background-color)" href="/board/new">
+            <CustomButton buttonType={ButtonType.add} startIconColor="var(--dark-background-color)" href="/board/new">
               Add new board
             </CustomButton>
           </div>

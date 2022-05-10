@@ -1,5 +1,6 @@
 export interface State {
   mainPage: MainPage;
+  user: User;
 }
 
 export interface MainPage {
@@ -30,4 +31,9 @@ export interface Task {
   columnId: number;
   date: string;
   boardId: number;
+}
+
+export interface User {
+  id: number | null;
+  name: string;
 }

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { CustomButton, CustomButtonProps } from './button';
+import { ButtonType, CustomButton, CustomButtonProps } from './button';
 
 export default {
   component: CustomButton,
@@ -14,26 +14,26 @@ export const Standard = Template.bind({});
 
 Standard.args = {
   children: 'button',
-  buttonType: 'standard'
+  buttonType: ButtonType.standard
 };
 
 export const Delete = Template.bind({});
 
 Delete.args = {
   children: 'button',
-  buttonType: 'delete'
+  buttonType: ButtonType.delete
 };
 
 export const Neutral = Template.bind({});
 
 Neutral.args = {
   children: 'button',
-  buttonType: 'neutral'
+  buttonType: ButtonType.neutral
 };
 
 export const Add = Template.bind({});
 
 Add.args = {
   children: 'add',
-  buttonType: 'add'
+  buttonType: ButtonType.add
 };

@@ -25,7 +25,7 @@
   align-items: center;
   height: 36px;
   padding: 5px 10px;
-  border-bottom: 1px solid var(--dark-border-color);
+  border-bottom: 1px solid var(--neutral-border-color);
 }
 
 .card-list-item__name {

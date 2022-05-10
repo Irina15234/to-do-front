@@ -5,21 +5,44 @@ import { isEditPage, isNewPage } from '../../../common/helpers';
 import { AddCircleOutline } from '@mui/icons-material';
 import { CustomDialog } from '../../../custom-components/dialog/dialog';
 import { useCallback, useState } from 'react';
+import { ButtonType } from '../../../custom-components/button/button';
+import { CustomInput } from '../../../custom-components/input/input';
 
-interface ColumnsGroupProps {
+/*interface ColumnsGroupProps {
   columns: BoardColumn[];
-}
+}*/
 
-export const ColumnsGroup = ({ columns }: ColumnsGroupProps) => {
+export const ColumnsGroup = () => {
+  const [columns, setColumns] = useState<BoardColumn[]>([]);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [columnTitle, setColumnTitle] = useState<string>('');
 
-  const handleClick = () => {
+  const handleAddColumnClick = () => {
     setOpenDialog(true);
   };
+
+  const handleSave = useCallback(() => {
+    setColumns([...columns, { id: columns.length, name: columnTitle }]);
+    setOpenDialog(false);
+    setColumnTitle('');
+  }, [columns, setColumns, columnTitle]);
 
   const handleClose = useCallback(() => {
     setOpenDialog(false);
   }, [setOpenDialog]);
+
+  const actions = [
+    {
+      buttonType: ButtonType.standard,
+      title: 'Save',
+      onClick: handleSave
+    },
+    {
+      buttonType: ButtonType.neutral,
+      title: 'Cancel',
+      onClick: handleClose
+    }
+  ];
 
   return (
     <div className="columns-group">
@@ -27,13 +50,21 @@ export const ColumnsGroup = ({ columns }: ColumnsGroupProps) => {
         <Column key={column.id} column={column} />
       ))}
       {(isEditPage() || isNewPage()) && (
-        <div className="columns-group__add" role="button" onClick={handleClick}>
+        <div className="columns-group__add" role="button" onClick={handleAddColumnClick}>
           <AddCircleOutline style={{ color: 'var(--dark-icon-color)' }} />
           <span className="columns-group__add-title">Add column</span>
         </div>
       )}
-      <CustomDialog open={openDialog} title="New column" onClose={handleClose}>
-        <div>123</div>
+      <CustomDialog open={openDialog} title="New column" onClose={handleClose} actions={actions}>
+        <div>
+          <CustomInput
+            value={columnTitle}
+            label="Title"
+            onChange={(event) => setColumnTitle(event.target.value)}
+            colorVariant="dark"
+            fullWidth={true}
+          />
+        </div>
       </CustomDialog>
     </div>
   );

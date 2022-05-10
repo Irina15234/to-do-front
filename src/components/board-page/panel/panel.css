@@ -1,0 +1,15 @@
+.board-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: inline-block;
+    height: 60px;
+    background-color: var(--light-background-color-opacity);
+    padding: 12px 16px;
+}
+
+.board-panel__right {
+    margin-left: auto;
+    width: fit-content;
+}

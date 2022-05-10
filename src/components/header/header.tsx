@@ -23,10 +23,15 @@ export const Header = () => {
         </Link>
       </div>
       <div className="header__user-block">
-        <img
-          src="https://catherineasquithgallery.com/uploads/posts/2021-03/thumbs/1614761198_31-p-vanilnii-fon-36.jpg"
-          alt=""
-        />
+        <div className="header__user-name">
+          Name
+        </div>
+        <div className="header__user-img-container">
+          <img
+            src="https://catherineasquithgallery.com/uploads/posts/2021-03/thumbs/1614761198_31-p-vanilnii-fon-36.jpg"
+            alt=""
+          />
+        </div>
       </div>
     </header>
   );

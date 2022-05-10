@@ -1,4 +1,4 @@
 .main-container {
   background-color: var(--light-background-color-opacity);
-  height: 100vh;
+  height: calc(100vh - 61px);
 }

@@ -51,7 +51,8 @@ input:focus::-webkit-textfield-decoration-container {
   --dark-text-color: #444444;
 
   --light-border-color: #d2c8bc;
-  --dark-border-color: #bbcfd7;
+  --neutral-border-color: #bbcfd7;
+  --dark-border-color: #5b828e;
 
   --light-icon-color: #ffffff;
   --dark-icon-color: #ac7e62;

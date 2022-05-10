@@ -1,8 +1,15 @@
 import { Button, ButtonProps, styled } from '@mui/material';
 import { AddCircleOutline } from '@mui/icons-material';
 
+export enum ButtonType {
+  'standard',
+  'delete',
+  'neutral',
+  'add'
+}
+
 export interface CustomButtonProps extends ButtonProps {
-  buttonType: 'standard' | 'delete' | 'neutral' | 'add';
+  buttonType: ButtonType;
   startIconColor?: string;
 }
 
@@ -63,25 +70,25 @@ const AddButton = styled(Button)({
 
 export const CustomButton = ({ ...props }: CustomButtonProps) => {
   switch (props.buttonType) {
-    case 'standard':
+    case ButtonType.standard:
       return (
         <StandardButton {...props} variant="contained">
           {props.children}
         </StandardButton>
       );
-    case 'delete':
+    case ButtonType.delete:
       return (
         <DeleteButton {...props} variant="contained">
           {props.children}
         </DeleteButton>
       );
-    case 'neutral':
+    case ButtonType.neutral:
       return (
         <NeutralButton {...props} variant="contained">
           {props.children}
         </NeutralButton>
       );
-    case 'add':
+    case ButtonType.add:
       return (
         <AddButton
           {...props}
