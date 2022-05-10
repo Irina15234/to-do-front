@@ -6,7 +6,8 @@ const params = {
   timeout: TIMEOUT_SERVER,
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
-    'Access-Control-Allow-Origin': '*'
+    'Access-Control-Allow-Origin': '*',
+    Authorization: localStorage.token ? `Bearer ${localStorage.token}` : ''
   }
 };
 

@@ -1,6 +1,7 @@
 import './header.css';
 import { CustomIconButton } from '../../custom-components/icon-button/icon-button';
 import { Apps, Home } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const handleClickMenu = () => {
@@ -15,9 +16,11 @@ export const Header = () => {
             <Apps style={{ color: '#ffffff' }} />
           </CustomIconButton>
         </div>
-        <CustomIconButton>
-          <Home style={{ color: '#ffffff' }} />
-        </CustomIconButton>
+        <Link to="/">
+          <CustomIconButton>
+            <Home style={{ color: '#ffffff' }} />
+          </CustomIconButton>
+        </Link>
       </div>
       <div className="header__user-block">
         <img

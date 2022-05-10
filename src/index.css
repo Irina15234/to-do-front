@@ -27,6 +27,13 @@ a {
   text-decoration: none;
 }
 
+input:focus::-webkit-textfield-decoration-container {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
 .item-with-right-margin {
   margin-right: 7px;
 }

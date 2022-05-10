@@ -1,22 +1,9 @@
 import { Card } from '../../components/main-page/card/card';
 import './main-page.css';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setMainPageAction } from '../../slices/main-page/main-page-slice';
+import { useSelector } from 'react-redux';
 import { State } from '../../slices/types';
-import { test1 } from '../../services/test';
 
 export const MainPage = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    test1()
-      .then((res) => console.log(res))
-      .catch();
-
-    // todo
-  }, []);
-
   const mainPageState = useSelector((state: State) => state.mainPage);
 
   return (
