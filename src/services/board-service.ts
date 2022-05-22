@@ -3,7 +3,7 @@ import { api } from './api';
 
 export const getBoardById = async (id: number): Promise<Board> => {
   try {
-    const response = await api.get(`/api/board/${id}`);
+    const response = await api.get(`/board/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
@@ -13,7 +13,7 @@ export const getBoardById = async (id: number): Promise<Board> => {
 
 export const newBoard = async (data: Board) => {
   try {
-    const response = await api.post(`/api/board/new`, data);
+    const response = await api.post(`/board/new`, data);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
@@ -23,7 +23,7 @@ export const newBoard = async (data: Board) => {
 
 export const updateBoardById = async (data: Board) => {
   try {
-    const response = await api.put(`/api/board/${data.id}`, data);
+    const response = await api.put(`/board/${data.id}`, data);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
@@ -33,7 +33,7 @@ export const updateBoardById = async (data: Board) => {
 
 export const deleteBoardById = async (id: number) => {
   try {
-    const response = await api.delete(`/api/board/${id}`);
+    const response = await api.delete(`/board/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);

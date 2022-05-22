@@ -5,6 +5,7 @@ import { AccountCircle, Key } from '@mui/icons-material';
 import { ButtonType, CustomButton } from '../../custom-components/button/button';
 import { login } from '../../services/auth';
 import { ChangeEvent, useState } from 'react';
+import { setToken } from '../../common/auth';
 
 export const AuthPage = () => {
   const [username, setUsername] = useState<string>('');
@@ -20,7 +21,8 @@ export const AuthPage = () => {
   const handleSignInClick = () => {
     login(username, password)
       .then((res) => {
-        localStorage.setItem('token', res.token);
+        setToken(res.token);
+        location.pathname = '/';
       })
       .catch((error) => {
         // todo

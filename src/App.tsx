@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MainPage } from './pages/main-page/main-page';
 import { Layout } from './components/layout/layout';
 import { BoardPage } from './pages/board-page/board-page';
 import { AuthPage } from './pages/auth-page/auth-page';
+import { loggedIn, logout } from './common/auth';
 
-function App() {
+export const App = () => {
+  useEffect(() => {
+    if (!loggedIn() && location.pathname !== '/login') {
+      logout();
+      location.pathname = '/login';
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
-        {!localStorage.token && <Route path="/" element={<AuthPage />} />}
+        <Route path="/login" element={<AuthPage />} />
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<MainPage />} />
           <Route path="/board/new" element={<BoardPage />} />
@@ -17,6 +25,4 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
-
-export default App;
+};

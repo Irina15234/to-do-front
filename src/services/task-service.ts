@@ -3,7 +3,7 @@ import { api } from './api';
 
 export const getTaskById = async (id: number): Promise<Task> => {
   try {
-    const response = await api.get(`/api/task/${id}`);
+    const response = await api.get(`/task/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
@@ -13,7 +13,7 @@ export const getTaskById = async (id: number): Promise<Task> => {
 
 export const newTask = async (data: Task) => {
   try {
-    const response = await api.post(`/api/task/new`, data);
+    const response = await api.post(`/task/new`, data);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
@@ -23,7 +23,7 @@ export const newTask = async (data: Task) => {
 
 export const updateTaskById = async (data: Task) => {
   try {
-    const response = await api.put(`/api/task/${data.id}`, data);
+    const response = await api.put(`/task/${data.id}`, data);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
@@ -33,7 +33,7 @@ export const updateTaskById = async (data: Task) => {
 
 export const deleteTaskById = async (id: number) => {
   try {
-    const response = await api.delete(`/api/task/${id}`);
+    const response = await api.delete(`/task/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);

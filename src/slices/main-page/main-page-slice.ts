@@ -15,11 +15,11 @@ const mainPageSlice = createSlice({
       return state;
     },
     setBoards: (state, { payload }: PayloadAction<Board[]>) => {
-      state.boards = { ...payload };
+      state.boards = [...payload];
       return state;
     },
     setTasks: (state, { payload }: PayloadAction<Task[]>) => {
-      state.tasks = { ...payload };
+      state.tasks = [...payload];
       return state;
     }
   }

@@ -1,10 +1,25 @@
 import { Card } from '../../components/main-page/card/card';
 import './main-page.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../slices/types';
+import { useEffect } from 'react';
+import { getBoards, getTasks } from '../../services/service';
+import { setBoardsAction, setTasksAction } from '../../slices/main-page/main-page-slice';
 
 export const MainPage = () => {
+  const dispatch = useDispatch();
   const mainPageState = useSelector((state: State) => state.mainPage);
+
+  useEffect(() => {
+    !mainPageState.boards.length &&
+      getBoards().then((boards) => {
+        dispatch(setBoardsAction(boards));
+      });
+    !mainPageState.boards.length &&
+      getTasks().then((tasks) => {
+        dispatch(setTasksAction(tasks));
+      });
+  }, []);
 
   return (
     <div className="main-page">

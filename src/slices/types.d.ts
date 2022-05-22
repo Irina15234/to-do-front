@@ -15,8 +15,8 @@ export interface BoardColumn {
 
 export interface Board {
   id: number | null;
-  authorId: number;
   name: string;
+  authorId: number;
   userIds: number[];
   columns: BoardColumn[];
 }

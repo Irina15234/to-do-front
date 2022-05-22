@@ -3,7 +3,7 @@ import { Board, Task } from '../slices/types';
 
 export const getBoards = async (): Promise<Board[]> => {
   try {
-    const response = await api.get(`/api/boards`);
+    const response = await api.get(`/boards`);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
@@ -13,7 +13,7 @@ export const getBoards = async (): Promise<Board[]> => {
 
 export const getTasks = async (): Promise<Task[]> => {
   try {
-    const response = await api.get(`/api/tasks`);
+    const response = await api.get(`/tasks`);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
