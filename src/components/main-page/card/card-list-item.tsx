@@ -4,13 +4,19 @@ import { Delete, Edit, MoreVert } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { ListItemIcon, MenuItem } from '@mui/material';
 import { ModalMenu } from '../../../custom-components/modal-menu/modal-menu';
+import { Board, Task } from '../../../slices/types';
 
-interface CardListItemProps {
-  name: string;
-  isBoards: boolean;
+export enum CardType {
+  board = 'board',
+  task = 'task'
 }
 
-export const CardListItem = ({ name, isBoards }: CardListItemProps) => {
+interface CardListItemProps {
+  source: Board | Task;
+  type: CardType;
+}
+
+export const CardListItem = ({ source, type }: CardListItemProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -23,15 +29,15 @@ export const CardListItem = ({ name, isBoards }: CardListItemProps) => {
   };
 
   return (
-    <Link to="/">
+    <Link to={`${type}/${source.id}`}>
       <div className="card-list-item">
-        <div className="card-list-item__name">{name}</div>
+        <div className="card-list-item__name">{source.name}</div>
         <CustomIconButton variant={IconButtonVariant.icon} onClick={handleClickSettings}>
           <MoreVert style={{ color: 'var(--button-color)' }} />
         </CustomIconButton>
 
         <ModalMenu open={open} onClose={handleClose} anchorEl={anchorEl}>
-          {isBoards && (
+          {type === CardType.board && (
             <>
               <MenuItem>
                 <ListItemIcon>

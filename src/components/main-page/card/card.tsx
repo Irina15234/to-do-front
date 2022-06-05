@@ -1,7 +1,7 @@
 import './card.css';
 import clsx from 'clsx';
 import { Board, Task } from '../../../slices/types';
-import { CardListItem } from './card-list-item';
+import { CardListItem, CardType } from './card-list-item';
 import { ButtonType, CustomButton } from '../../../custom-components/button/button';
 
 interface CardProps {
@@ -19,7 +19,7 @@ export const Card = ({ title, sourceList, className, isBoards = false }: CardPro
         {!sourceList.length && <div className="card-container__empty">Нет данных</div>}
 
         {sourceList.map((source) => (
-          <CardListItem key={`title-${source.name}`} name={source.name} isBoards={isBoards} />
+          <CardListItem key={`title-${source.name}`} source={source} type={isBoards ? CardType.board : CardType.task} />
         ))}
 
         {isBoards && (

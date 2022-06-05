@@ -15,7 +15,7 @@ export const MainPage = () => {
       getBoards().then((boards) => {
         dispatch(setBoardsAction(boards));
       });
-    !mainPageState.boards.length &&
+    !mainPageState.tasks.length &&
       getTasks().then((tasks) => {
         dispatch(setTasksAction(tasks));
       });
@@ -28,7 +28,6 @@ export const MainPage = () => {
       </div>
       <div className="main-page__tasks-containers">
         <Card title="Tasks" sourceList={mainPageState.tasks} className="item-with-bottom-margin" />
-        <Card title="Tasks in progress" sourceList={[]} />
       </div>
     </div>
   );

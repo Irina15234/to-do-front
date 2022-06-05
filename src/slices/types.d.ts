@@ -1,6 +1,7 @@
 export interface State {
   mainPage: MainPage;
   user: User;
+  board: Board;
 }
 
 export interface MainPage {
@@ -16,17 +17,15 @@ export interface BoardColumn {
 export interface Board {
   id: number | null;
   name: string;
-  authorId: number;
-  userIds: number[];
   columns: BoardColumn[];
 }
 
 export interface Task {
   id: number | null;
-  authorId: string | number;
+  authorId: number;
   executorId: number | null;
   name: string;
-  priorityName: 'minor' | 'major' | 'middle';
+  priorityName: string;
   priorityIcon?: string;
   columnId: number;
   date: string;
@@ -34,6 +33,6 @@ export interface Task {
 }
 
 export interface User {
-  id: number | null;
+  id: number;
   name: string;
 }

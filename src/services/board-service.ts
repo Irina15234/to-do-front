@@ -11,7 +11,7 @@ export const getBoardById = async (id: number): Promise<Board> => {
   }
 };
 
-export const newBoard = async (data: Board) => {
+export const newBoard = async (data: Board): Promise<Board> => {
   try {
     const response = await api.post(`/board/new`, data);
     return response.data;

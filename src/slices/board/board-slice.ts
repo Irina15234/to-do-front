@@ -3,9 +3,7 @@ import { Board } from '../types';
 
 const boardInitialState: Board = {
   id: null,
-  authorId: 0,
   name: '',
-  userIds: [],
   columns: []
 };
 
@@ -16,10 +14,14 @@ const boardSlice = createSlice({
     setBoard: (state, { payload }: PayloadAction<Board>) => {
       state = { ...payload };
       return state;
+    },
+    setBoardId: (state, { payload }: PayloadAction<number>) => {
+      state.id = payload;
+      return state;
     }
   }
 });
 
 export const boardReducer = boardSlice.reducer;
 
-export const { setBoard: setBoardAction } = boardSlice.actions;
+export const { setBoard: setBoardAction, setBoardId: setBoardIdAction } = boardSlice.actions;

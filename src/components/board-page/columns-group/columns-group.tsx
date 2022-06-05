@@ -8,12 +8,12 @@ import { useCallback, useState } from 'react';
 import { ButtonType } from '../../../custom-components/button/button';
 import { CustomInput } from '../../../custom-components/input/input';
 
-/*interface ColumnsGroupProps {
+interface ColumnsGroupProps {
   columns: BoardColumn[];
-}*/
+  changeColumns: (newColumns: BoardColumn[]) => void;
+}
 
-export const ColumnsGroup = () => {
-  const [columns, setColumns] = useState<BoardColumn[]>([]);
+export const ColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [columnTitle, setColumnTitle] = useState<string>('');
 
@@ -22,10 +22,10 @@ export const ColumnsGroup = () => {
   };
 
   const handleSave = useCallback(() => {
-    setColumns([...columns, { id: columns.length, name: columnTitle }]);
+    changeColumns([...columns, { id: columns.length, name: columnTitle }]);
     setOpenDialog(false);
     setColumnTitle('');
-  }, [columns, setColumns, columnTitle]);
+  }, [columns, changeColumns, columnTitle]);
 
   const handleClose = useCallback(() => {
     setOpenDialog(false);

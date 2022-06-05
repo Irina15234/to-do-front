@@ -10,14 +10,10 @@ const LightInput = styled(TextField)({
 
   '& > .MuiInputLabel-root': {
     color: 'var(--light-text-color) !important',
-    top: '-5px',
 
     '&.Mui-focused': {
       top: 0
     }
-  },
-  '&.input-with-start-icon > .MuiInputLabel-root': {
-    top: 0
   },
   '& > .MuiOutlinedInput-root': {
     height: '40px',
@@ -36,14 +32,10 @@ const DarkInput = styled(TextField)({
 
   '& > .MuiInputLabel-root': {
     color: 'var(--dark-text-color) !important',
-    top: '-5px',
 
     '&.Mui-focused': {
       top: 0
     }
-  },
-  '&.input-with-start-icon > .MuiInputLabel-root': {
-    top: 0
   },
   '& > .MuiOutlinedInput-root': {
     height: '40px',
@@ -60,10 +52,10 @@ const DarkInput = styled(TextField)({
 export const CustomInput = ({ ...props }: TextFieldProps & CustomInputProps) => {
   switch (props.colorVariant) {
     case 'light':
-      return <LightInput variant="outlined" autoComplete="off" {...props} />;
+      return <LightInput variant="outlined" autoComplete="off" InputLabelProps={{ shrink: true }} {...props} />;
     case 'dark':
-      return <DarkInput variant="outlined" autoComplete="off" {...props} />;
+      return <DarkInput variant="outlined" autoComplete="off" InputLabelProps={{ shrink: true }} {...props} />;
     default:
-      return <DarkInput variant="outlined" autoComplete="off" {...props} />;
+      return <DarkInput variant="outlined" autoComplete="off" InputLabelProps={{ shrink: true }} {...props} />;
   }
 };
