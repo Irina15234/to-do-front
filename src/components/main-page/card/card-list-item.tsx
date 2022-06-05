@@ -21,6 +21,7 @@ export const CardListItem = ({ source, type }: CardListItemProps) => {
   const open = Boolean(anchorEl);
 
   const handleClickSettings = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     setAnchorEl(event.currentTarget);
   };
 

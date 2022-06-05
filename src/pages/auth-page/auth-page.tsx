@@ -19,15 +19,10 @@ export const AuthPage = () => {
   };
 
   const handleSignInClick = () => {
-    login(username, password)
-      .then((res) => {
-        setToken(res.token);
-        location.pathname = '/';
-      })
-      .catch((error) => {
-        // todo
-        console.log(error);
-      });
+    login(username, password).then((res) => {
+      setToken(res.token);
+      location.pathname = '/';
+    });
   };
 
   return (

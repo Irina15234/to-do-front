@@ -13,3 +13,19 @@
 .main-page__tasks-containers {
   width: 60%;
 }
+
+@media (max-width: 660px) {
+  .main-page {
+    flex-direction: column;
+  }
+
+  .main-page__dashboards-containers {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .main-page__tasks-containers {
+    width: 100%;
+  }
+}

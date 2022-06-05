@@ -61,6 +61,7 @@ const AddButton = styled(Button)({
   border: '1px solid var(--light-border-color, #d2c8bc)',
   boxShadow: 'none',
   textTransform: 'capitalize',
+  transitionDuration: '0.8s',
 
   '&:hover': {
     boxShadow: 'none',
