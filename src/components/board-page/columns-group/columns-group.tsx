@@ -4,45 +4,19 @@ import './columns-group.css';
 import { isEditPage, isNewPage } from '../../../common/helpers';
 import { AddCircleOutline } from '@mui/icons-material';
 import { CustomDialog } from '../../../custom-components/dialog/dialog';
-import { useCallback, useState } from 'react';
-import { ButtonType } from '../../../custom-components/button/button';
 import { CustomInput } from '../../../custom-components/input/input';
+import { useColumnsGroup } from './useColumnsGroup';
 
-interface ColumnsGroupProps {
+export interface ColumnsGroupProps {
   columns: BoardColumn[];
   changeColumns: (newColumns: BoardColumn[]) => void;
 }
 
 export const ColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
-  const [openDialog, setOpenDialog] = useState<boolean>(false);
-  const [columnTitle, setColumnTitle] = useState<string>('');
-
-  const handleAddColumnClick = () => {
-    setOpenDialog(true);
-  };
-
-  const handleSave = useCallback(() => {
-    changeColumns([...columns, { id: columns.length, name: columnTitle }]);
-    setOpenDialog(false);
-    setColumnTitle('');
-  }, [columns, changeColumns, columnTitle]);
-
-  const handleClose = useCallback(() => {
-    setOpenDialog(false);
-  }, [setOpenDialog]);
-
-  const actions = [
-    {
-      buttonType: ButtonType.standard,
-      title: 'Save',
-      onClick: handleSave
-    },
-    {
-      buttonType: ButtonType.neutral,
-      title: 'Cancel',
-      onClick: handleClose
-    }
-  ];
+  const { handleAddColumnClick, openDialog, handleClose, actions, columnTitle, setColumnTitle } = useColumnsGroup({
+    columns,
+    changeColumns
+  });
 
   return (
     <div className="columns-group">

@@ -23,7 +23,7 @@ interface DialogAction {
   onClick: () => void;
 }
 
-interface CustomDialogProps extends DialogProps {
+export interface CustomDialogProps extends DialogProps {
   title?: string;
   description?: string;
   onClose: () => void;

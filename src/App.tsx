@@ -5,6 +5,7 @@ import { Layout } from './components/layout/layout';
 import { BoardPage } from './pages/board-page/board-page';
 import { AuthPage } from './pages/auth-page/auth-page';
 import { loggedIn, logout } from './common/auth';
+import { TaskPage } from './pages/task-page/task-page';
 
 export const App = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ export const App = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/board/new" element={<BoardPage />} />
           <Route path="/board/:id" element={<BoardPage />} />
+          <Route path="/task/:id" element={<TaskPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

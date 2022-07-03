@@ -2,6 +2,7 @@ export interface State {
   mainPage: MainPage;
   user: User;
   board: Board;
+  task: Task;
 }
 
 export interface MainPage {

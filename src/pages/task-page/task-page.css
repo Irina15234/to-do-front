@@ -1,0 +1,26 @@
+.task-page {
+    height: 100%;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-page__head {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.task-page__head-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--dark-text-color);
+}
+
+.task-page__main {
+    background-color: var(--neutral-background-color);
+    border: 1px solid var(--light-border-color);
+    border-radius: 4px;
+    flex: 1;
+    display: flex;
+    padding: 10px 12px;
+}
