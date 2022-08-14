@@ -6,6 +6,7 @@ import { AddCircleOutline } from '@mui/icons-material';
 import { CustomDialog } from '../../../custom-components/dialog/dialog';
 import { CustomInput } from '../../../custom-components/input/input';
 import { useColumnsGroup } from './useColumnsGroup';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 export interface ColumnsGroupProps {
   columns: BoardColumn[];
@@ -18,28 +19,34 @@ export const ColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
     changeColumns
   });
 
+  const onDragEnd = (result: any) => {
+    console.log(result);
+  };
+
   return (
-    <div className="columns-group">
-      {columns.map((column) => (
-        <Column key={column.id} column={column} />
-      ))}
-      {(isEditPage() || isNewPage()) && (
-        <div className="columns-group__add" role="button" onClick={handleAddColumnClick}>
-          <AddCircleOutline style={{ color: 'var(--dark-icon-color)' }} />
-          <span className="columns-group__add-title">Add column</span>
-        </div>
-      )}
-      <CustomDialog open={openDialog} title="New column" onClose={handleClose} actions={actions}>
-        <div>
-          <CustomInput
-            value={columnTitle}
-            label="Title"
-            onChange={(event) => setColumnTitle(event.target.value)}
-            colorVariant="dark"
-            fullWidth={true}
-          />
-        </div>
-      </CustomDialog>
-    </div>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className="columns-group">
+        {columns.map((column) => (
+          <Column key={column.id} column={column} />
+        ))}
+        {(isEditPage() || isNewPage()) && (
+          <div className="columns-group__add" role="button" onClick={handleAddColumnClick}>
+            <AddCircleOutline style={{ color: 'var(--dark-icon-color)' }} />
+            <span className="columns-group__add-title">Add column</span>
+          </div>
+        )}
+        <CustomDialog open={openDialog} title="New column" onClose={handleClose} actions={actions}>
+          <div>
+            <CustomInput
+              value={columnTitle}
+              label="Title"
+              onChange={(event) => setColumnTitle(event.target.value)}
+              colorVariant="dark"
+              fullWidth={true}
+            />
+          </div>
+        </CustomDialog>
+      </div>
+    </DragDropContext>
   );
 };

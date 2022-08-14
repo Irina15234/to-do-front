@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import { CustomIconButton, IconButtonVariant } from '../../../custom-components/icon-button/icon-button';
 import { Delete, Edit, MoreVert } from '@mui/icons-material';
 import React, { useState } from 'react';
-import { ListItemIcon, MenuItem } from '@mui/material';
 import { ModalMenu } from '../../../custom-components/modal-menu/modal-menu';
 import { Board, Task } from '../../../slices/types';
+import { ModalMenuItem } from '../../../custom-components/menu-item';
 
 export enum CardType {
   board = 'board',
@@ -22,6 +22,7 @@ export const CardListItem = ({ source, type }: CardListItemProps) => {
 
   const handleClickSettings = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
@@ -29,33 +30,31 @@ export const CardListItem = ({ source, type }: CardListItemProps) => {
     setAnchorEl(null);
   };
 
-  return (
-    <Link to={`${type}/${source.id}`}>
-      <div className="card-list-item">
-        <div className="card-list-item__name">{source.name}</div>
-        <CustomIconButton variant={IconButtonVariant.icon} onClick={handleClickSettings}>
-          <MoreVert style={{ color: 'var(--button-color)' }} />
-        </CustomIconButton>
+  const menuList = [
+    {
+      icon: <Edit style={{ color: 'var(--grey-color)' }} />,
+      title: 'Edit'
+    },
+    {
+      icon: <Delete style={{ color: 'var(--red-color)' }} />,
+      title: 'Delete'
+    }
+  ];
 
-        <ModalMenu open={open} onClose={handleClose} anchorEl={anchorEl}>
-          {type === CardType.board && (
-            <>
-              <MenuItem>
-                <ListItemIcon>
-                  <Edit style={{ color: 'var(--grey-color)' }} />
-                </ListItemIcon>
-                Edit
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon>
-                  <Delete style={{ color: 'var(--red-color)' }} />
-                </ListItemIcon>
-                Delete
-              </MenuItem>
-            </>
-          )}
-        </ModalMenu>
-      </div>
-    </Link>
+  return (
+    <>
+      <Link to={`${type}/${source.id}`}>
+        <div className="card-list-item">
+          <div className="card-list-item__name">{source.name}</div>
+          <CustomIconButton variant={IconButtonVariant.icon} onClick={handleClickSettings}>
+            <MoreVert style={{ color: 'var(--button-color)' }} />
+          </CustomIconButton>
+        </div>
+      </Link>
+
+      <ModalMenu open={open} onClose={handleClose} anchorEl={anchorEl}>
+        {type === CardType.board && menuList.map((item) => <ModalMenuItem title={item.title} icon={item.icon} />)}
+      </ModalMenu>
+    </>
   );
 };

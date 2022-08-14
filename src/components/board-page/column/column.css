@@ -12,7 +12,7 @@
 
 .column__title-container {
     display: flex;
-    padding: 7px 12px;
+    padding: 8px 12px;
     background-color: var(--dark-background-color);
     color: var(--light-text-color);
 }
@@ -23,7 +23,8 @@
 }
 
 .column__main {
-    padding: 5px 5px;
+    padding: 8px 6px;
     background-color: var(--neutral-background-color);
     min-height: 50px;
+    height: 100%;
 }

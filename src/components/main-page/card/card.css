@@ -28,6 +28,11 @@
   height: 36px;
   padding: 5px 10px;
   border-bottom: 1px solid var(--neutral-border-color);
+  transition: 1s;
+}
+
+.card-list-item:hover {
+  background: var(--light-background-color-opacity);
 }
 
 .card-list-item__name {

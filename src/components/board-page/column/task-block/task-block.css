@@ -1,0 +1,21 @@
+.task-block {
+    background: white;
+    border-radius: 4px;
+    border: 1px solid var(--light-border-color);
+    padding: 8px 6px;
+    margin-bottom: 10px;
+}
+
+.task-block__head {
+
+}
+
+.task-block__title {
+    color: var(--dark-text-color);
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.task-block__main {
+
+}
