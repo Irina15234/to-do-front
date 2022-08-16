@@ -14,14 +14,11 @@ export interface ColumnsGroupProps {
 }
 
 export const ColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
-  const { handleAddColumnClick, openDialog, handleClose, actions, columnTitle, setColumnTitle } = useColumnsGroup({
-    columns,
-    changeColumns
-  });
-
-  const onDragEnd = (result: any) => {
-    console.log(result);
-  };
+  const { handleAddColumnClick, openDialog, handleClose, actions, columnTitle, setColumnTitle, onDragEnd } =
+    useColumnsGroup({
+      columns,
+      changeColumns
+    });
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>

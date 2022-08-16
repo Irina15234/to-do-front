@@ -1,8 +1,9 @@
 import React from 'react';
 import { ButtonType, CustomButton } from '../../../../custom-components/button/button';
-import { BoardColumn, Task } from '../../../../slices/types';
+import { BoardColumn, State } from '../../../../slices/types';
 import { TaskBlock } from '../task-block/task-block';
 import { Droppable } from 'react-beautiful-dnd';
+import { useSelector } from 'react-redux';
 
 interface ColumnBodyProps {
   column: BoardColumn;
@@ -13,49 +14,15 @@ export const ColumnBody = ({ column }: ColumnBodyProps) => {
     console.log(column);
   };
 
-  // todo
-  const mockTasks: Task[] = [
-    {
-      id: 1,
-      authorId: 1,
-      executorId: 1,
-      name: 'task1',
-      priorityName: 'minor',
-      columnId: 0,
-      date: '',
-      boardId: 11
-    },
-    {
-      id: 2,
-      authorId: 1,
-      executorId: 1,
-      name: 'task2',
-      priorityName: 'minor',
-      columnId: 0,
-      date: '',
-      boardId: 11
-    },
-    {
-      id: 3,
-      authorId: 1,
-      executorId: 1,
-      name: 'task3',
-      priorityName: 'minor',
-      columnId: 1,
-      date: '',
-      boardId: 11
-    }
-  ];
+  const tasks = useSelector((state: State) => state.board.tasks)?.filter((task) => task.columnId === column.id) || [];
 
   return (
     <Droppable droppableId={column.id.toString()} key={column.id}>
-      {(provided, snapshot) => {
+      {(provided) => {
         return (
           <div className="column__main" {...provided.droppableProps} ref={provided.innerRef}>
-            {mockTasks.map((task, index) => {
-              if (task.columnId === column.id) return <TaskBlock key={task.id} task={task} index={index} />;
-
-              return null;
+            {tasks.map((task, index) => {
+              return <TaskBlock key={task.id} task={task} index={index} />;
             })}
 
             {!column.id && (

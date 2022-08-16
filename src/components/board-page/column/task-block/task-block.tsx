@@ -1,16 +1,16 @@
-import { Task } from '../../../../slices/types';
+import { BoardTask } from '../../../../slices/types';
 import './task-block.css';
 import { Draggable } from 'react-beautiful-dnd';
 
 interface TaskBlockProps {
-  task: Task;
+  task: BoardTask;
   index: number;
 }
 
 export const TaskBlock = ({ task, index }: TaskBlockProps) => {
   return (
     <Draggable key={task.id} draggableId={(task.id as number).toString()} index={index}>
-      {(provided, snapshot) => {
+      {(provided) => {
         return (
           <div
             className="task-block"

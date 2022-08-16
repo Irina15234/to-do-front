@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Board } from '../types';
+import { Board, BoardTask } from '../types';
 
 const boardInitialState: Board = {
   id: null,
   name: '',
-  columns: []
+  columns: [],
+  tasks: []
 };
 
 const boardSlice = createSlice({
@@ -12,11 +13,15 @@ const boardSlice = createSlice({
   initialState: boardInitialState,
   reducers: {
     setBoard: (state, { payload }: PayloadAction<Board>) => {
-      state = { ...payload };
+      state = { ...payload, tasks: state.tasks };
       return state;
     },
     setBoardId: (state, { payload }: PayloadAction<number>) => {
       state.id = payload;
+      return state;
+    },
+    setBoardTasks: (state, { payload }: PayloadAction<BoardTask[]>) => {
+      state.tasks = payload;
       return state;
     }
   }
@@ -24,4 +29,8 @@ const boardSlice = createSlice({
 
 export const boardReducer = boardSlice.reducer;
 
-export const { setBoard: setBoardAction, setBoardId: setBoardIdAction } = boardSlice.actions;
+export const {
+  setBoard: setBoardAction,
+  setBoardId: setBoardIdAction,
+  setBoardTasks: setBoardTasksAction
+} = boardSlice.actions;

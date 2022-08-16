@@ -61,7 +61,8 @@ export const useBoardPage = () => {
     const board: Board = {
       id: null,
       name: boardName,
-      columns
+      columns,
+      tasks: []
     };
     dispatch(setBoardAction(board));
     newBoard(board).then((res) => {

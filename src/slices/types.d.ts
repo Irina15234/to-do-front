@@ -3,6 +3,17 @@ export interface State {
   user: User;
   board: Board;
   task: Task;
+  common: CommonSettings;
+}
+
+export interface Snackbar {
+  open: boolean;
+  message: string;
+  variant: string;
+}
+
+export interface CommonSettings {
+  snackbar: Snackbar;
 }
 
 export interface MainPage {
@@ -19,6 +30,14 @@ export interface Board {
   id: number | null;
   name: string;
   columns: BoardColumn[];
+  tasks: BoardTask[];
+}
+
+export interface BoardTask {
+  id: number;
+  name: string;
+  priorityIcon: string;
+  columnId: number;
 }
 
 export interface Task {
