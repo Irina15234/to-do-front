@@ -48,7 +48,7 @@ export const Column = ({ column }: ColumnProps) => {
 
         <ModalMenu open={open} onClose={handleClose} anchorEl={anchorEl}>
           {menuList.map((item) => (
-            <ModalMenuItem title={item.title} icon={item.icon} />
+            <ModalMenuItem key={item.title} title={item.title} icon={item.icon} />
           ))}
         </ModalMenu>
       </div>

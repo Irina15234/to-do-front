@@ -62,6 +62,7 @@ input:focus::-webkit-textfield-decoration-container {
 
   --red-color: #c7444a;
   --grey-color: #b2b2b0;
+  --blue-color: #0272a2;
 }
 
 :root[data-theme='dark'] {

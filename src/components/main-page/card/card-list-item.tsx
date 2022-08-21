@@ -53,7 +53,8 @@ export const CardListItem = ({ source, type }: CardListItemProps) => {
       </Link>
 
       <ModalMenu open={open} onClose={handleClose} anchorEl={anchorEl}>
-        {type === CardType.board && menuList.map((item) => <ModalMenuItem title={item.title} icon={item.icon} />)}
+        {type === CardType.board &&
+          menuList.map((item) => <ModalMenuItem key={item.title} title={item.title} icon={item.icon} />)}
       </ModalMenu>
     </>
   );

@@ -49,8 +49,8 @@ const DarkInput = styled(TextField)({
   }
 });
 
-export const CustomInput = ({ ...props }: TextFieldProps & CustomInputProps) => {
-  switch (props.colorVariant) {
+export const CustomInput = ({ colorVariant, ...props }: TextFieldProps & CustomInputProps) => {
+  switch (colorVariant) {
     case 'light':
       return <LightInput variant="outlined" autoComplete="off" InputLabelProps={{ shrink: true }} {...props} />;
     case 'dark':

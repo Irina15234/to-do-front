@@ -69,8 +69,8 @@ const AddButton = styled(Button)({
   }
 });
 
-export const CustomButton = ({ ...props }: CustomButtonProps) => {
-  switch (props.buttonType) {
+export const CustomButton = ({ buttonType, startIconColor, ...props }: CustomButtonProps) => {
+  switch (buttonType) {
     case ButtonType.standard:
       return (
         <StandardButton {...props} variant="contained">
@@ -94,9 +94,7 @@ export const CustomButton = ({ ...props }: CustomButtonProps) => {
         <AddButton
           {...props}
           variant="contained"
-          startIcon={
-            <AddCircleOutline style={{ color: props.startIconColor || 'var(--dark-background-color, #5b828e)' }} />
-          }
+          startIcon={<AddCircleOutline style={{ color: startIconColor || 'var(--dark-background-color, #5b828e)' }} />}
         >
           {props.children}
         </AddButton>

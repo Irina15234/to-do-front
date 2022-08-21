@@ -2,11 +2,12 @@ import { useCallback, useEffect, useState } from 'react';
 import { ButtonType } from '../../../custom-components/button/button';
 import { ColumnsGroupProps } from './columns-group';
 import { useDispatch, useSelector } from 'react-redux';
-import { BoardTask, State } from '../../../slices/types';
+import { State } from '../../../slices/types';
 import { DropResult } from 'react-beautiful-dnd';
 import { setBoardTasksAction } from '../../../slices/board/board-slice';
-import { updateTaskColumn } from '../../../services/task-service';
+import { getTasksByBoard, updateTaskColumn } from '../../../services/task-service';
 import { setSnackbarAction } from '../../../slices/common/common-slice';
+import { getBoardOrTaskId } from '../../../common/helpers';
 
 export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
   const dispatch = useDispatch();
@@ -44,28 +45,16 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
   ];
 
   useEffect(() => {
-    // todo
-    const mockTasks: BoardTask[] = [
-      {
-        id: 1,
-        name: 'task1',
-        columnId: 0,
-        priorityIcon: ''
-      },
-      {
-        id: 2,
-        name: 'task2',
-        columnId: 0,
-        priorityIcon: ''
-      },
-      {
-        id: 3,
-        name: 'task3',
-        columnId: 1,
-        priorityIcon: ''
-      }
-    ];
-    dispatch(setBoardTasksAction(mockTasks));
+    const boardId: number | null = getBoardOrTaskId();
+
+    boardId &&
+      getTasksByBoard(boardId)
+        .then((res) => {
+          dispatch(setBoardTasksAction(res));
+        })
+        .catch((error) => {
+          // todo
+        });
   }, [dispatch]);
 
   const onDragEnd = (result: DropResult) => {
