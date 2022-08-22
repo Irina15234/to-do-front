@@ -1,12 +1,12 @@
 import './card.css';
 import clsx from 'clsx';
-import { Board, Task } from '../../../slices/types';
+import { MainViewBoard, MainViewTask } from '../../../slices/types';
 import { CardListItem, CardType } from './card-list-item';
 import { ButtonType, CustomButton } from '../../../custom-components/button/button';
 
 interface CardProps {
   title: string;
-  sourceList: Board[] | Task[];
+  sourceList: MainViewBoard[] | MainViewTask[];
   className?: string;
   isBoards?: boolean;
 }

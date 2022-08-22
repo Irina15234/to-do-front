@@ -17,11 +17,16 @@ export interface CommonSettings {
 }
 
 export interface MainPage {
-  boards: Board[];
-  tasks: Task[];
+  boards: MainViewBoard[];
+  tasks: MainViewTask[];
 }
 
 export interface BoardColumn {
+  id: number;
+  name: string;
+}
+
+export interface MainViewBoard {
   id: number;
   name: string;
 }
@@ -38,6 +43,13 @@ export interface BoardTask {
   name: string;
   priorityIcon: string;
   columnId: number;
+}
+
+export interface MainViewTask {
+  id: number;
+  name: string;
+  priorityIcon: string;
+  priorityName: string;
 }
 
 export interface Task {

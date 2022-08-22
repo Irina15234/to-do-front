@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Board, MainPage, Task } from '../types';
+import { MainPage, MainViewBoard, MainViewTask } from '../types';
 
 const mainPageInitialState: MainPage = {
   boards: [],
@@ -14,11 +14,11 @@ const mainPageSlice = createSlice({
       state = { ...payload };
       return state;
     },
-    setBoards: (state, { payload }: PayloadAction<Board[]>) => {
+    setBoards: (state, { payload }: PayloadAction<MainViewBoard[]>) => {
       state.boards = [...payload];
       return state;
     },
-    setTasks: (state, { payload }: PayloadAction<Task[]>) => {
+    setTasks: (state, { payload }: PayloadAction<MainViewTask[]>) => {
       state.tasks = [...payload];
       return state;
     }

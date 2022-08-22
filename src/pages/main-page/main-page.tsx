@@ -1,12 +1,12 @@
 import { Card } from '../../components/main-page/card/card';
 import './main-page.css';
-import { Board, Task } from '../../slices/types';
+import { MainViewBoard, MainViewTask } from '../../slices/types';
 import { useEffect, useState } from 'react';
 import { getBoards, getTasks } from '../../services/service';
 
 export const MainPage = () => {
-  const [boards, setBoards] = useState<Board[]>([]);
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [boards, setBoards] = useState<MainViewBoard[]>([]);
+  const [tasks, setTasks] = useState<MainViewTask[]>([]);
 
   useEffect(() => {
     getBoards().then((boards) => {

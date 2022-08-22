@@ -1,5 +1,4 @@
 import React from 'react';
-import { ButtonType, CustomButton } from '../../../../custom-components/button/button';
 import { BoardColumn, State } from '../../../../slices/types';
 import { TaskBlock } from '../task-block/task-block';
 import { Droppable } from 'react-beautiful-dnd';
@@ -10,10 +9,6 @@ interface ColumnBodyProps {
 }
 
 export const ColumnBody = ({ column }: ColumnBodyProps) => {
-  const handleAddTask = () => {
-    console.log(column);
-  };
-
   const tasks = useSelector((state: State) => state.board.tasks)?.filter((task) => task.columnId === column.id) || [];
 
   return (
@@ -24,17 +19,6 @@ export const ColumnBody = ({ column }: ColumnBodyProps) => {
             {tasks.map((task, index) => {
               return <TaskBlock key={task.id} task={task} index={index} />;
             })}
-
-            {!column.id && (
-              <CustomButton
-                buttonType={ButtonType.add}
-                startIconColor="var(--dark-background-color)"
-                onClick={handleAddTask}
-                fullWidth
-              >
-                Add new task
-              </CustomButton>
-            )}
             {provided.placeholder}
           </div>
         );

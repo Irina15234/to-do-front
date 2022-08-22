@@ -4,6 +4,11 @@
     border: 1px solid var(--light-border-color);
     padding: 8px 6px;
     margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.task-block:hover {
+    box-shadow: var(--block-shadow);
 }
 
 .task-block__head {
@@ -14,6 +19,7 @@
     color: var(--dark-text-color);
     font-size: 14px;
     line-height: 16px;
+    font-weight: 500;
 }
 
 .task-block__main {

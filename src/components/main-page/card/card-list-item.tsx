@@ -3,7 +3,7 @@ import { CustomIconButton, IconButtonVariant } from '../../../custom-components/
 import { Delete, Edit, MoreVert } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { ModalMenu } from '../../../custom-components/modal-menu/modal-menu';
-import { Board, Task } from '../../../slices/types';
+import { MainViewBoard, MainViewTask } from '../../../slices/types';
 import { ModalMenuItem } from '../../../custom-components/menu-item';
 
 export enum CardType {
@@ -12,7 +12,7 @@ export enum CardType {
 }
 
 interface CardListItemProps {
-  source: Board | Task;
+  source: MainViewBoard | MainViewTask;
   type: CardType;
 }
 

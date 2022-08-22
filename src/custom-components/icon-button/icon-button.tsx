@@ -6,8 +6,15 @@ export enum IconButtonVariant {
   square = 'square'
 }
 
+export enum IconVariant {
+  primary,
+  secondary,
+  white
+}
+
 export interface StyledIconButtonProps extends IconButtonProps {
   variant?: IconButtonVariant;
+  iconVariant?: IconVariant;
 }
 
 const Square = styled(IconButton)({
@@ -20,14 +27,18 @@ const Square = styled(IconButton)({
 });
 
 const Icon = styled(IconButton)({
-  padding: '5px !important',
+  padding: '0 !important',
 
   '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.05) !important'
+    backgroundColor: 'none !important'
   }
 });
 
-export const CustomIconButton = ({ variant = IconButtonVariant.square, ...props }: StyledIconButtonProps) => {
+export const CustomIconButton = ({
+  variant = IconButtonVariant.square,
+  iconVariant = IconVariant.primary,
+  ...props
+}: StyledIconButtonProps) => {
   switch (variant) {
     case IconButtonVariant.square:
       return <Square {...props}>{props.children}</Square>;

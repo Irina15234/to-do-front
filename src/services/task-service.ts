@@ -22,7 +22,7 @@ export const getTasksByBoard = async (boardId: number): Promise<BoardTask[]> => 
   }
 };
 
-export const newTask = async (data: Task) => {
+export const createTask = async (data: Task): Promise<number> => {
   try {
     const response = await api.post(`/task/new`, data);
     return response.data;
