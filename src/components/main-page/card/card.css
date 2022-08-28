@@ -31,8 +31,18 @@
   transition: 1s;
 }
 
+.card-list-item__task-link:last-child .card-list-item {
+  border-bottom: none;
+}
+
 .card-list-item:hover {
   background: var(--light-background-color-opacity);
+}
+
+.card-list-item__icon {
+  width: 0.7em;
+  height: 0.7em;
+  display: flex;
 }
 
 .card-list-item__name {
