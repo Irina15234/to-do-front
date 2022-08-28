@@ -1,46 +1,30 @@
 import { Link } from 'react-router-dom';
 import { CustomIconButton, IconButtonVariant } from '../../../custom-components/icon-button/icon-button';
-import { Delete, Edit, MoreVert } from '@mui/icons-material';
-import React, { useState } from 'react';
+import { MoreVert } from '@mui/icons-material';
+import React from 'react';
 import { ModalMenu } from '../../../custom-components/modal-menu/modal-menu';
 import { MainViewBoard, MainViewTask } from '../../../slices/types';
 import { ModalMenuItem } from '../../../custom-components/menu-item';
 import clsx from 'clsx';
+import { useCardListItem } from './useCardListItem';
 
 export enum CardType {
   board = 'board',
   task = 'task'
 }
 
-interface CardListItemProps {
+export interface CardListItemProps {
   source: MainViewBoard | MainViewTask;
   type: CardType;
+  updateSourceListAfterDeleting: (sourceId: number) => void;
 }
 
-export const CardListItem = ({ source, type }: CardListItemProps) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-
-  const handleClickSettings = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const menuList = [
-    {
-      icon: <Edit style={{ color: 'var(--grey-color)' }} />,
-      title: 'Edit'
-    },
-    {
-      icon: <Delete style={{ color: 'var(--red-color)' }} />,
-      title: 'Delete'
-    }
-  ];
+export const CardListItem = ({ source, type, updateSourceListAfterDeleting }: CardListItemProps) => {
+  const { handleClickSettings, handleClose, anchorEl, menuList, open } = useCardListItem({
+    source,
+    type,
+    updateSourceListAfterDeleting
+  });
 
   return (
     <>
@@ -59,8 +43,9 @@ export const CardListItem = ({ source, type }: CardListItemProps) => {
       </Link>
 
       <ModalMenu open={open} onClose={handleClose} anchorEl={anchorEl}>
-        {type === CardType.board &&
-          menuList.map((item) => <ModalMenuItem key={item.title} title={item.title} icon={item.icon} />)}
+        {menuList.map((item) => (
+          <ModalMenuItem key={item.title} {...item} />
+        ))}
       </ModalMenu>
     </>
   );

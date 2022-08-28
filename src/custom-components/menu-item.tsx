@@ -4,11 +4,12 @@ import React from 'react';
 interface ModalMenuItemProps {
   icon: JSX.Element | null;
   title: string;
+  onClick?: () => void;
 }
 
-export const ModalMenuItem = ({ icon, title }: ModalMenuItemProps) => {
+export const ModalMenuItem = ({ icon, title, onClick }: ModalMenuItemProps) => {
   return (
-    <MenuItem>
+    <MenuItem onClick={onClick}>
       {icon && <ListItemIcon>{icon}</ListItemIcon>}
       {title}
     </MenuItem>

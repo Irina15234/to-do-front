@@ -12,8 +12,15 @@ export interface Snackbar {
   variant: string;
 }
 
+export interface DeleteInfo {
+  title: string;
+  body: string;
+  onDelete: () => void;
+}
+
 export interface CommonSettings {
   snackbar: Snackbar;
+  deleteInfo: DeleteInfo;
 }
 
 export interface MainPage {

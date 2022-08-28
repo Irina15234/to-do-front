@@ -1,0 +1,4 @@
+.delete-dialog {
+    min-height: 70px;
+    color: var(--dark-text-color);
+}
