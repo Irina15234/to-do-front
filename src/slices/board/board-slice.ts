@@ -3,7 +3,7 @@ import { Board, BoardTask } from '../types';
 
 const boardInitialState: Board = {
   id: null,
-  name: '',
+  name: 'Board',
   columns: [],
   tasks: []
 };

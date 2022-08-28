@@ -2,17 +2,18 @@ import { Card } from '../../components/main-page/card/card';
 import './main-page.css';
 import { MainViewBoard, MainViewTask } from '../../slices/types';
 import { useEffect, useState } from 'react';
-import { getBoards, getTasks } from '../../services/service';
+import { getTasksList } from '../../services/task-service';
+import { getBoardsList } from '../../services/board-service';
 
 export const MainPage = () => {
   const [boards, setBoards] = useState<MainViewBoard[]>([]);
   const [tasks, setTasks] = useState<MainViewTask[]>([]);
 
   useEffect(() => {
-    getBoards().then((boards) => {
+    getBoardsList().then((boards) => {
       setBoards(boards);
     });
-    getTasks().then((tasks) => {
+    getTasksList().then((tasks) => {
       setTasks(tasks);
     });
   }, []);

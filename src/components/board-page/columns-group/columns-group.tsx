@@ -23,7 +23,7 @@ export const ColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="columns-group">
-        {columns.map((column) => (
+        {columns?.map((column) => (
           <Column key={column.id} column={column} />
         ))}
         {(isEditPage() || isNewPage()) && (

@@ -2,18 +2,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBoardOrTaskId, isNewPage } from '../../common/helpers';
 import { Board, BoardColumn, State } from '../../slices/types';
 import { useCallback, useEffect, useState } from 'react';
-import { getBoardById, newBoard } from '../../services/board-service';
+import { getBoardById, createBoard } from '../../services/board-service';
 import { setBoardAction } from '../../slices/board/board-slice';
 import { ButtonType } from '../../custom-components/button/button';
 
 export const useBoardPage = () => {
   const dispatch = useDispatch();
-  const boardId: number | null = getBoardOrTaskId();
 
   const stateBoard = useSelector((state: State) => state.board);
 
   useEffect(() => {
+    console.log(1);
     const loadBoard = () => {
+      const boardId: number | null = getBoardOrTaskId();
+
       const isNeedToLoadBoard = boardId && boardId !== stateBoard.id;
 
       isNeedToLoadBoard &&
@@ -25,11 +27,11 @@ export const useBoardPage = () => {
     };
 
     loadBoard();
-  });
+  }, [dispatch, stateBoard.id]);
 
   const [openNameSettingDialog, setOpenNameSettingDialog] = useState<boolean>(isNewPage());
   const [boardName, setBoardName] = useState<string>(stateBoard.name);
-  const [columns, setColumns] = useState<BoardColumn[]>(stateBoard.columns);
+  const [columns, setColumns] = useState<BoardColumn[]>(stateBoard.columns || []);
 
   const handleSaveName = useCallback(() => {
     setOpenNameSettingDialog(false);
@@ -64,8 +66,8 @@ export const useBoardPage = () => {
       columns,
       tasks: []
     };
-    dispatch(setBoardAction(board));
-    newBoard(board).then((res) => {
+
+    createBoard(board).then((res) => {
       dispatch(setBoardAction(res));
       location.href = location.origin + '/board/' + res.id;
     });
