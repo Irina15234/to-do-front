@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBoardOrTaskId, isNewPage } from '../../common/helpers';
 import { Board, BoardColumn, State } from '../../slices/types';
 import { useCallback, useEffect, useState } from 'react';
-import { getBoardById, createBoard } from '../../services/board-service';
+import { getBoardById, createBoard, updateBoardById } from '../../services/board-service';
 import { setBoardAction } from '../../slices/board/board-slice';
 import { ButtonType } from '../../custom-components/button/button';
 
@@ -12,7 +12,6 @@ export const useBoardPage = () => {
   const stateBoard = useSelector((state: State) => state.board);
 
   useEffect(() => {
-    console.log(1);
     const loadBoard = () => {
       const boardId: number | null = getBoardOrTaskId();
 
@@ -60,17 +59,30 @@ export const useBoardPage = () => {
   ];
 
   const handleSaveBoard = useCallback(() => {
-    const board: Board = {
-      id: null,
-      name: boardName,
-      columns,
-      tasks: []
-    };
+    const boardId = getBoardOrTaskId();
+    if (boardId) {
+      const board: Board = {
+        id: boardId,
+        name: boardName,
+        columns,
+        tasks: []
+      };
+      updateBoardById(board).then(() => {
+        location.href = location.origin + '/board/' + boardId;
+      });
+    } else {
+      const board: Board = {
+        id: null,
+        name: boardName,
+        columns,
+        tasks: []
+      };
 
-    createBoard(board).then((res) => {
-      dispatch(setBoardAction(res));
-      location.href = location.origin + '/board/' + res.id;
-    });
+      createBoard(board).then((res) => {
+        dispatch(setBoardAction(res));
+        location.href = location.origin + '/board/' + res.id;
+      });
+    }
   }, [boardName, columns, dispatch]);
 
   const handleClickTitleEdit = useCallback(() => {

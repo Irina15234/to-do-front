@@ -7,6 +7,7 @@ import { CustomDialog } from '../../custom-components/dialog/dialog';
 import { Panel } from '../../components/board-page/panel/panel';
 import { BoardHeader } from '../../components/board-page/board-header/board-header';
 import { useBoardPage } from './useBoardPage';
+import { ButtonType, CustomButton } from '../../custom-components/button/button';
 
 export const BoardPage = () => {
   const {
@@ -28,7 +29,16 @@ export const BoardPage = () => {
         <ColumnsGroup columns={columns} changeColumns={changeColumns} />
       </div>
 
-      {(isNewPage() || isEditPage()) && <Panel onClick={handleSaveBoard} />}
+      {(isNewPage() || isEditPage()) && (
+        <Panel>
+          <>
+            <CustomButton buttonType={ButtonType.standard} onClick={handleSaveBoard} className="item-with-right-margin">
+              Save
+            </CustomButton>
+            <CustomButton buttonType={ButtonType.neutral}>Cancel</CustomButton>
+          </>
+        </Panel>
+      )}
 
       <CustomDialog open={openNameSettingDialog} title="New board" onClose={handleCloseNameSetting} actions={actions}>
         <div>

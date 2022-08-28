@@ -36,10 +36,15 @@ input:focus::-webkit-textfield-decoration-container {
 }
 
 .item-with-right-margin {
-  margin-right: 8px;
+  margin-right: 8px !important;
 }
 .item-with-bottom-margin {
   margin-bottom: 20px !important;
+}
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 img {

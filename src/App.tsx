@@ -23,6 +23,7 @@ export const App = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/board/new" element={<BoardPage />} />
           <Route path="/board/:id" element={<BoardPage />} />
+          <Route path="/board/:id/edit" element={<BoardPage />} />
           <Route path="/task/:id" element={<TaskPage />} />
         </Route>
       </Routes>

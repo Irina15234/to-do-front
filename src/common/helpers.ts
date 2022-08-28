@@ -8,5 +8,10 @@ export const isNewPage = () => {
 
 export const getBoardOrTaskId = () => {
   const lastHrefPath = window.location.href.split('/').pop();
+
+  if (isEditPage()) {
+    return parseInt(window.location.href.split('/').reverse()[1]);
+  }
+
   return isNewPage() || !lastHrefPath ? null : parseInt(lastHrefPath);
 };
