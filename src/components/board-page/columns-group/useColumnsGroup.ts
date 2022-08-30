@@ -8,6 +8,7 @@ import { setBoardTasksAction } from '../../../slices/board/board-slice';
 import { getTasksByBoard, updateTaskColumn } from '../../../services/task-service';
 import { setSnackbarAction } from '../../../slices/common/common-slice';
 import { getBoardOrTaskId } from '../../../common/helpers';
+import { isNumber } from 'lodash';
 
 export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
   const dispatch = useDispatch();
@@ -16,20 +17,29 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
 
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [columnTitle, setColumnTitle] = useState<string>('');
+  const [editColumnId, setEditColumnId] = useState<number | null>(null);
 
   const handleAddColumnClick = () => {
     setOpenDialog(true);
   };
 
-  const handleSave = useCallback(() => {
-    changeColumns([...columns, { id: columns.length, name: columnTitle }]);
-    setOpenDialog(false);
-    setColumnTitle('');
-  }, [columns, changeColumns, columnTitle]);
-
   const handleClose = useCallback(() => {
     setOpenDialog(false);
-  }, [setOpenDialog]);
+    setColumnTitle('');
+    setEditColumnId(null);
+  }, []);
+
+  const handleSave = useCallback(() => {
+    if (isNumber(editColumnId)) {
+      const newColumns = [...columns].map((column) => {
+        return column.id === editColumnId ? { ...column, name: columnTitle } : column;
+      });
+      changeColumns(newColumns);
+    } else {
+      changeColumns([...columns, { id: columns.length, name: columnTitle }]);
+    }
+    handleClose();
+  }, [editColumnId, handleClose, changeColumns, columns, columnTitle]);
 
   const actions = [
     {
@@ -73,6 +83,24 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
     }
   };
 
+  const handleEditColumnTitle = useCallback(
+    (columnId: number) => {
+      setOpenDialog(true);
+      setEditColumnId(columnId);
+      const columnTitle = columns.find((column) => column.id === columnId)?.name;
+      setColumnTitle(columnTitle || '');
+    },
+    [columns]
+  );
+
+  const handleDeleteColumn = useCallback(
+    (columnId: number) => {
+      const newColumns = [...columns].filter((column) => column.id !== columnId);
+      changeColumns(newColumns);
+    },
+    [changeColumns, columns]
+  );
+
   return {
     handleAddColumnClick,
     openDialog,
@@ -80,6 +108,10 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
     actions,
     columnTitle,
     setColumnTitle,
-    onDragEnd
+    onDragEnd,
+    columnsAction: {
+      handleEditColumnTitle,
+      handleDeleteColumn
+    }
   };
 };

@@ -14,17 +14,25 @@ export interface ColumnsGroupProps {
 }
 
 export const ColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
-  const { handleAddColumnClick, openDialog, handleClose, actions, columnTitle, setColumnTitle, onDragEnd } =
-    useColumnsGroup({
-      columns,
-      changeColumns
-    });
+  const {
+    handleAddColumnClick,
+    openDialog,
+    handleClose,
+    actions,
+    columnTitle,
+    setColumnTitle,
+    onDragEnd,
+    columnsAction
+  } = useColumnsGroup({
+    columns,
+    changeColumns
+  });
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="columns-group">
         {columns?.map((column) => (
-          <Column key={column.id} column={column} />
+          <Column key={column.id} column={column} columnsAction={columnsAction} />
         ))}
         {(isEditPage() || isNewPage()) && (
           <div className="columns-group__add" role="button" onClick={handleAddColumnClick}>

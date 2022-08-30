@@ -11,9 +11,10 @@ import { AddTaskModal } from '../add-task-modal/add-task-modal';
 
 interface ColumnProps {
   column: BoardColumn;
+  columnsAction: { handleEditColumnTitle: (columnId: number) => void; handleDeleteColumn: (columnId: number) => void };
 }
 
-export const Column = ({ column }: ColumnProps) => {
+export const Column = ({ column, columnsAction }: ColumnProps) => {
   const [openTaskModal, setOpenTaskModal] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -36,14 +37,26 @@ export const Column = ({ column }: ColumnProps) => {
     setAnchorEl(null);
   };
 
+  const handleClickEdit = () => {
+    columnsAction.handleEditColumnTitle(column.id);
+    handleCloseSettings();
+  };
+
+  const handleClickDelete = () => {
+    columnsAction.handleDeleteColumn(column.id);
+    handleCloseSettings();
+  };
+
   const menuList = [
     {
       icon: <Edit style={{ color: 'var(--grey-color)' }} />,
-      title: 'Edit'
+      title: 'Edit',
+      onClick: handleClickEdit
     },
     {
       icon: <Delete style={{ color: 'var(--red-color)' }} />,
-      title: 'Delete'
+      title: 'Delete',
+      onClick: handleClickDelete
     }
   ];
 
@@ -64,7 +77,7 @@ export const Column = ({ column }: ColumnProps) => {
 
         <ModalMenu open={open} onClose={handleCloseSettings} anchorEl={anchorEl}>
           {menuList.map((item) => (
-            <ModalMenuItem key={item.title} title={item.title} icon={item.icon} />
+            <ModalMenuItem key={item.title} title={item.title} icon={item.icon} onClick={item.onClick} />
           ))}
         </ModalMenu>
       </div>

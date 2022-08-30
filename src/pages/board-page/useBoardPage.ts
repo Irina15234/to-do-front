@@ -31,15 +31,18 @@ export const useBoardPage = () => {
   const [openNameSettingDialog, setOpenNameSettingDialog] = useState<boolean>(isNewPage());
   const [boardName, setBoardName] = useState<string>(stateBoard.name);
   const [columns, setColumns] = useState<BoardColumn[]>(stateBoard.columns || []);
+  const [isEditName, setIsEditName] = useState<boolean>(false);
 
   const handleSaveName = useCallback(() => {
     setOpenNameSettingDialog(false);
+    setIsEditName(false);
   }, []);
 
   const handleCloseNameSetting = useCallback(() => {
     setOpenNameSettingDialog(false);
-    window.location.href = location.origin;
-  }, []);
+    setIsEditName(false);
+    !isEditName && (window.location.href = location.origin);
+  }, [isEditName]);
 
   const changeColumns = useCallback((newColumns: BoardColumn[]) => {
     setColumns(newColumns);
@@ -87,6 +90,7 @@ export const useBoardPage = () => {
 
   const handleClickTitleEdit = useCallback(() => {
     setOpenNameSettingDialog(true);
+    setIsEditName(true);
   }, []);
 
   return {
