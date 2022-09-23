@@ -1,4 +1,4 @@
-import { BoardTask, MainViewTask, Task } from '../slices/types';
+import { BoardTask, CreateViewTask, MainViewTask, Task } from '../slices/types';
 import { api } from './api';
 import { TaskView } from '../common/enums';
 
@@ -34,7 +34,7 @@ export const getTasksByBoard = async (boardId: number): Promise<BoardTask[]> => 
   }
 };
 
-export const createTask = async (data: Task): Promise<number> => {
+export const createTask = async (data: CreateViewTask): Promise<number> => {
   try {
     const response = await api.post(`/${TASK_API}/new`, data);
     return response.data;

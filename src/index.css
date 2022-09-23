@@ -41,6 +41,9 @@ input:focus::-webkit-textfield-decoration-container {
 .item-with-bottom-margin {
   margin-bottom: 20px !important;
 }
+.form-item-with-bottom-margin {
+  margin-bottom: 34px !important;
+}
 .icon-link {
   display: flex;
   align-items: center;

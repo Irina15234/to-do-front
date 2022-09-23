@@ -1,4 +1,4 @@
-import { Board, MainViewBoard } from '../slices/types';
+import { Board, MainViewBoard, User } from '../slices/types';
 import { api } from './api';
 
 const BOARD_API = 'board';
@@ -46,6 +46,16 @@ export const updateBoardById = async (data: Board) => {
 export const deleteBoardById = async (id: number) => {
   try {
     const response = await api.delete(`/${BOARD_API}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};
+
+export const getUsersByBoard = async (id: number): Promise<User[]> => {
+  try {
+    const response = await api.get(`/${BOARD_API}/users/${id}`);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);

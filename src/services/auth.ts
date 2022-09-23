@@ -1,4 +1,5 @@
 import { api } from './api';
+import { User } from '../slices/types';
 
 export const login = async (username: string, password: string) => {
   try {
@@ -10,9 +11,9 @@ export const login = async (username: string, password: string) => {
   }
 };
 
-export const getUserInfo = async (id: number) => {
+export const getUserInfo = async (): Promise<User> => {
   try {
-    const response = await api.get(`user/${id}`);
+    const response = await api.get(`user`);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);

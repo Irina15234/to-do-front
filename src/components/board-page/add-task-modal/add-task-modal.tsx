@@ -1,75 +1,65 @@
 import { CustomDialog } from '../../../custom-components/dialog/dialog';
-import { ButtonType } from '../../../custom-components/button/button';
-import { getBoardOrTaskId } from '../../../common/helpers';
-import { createTask } from '../../../services/task-service';
-import { Task } from '../../../slices/types';
-import { useDispatch } from 'react-redux';
 import { CustomInput } from '../../../custom-components/input/input';
-import { useState } from 'react';
-import { setTaskAction } from '../../../slices/task/task-slice';
-import moment from 'moment';
+import { CustomSelect } from '../../../custom-components/select/select';
+import { useAddTaskModal } from './useAddTaskModal';
 
-interface AddTaskModalProps {
+export interface AddTaskModalProps {
   handleClose: () => void;
 }
 
 export const AddTaskModal = ({ handleClose }: AddTaskModalProps) => {
-  const dispatch = useDispatch();
-
-  const [name, setName] = useState<string>('');
-
-  const handleSave = () => {
-    const boardId: number | null = getBoardOrTaskId();
-
-    if (!boardId) return;
-
-    const newTask: Task = {
-      id: null,
-      authorId: 1,
-      executorId: 1,
-      name: name,
-      priorityName: 'minor',
-      columnId: 0,
-      date: moment().format(),
-      boardId
-    };
-
-    createTask(newTask)
-      .then((res) => {
-        location.href = location.origin + '/task/' + res;
-        dispatch(setTaskAction({ ...newTask, id: res }));
-        console.log({ ...newTask, id: res });
-      })
-      .catch((error) => {
-        // todo
-        console.log(error);
-      });
-  };
-
-  const actions = [
-    {
-      buttonType: ButtonType.standard,
-      title: 'Save',
-      onClick: handleSave
-    },
-    {
-      buttonType: ButtonType.neutral,
-      title: 'Cancel',
-      onClick: handleClose
-    }
-  ];
+  const { formik, actions, priorityListOptions, executorsListOptions } = useAddTaskModal({ handleClose });
 
   return (
     <CustomDialog onClose={handleClose} actions={actions} open={true} title="New task">
-      <div>
+      <form>
         <CustomInput
-          value={name}
+          name="name"
+          value={formik.values.name}
           label="Name"
-          onChange={(event) => setName(event.target.value)}
+          onChange={formik.handleChange}
           colorVariant="dark"
           fullWidth
+          className="form-item-with-bottom-margin"
+          error={Boolean(formik.errors.name)}
+          helperText={formik.errors.name}
+          required
         />
-      </div>
+        <CustomSelect
+          labelId="add-task-priority"
+          label="Priority"
+          name="priorityId"
+          options={priorityListOptions}
+          onChange={formik.handleChange}
+          value={formik.values.priorityId}
+          colorVariant="dark"
+          fullWidth
+          className="form-item-with-bottom-margin"
+          required
+        />
+        <CustomInput
+          name="author"
+          value={formik.values.author}
+          label="Author"
+          onChange={formik.handleChange}
+          colorVariant="dark"
+          fullWidth
+          className="form-item-with-bottom-margin"
+          disabled
+          required
+        />
+        <CustomSelect
+          labelId="add-task-executor"
+          label="Executor"
+          name="executorId"
+          options={executorsListOptions}
+          onChange={formik.handleChange}
+          value={formik.values.executorId}
+          colorVariant="dark"
+          fullWidth
+          required
+        />
+      </form>
     </CustomDialog>
   );
 };

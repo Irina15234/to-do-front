@@ -59,19 +59,36 @@ export interface MainViewTask {
   priorityName: string;
 }
 
-export interface Task {
-  id: number | null;
+export interface CreateViewTask {
+  id: null;
   authorId: number;
   executorId: number | null;
   name: string;
-  priorityName: string;
-  priorityIcon?: string;
+  priorityId: number;
   columnId: number;
   date: string;
   boardId: number;
 }
 
+export interface Task {
+  id: number;
+  authorId: number;
+  executorId: number | null;
+  name: string;
+  priorityName: string;
+  priorityIcon: string;
+  columnId: number;
+  date: string;
+}
+
 export interface User {
   id: number;
   name: string;
+  photo: string | null;
+}
+
+export interface Priority {
+  name: string;
+  icon: string;
+  id: number;
 }
