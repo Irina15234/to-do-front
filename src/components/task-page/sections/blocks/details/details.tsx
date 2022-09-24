@@ -1,8 +1,21 @@
-import { useSelector } from 'react-redux';
-import { State } from '../../../../../slices/types';
+import { useDetails } from './useDetails';
+import { CustomSelect } from '../../../../../custom-components/select/select';
 
 export const Details = () => {
-  const task = useSelector((state: State) => state.task);
+  const { formik, priorityListOptions, handleChangeValue } = useDetails();
 
-  return <div className="details-block">details</div>;
+  return (
+    <div className="section-block">
+      <CustomSelect
+        labelId="task-priority"
+        label="Priority"
+        name="priorityId"
+        options={priorityListOptions}
+        onChange={handleChangeValue}
+        value={formik.values.priorityId}
+        colorVariant="dark"
+        fullWidth
+      />
+    </div>
+  );
 };

@@ -5,7 +5,7 @@ import { AddCircleOutline, Delete, Edit, MoreVert } from '@mui/icons-material';
 import { ModalMenu } from '../../../custom-components/modal-menu/modal-menu';
 import React, { useState } from 'react';
 import { isEditPage, isNewPage } from '../../../common/helpers';
-import { ModalMenuItem } from '../../../custom-components/menu-item';
+import { ModalMenuItem } from '../../../custom-components/menu-item/menu-item';
 import { ColumnBody } from './column-body/column-body';
 import { AddTaskModal } from '../add-task-modal/add-task-modal';
 

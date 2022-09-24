@@ -1,4 +1,7 @@
 import { Details } from './details/details';
+import { Subtasks } from './subtasks/subtasks';
+import { Dates } from './dates/dates';
+import { People } from './people/people';
 
 export enum BlockTypes {
   details = 'Details',
@@ -12,11 +15,11 @@ export const getBlockByType = (type: BlockTypes) => {
     case BlockTypes.details:
       return <Details />;
     case BlockTypes.subtasks:
-      return <Details />;
+      return <Subtasks />;
     case BlockTypes.people:
-      return <Details />;
+      return <People />;
     case BlockTypes.dates:
-      return <Details />;
+      return <Dates />;
     default:
       return <></>;
   }

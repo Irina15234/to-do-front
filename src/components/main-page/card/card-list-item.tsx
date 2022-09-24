@@ -4,7 +4,7 @@ import { MoreVert } from '@mui/icons-material';
 import React from 'react';
 import { ModalMenu } from '../../../custom-components/modal-menu/modal-menu';
 import { MainViewBoard, MainViewTask } from '../../../slices/types';
-import { ModalMenuItem } from '../../../custom-components/menu-item';
+import { ModalMenuItem } from '../../../custom-components/menu-item/menu-item';
 import clsx from 'clsx';
 import { useCardListItem } from './useCardListItem';
 

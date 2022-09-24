@@ -75,10 +75,10 @@ export interface Task {
   authorId: number;
   executorId: number | null;
   name: string;
-  priorityName: string;
-  priorityIcon: string;
+  priority: Priority;
   columnId: number;
   date: string;
+  boardId: number;
 }
 
 export interface User {

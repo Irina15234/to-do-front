@@ -8,44 +8,60 @@ export type CustomInputProps = {
 const LightInput = styled(TextField)({
   height: '40px',
 
+  '& > .MuiInputLabel-root:not(.Mui-error)': {
+    color: 'var(--light-text-color) !important'
+  },
   '& > .MuiInputLabel-root': {
-    color: 'var(--light-text-color) !important',
-
     '&.Mui-focused': {
       top: 0
     }
   },
-  '& > .MuiOutlinedInput-root': {
+  '& > .MuiInputBase-root': {
     height: '40px',
     color: 'var(--light-text-color) !important',
     paddingLeft: '7px',
 
     '& > .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'var(--light-border-color) !important',
       color: 'var(--light-text-color) !important'
     }
+  },
+  '& > .MuiInputBase-root:not(.Mui-error)': {
+    '& > .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'var(--light-border-color) !important'
+    }
+  },
+  '& .MuiFormHelperText-root': {
+    marginLeft: 0
   }
 });
 
 const DarkInput = styled(TextField)({
   height: '40px',
 
+  '& > .MuiInputLabel-root:not(.Mui-error)': {
+    color: 'var(--dark-text-color) !important'
+  },
   '& > .MuiInputLabel-root': {
-    color: 'var(--dark-text-color) !important',
-
     '&.Mui-focused': {
       top: 0
     }
   },
-  '& > .MuiOutlinedInput-root': {
+  '& > .MuiInputBase-root': {
     height: '40px',
     color: 'var(--dark-text-color) !important',
     paddingLeft: '7px',
 
     '& > .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'var(--dark-border-color) !important',
       color: 'var(--dark-text-color) !important'
     }
+  },
+  '& > .MuiInputBase-root:not(.Mui-error)': {
+    '& > .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'var(--dark-border-color) !important'
+    }
+  },
+  '& .MuiFormHelperText-root': {
+    marginLeft: 0
   }
 });
 

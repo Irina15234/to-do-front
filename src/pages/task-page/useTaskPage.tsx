@@ -1,9 +1,10 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getTaskById } from '../../services/task-service';
 import { Task } from '../../slices/types';
 import { useDispatch } from 'react-redux';
 import { setTaskAction } from '../../slices/task/task-slice';
+import { Typography } from '@mui/material';
 
 export const useTaskPage = () => {
   const { id } = useParams();
@@ -19,7 +20,15 @@ export const useTaskPage = () => {
       });
   }, [dispatch, id]);
 
+  const breadcrumbs = [
+    <Link key="1" to="/board/8">
+      boardName
+    </Link>,
+    <Typography key="2">{task?.name}</Typography>
+  ];
+
   return {
-    task
+    task,
+    breadcrumbs
   };
 };

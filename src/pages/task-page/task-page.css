@@ -7,13 +7,8 @@
 
 .task-page__head {
     display: flex;
+    flex-direction: column;
     margin-bottom: 5px;
-}
-
-.task-page__head-title {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--dark-text-color);
 }
 
 .task-page__main {

@@ -18,12 +18,21 @@ export type CustomSelectProps = {
 const StyledLabel = styled(InputLabel)((styledProps: { colorvariant: 'light' | 'dark' }) => ({
   top: '0 !important',
   color:
-    styledProps.colorvariant === 'light' ? 'var(--light-text-color) !important' : 'var(--dark-text-color) !important'
+    styledProps.colorvariant === 'light' ? 'var(--light-text-color) !important' : 'var(--dark-text-color) !important',
+  background: '#ffffff'
 }));
 
 const StyledSelect = styled(Select)((styledProps: { colorvariant: 'light' | 'dark' }) => ({
   height: '40px',
 
+  '& > .MuiInputLabel-root:not(.Mui-error)': {
+    color: 'var(--light-text-color) !important'
+  },
+  '& > .MuiInputLabel-root': {
+    '&.Mui-focused': {
+      top: 0
+    }
+  },
   '& .MuiListItemIcon-root': {
     minWidth: '26px',
     alignItems: 'center'
@@ -39,7 +48,7 @@ const StyledSelect = styled(Select)((styledProps: { colorvariant: 'light' | 'dar
       styledProps.colorvariant === 'light' ? 'var(--light-text-color) !important' : 'var(--dark-text-color) !important'
   },
 
-  '& > .MuiOutlinedInput-notchedOutline': {
+  '& > .MuiOutlinedInput-notchedOutline:not(.Mui-error)': {
     borderColor:
       styledProps.colorvariant === 'light'
         ? 'var(--light-border-color) !important'
@@ -48,6 +57,9 @@ const StyledSelect = styled(Select)((styledProps: { colorvariant: 'light' | 'dar
 
   '& .MuiSvgIcon-root': {
     color: 'var(--grey-color)'
+  },
+  '& .MuiFormHelperText-root': {
+    marginLeft: 0
   }
 }));
 
@@ -55,7 +67,7 @@ export const CustomSelect = ({ options, colorVariant, ...props }: SelectProps & 
   return (
     <FormControl fullWidth={props.fullWidth}>
       {props.label && (
-        <StyledLabel id={props.labelId} colorvariant={colorVariant}>
+        <StyledLabel id={props.labelId} colorvariant={colorVariant} shrink={true}>
           {props.label}
         </StyledLabel>
       )}

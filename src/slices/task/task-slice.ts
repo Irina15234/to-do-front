@@ -3,13 +3,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const taskInitialState: Task = {
   authorId: 0,
-  boardId: 0,
   columnId: 0,
   date: '',
   executorId: null,
-  id: null,
+  id: -1,
   name: '',
-  priorityName: ''
+  priority: {
+    name: '',
+    icon: '',
+    id: -1
+  },
+  boardId: -1
 };
 
 const taskSlice = createSlice({

@@ -11,7 +11,7 @@ export const AddTaskModal = ({ handleClose }: AddTaskModalProps) => {
   const { formik, actions, priorityListOptions, executorsListOptions } = useAddTaskModal({ handleClose });
 
   return (
-    <CustomDialog onClose={handleClose} actions={actions} open={true} title="New task">
+    <CustomDialog onClose={handleClose} actions={actions} open={true} title="New task" maxWidth="sm">
       <form>
         <CustomInput
           name="name"

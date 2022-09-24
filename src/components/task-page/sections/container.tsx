@@ -13,7 +13,7 @@ export const Container = ({ type }: { type: BlockTypes }) => {
   return (
     <div className="section-block-container">
       <div className="section-block-container__head" role="button" tabIndex={0} onClick={toggleHiddenInfo}>
-        <div className="section-block-container__title">1123</div>
+        <div className="section-block-container__title">{type}</div>
         {openInfo ? (
           <ArrowDropDownRounded style={{ color: 'var(--button-color)' }} />
         ) : (

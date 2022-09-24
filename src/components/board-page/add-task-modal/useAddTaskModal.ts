@@ -73,7 +73,7 @@ export const useAddTaskModal = ({ handleClose }: AddTaskModalProps) => {
     initialValues: {
       name: '',
       author: user.name || '',
-      executorId: -1,
+      executorId: 0,
       priorityId: priorityList.length ? priorityList[0].id : 0
     },
     validate
@@ -111,7 +111,7 @@ export const useAddTaskModal = ({ handleClose }: AddTaskModalProps) => {
         value: item.name
       };
     });
-    convertedList.unshift({ id: -1, value: 'Unknown' });
+    convertedList.unshift({ id: 0, value: 'Unknown' });
     return convertedList;
   }, [executorsList]);
 

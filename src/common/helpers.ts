@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const isEditPage = () => {
   return window.location.href.includes('edit');
 };
@@ -14,4 +16,8 @@ export const getBoardOrTaskId = () => {
   }
 
   return isNewPage() || !lastHrefPath ? null : parseInt(lastHrefPath);
+};
+
+export const formatDate = (date: string) => {
+  return moment(date).format('DD.MM.YYYY HH:mm');
 };

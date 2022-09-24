@@ -44,9 +44,9 @@ export const createTask = async (data: CreateViewTask): Promise<number> => {
   }
 };
 
-export const updateTaskById = async (data: Task) => {
+export const updateTaskField = async (field: string, value: unknown, id: number) => {
   try {
-    const response = await api.put(`/${TASK_API}/${data.id}`, data);
+    const response = await api.put(`/${TASK_API}/update/${id}`, { field, value });
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
