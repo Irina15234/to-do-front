@@ -21,8 +21,8 @@ export const useTaskPage = () => {
   }, [dispatch, id]);
 
   const breadcrumbs = [
-    <Link key="1" to="/board/8">
-      boardName
+    <Link key="1" to={`/board/${task?.boardId}`}>
+      {task?.boardName}
     </Link>,
     <Typography key="2">{task?.name}</Typography>
   ];

@@ -78,6 +78,7 @@ export interface Task {
   columnId: number;
   date: string;
   boardId: number;
+  boardName: string;
 }
 
 export interface User {
