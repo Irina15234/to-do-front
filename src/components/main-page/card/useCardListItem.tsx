@@ -1,16 +1,16 @@
-import { useDispatch } from 'react-redux';
-import React, { useCallback, useState } from 'react';
-import { setDeleteInfoAction } from '../../../slices/common/common-slice';
+import React, { useCallback, useContext, useState } from 'react';
 import { Delete, Edit } from '@mui/icons-material';
 import { CardListItemProps, CardType } from './card-list-item';
 import { DeleteInfo } from '../../../slices/types';
 import { deleteTaskById } from '../../../services/task-service';
 import { deleteBoardById } from '../../../services/board-service';
+import { Context } from '../../layout/layout';
 
 export const useCardListItem = ({ source, type, updateSourceListAfterDeleting }: CardListItemProps) => {
-  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  const { setDeleteInfo } = useContext(Context);
 
   const handleClickSettings = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -40,7 +40,7 @@ export const useCardListItem = ({ source, type, updateSourceListAfterDeleting }:
       body: type === CardType.task ? `task ${source.name}` : `board ${source.name}`,
       onDelete: deleteItem
     };
-    dispatch(setDeleteInfoAction(deleteInfo));
+    setDeleteInfo(deleteInfo);
   };
 
   const menuList = [

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ButtonType } from '../../../custom-components/button/button';
 import { ColumnsGroupProps } from './columns-group';
 import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../../../slices/types';
+import { BoardColumn, State } from '../../../slices/types';
 import { DropResult } from 'react-beautiful-dnd';
 import { setBoardTasksAction } from '../../../slices/board/board-slice';
 import { getTasksByBoard, updateTaskColumn } from '../../../services/task-service';
@@ -36,7 +36,13 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
       });
       changeColumns(newColumns);
     } else {
-      changeColumns([...columns, { id: columns.length, name: columnTitle }]);
+      changeColumns([
+        ...columns,
+        {
+          id: columns.length ? (columns.at(-1) as BoardColumn).id + 1 : 0,
+          name: columnTitle
+        }
+      ]);
     }
     handleClose();
   }, [editColumnId, handleClose, changeColumns, columns, columnTitle]);

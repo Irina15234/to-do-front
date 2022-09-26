@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { getBoardById, createBoard, updateBoardById } from '../../services/board-service';
 import { setBoardAction } from '../../slices/board/board-slice';
 import { ButtonType } from '../../custom-components/button/button';
+import { useNavigate } from 'react-router-dom';
 
 export const useBoardPage = () => {
   const dispatch = useDispatch();
@@ -93,6 +94,12 @@ export const useBoardPage = () => {
     setIsEditName(true);
   }, []);
 
+  const navigate = useNavigate();
+
+  const handleCloseEditMode = useCallback(() => {
+    navigate(`/board/${getBoardOrTaskId()}`);
+  }, [navigate]);
+
   return {
     boardName,
     handleClickTitleEdit,
@@ -102,6 +109,7 @@ export const useBoardPage = () => {
     openNameSettingDialog,
     handleCloseNameSetting,
     actions,
-    setBoardName
+    setBoardName,
+    handleCloseEditMode
   };
 };

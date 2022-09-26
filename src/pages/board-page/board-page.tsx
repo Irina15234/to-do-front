@@ -19,7 +19,8 @@ export const BoardPage = () => {
     openNameSettingDialog,
     handleCloseNameSetting,
     actions,
-    setBoardName
+    setBoardName,
+    handleCloseEditMode
   } = useBoardPage();
 
   return (
@@ -35,7 +36,9 @@ export const BoardPage = () => {
             <CustomButton buttonType={ButtonType.standard} onClick={handleSaveBoard} className="item-with-right-margin">
               Save
             </CustomButton>
-            <CustomButton buttonType={ButtonType.neutral}>Cancel</CustomButton>
+            <CustomButton buttonType={ButtonType.neutral} onClick={handleCloseEditMode}>
+              Cancel
+            </CustomButton>
           </>
         </Panel>
       )}

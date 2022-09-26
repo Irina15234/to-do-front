@@ -1,16 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CommonSettings, DeleteInfo, Snackbar } from '../types';
+import { CommonSettings, Snackbar } from '../types';
 
 const commonInitialState: CommonSettings = {
   snackbar: {
     open: false,
     message: '',
     variant: 'error'
-  },
-  deleteInfo: {
-    title: '',
-    body: '',
-    onDelete: () => null
   }
 };
 
@@ -25,27 +20,10 @@ const commonSlice = createSlice({
     resetSnackbar: (state) => {
       state.snackbar.open = false;
       return state;
-    },
-    setDeleteInfo: (state, { payload }: PayloadAction<DeleteInfo>) => {
-      state.deleteInfo = payload;
-      return state;
-    },
-    resetDeleteInfo: (state) => {
-      state.deleteInfo = {
-        title: '',
-        body: '',
-        onDelete: () => null
-      };
-      return state;
     }
   }
 });
 
 export const commonReducer = commonSlice.reducer;
 
-export const {
-  setSnackbar: setSnackbarAction,
-  resetSnackbar: resetSnackbarAction,
-  setDeleteInfo: setDeleteInfoAction,
-  resetDeleteInfo: resetDeleteInfoAction
-} = commonSlice.actions;
+export const { setSnackbar: setSnackbarAction, resetSnackbar: resetSnackbarAction } = commonSlice.actions;

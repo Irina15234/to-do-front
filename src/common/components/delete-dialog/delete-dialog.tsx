@@ -1,17 +1,21 @@
 import { CustomDialog } from '../../../custom-components/dialog/dialog';
-import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../../../slices/types';
-import { resetDeleteInfoAction } from '../../../slices/common/common-slice';
+import { DeleteInfo } from '../../../slices/types';
 import { ButtonType } from '../../../custom-components/button/button';
 import './delete-dialog.css';
+import { Dispatch, SetStateAction } from 'react';
 
-export const DeleteDialog = () => {
-  const dispatch = useDispatch();
+interface DeleteDialogProps {
+  deleteInfo: DeleteInfo;
+  setDeleteInfo: Dispatch<SetStateAction<DeleteInfo>>;
+}
 
-  const deleteInfo = useSelector((state: State) => state.common.deleteInfo);
-
+export const DeleteDialog = ({ deleteInfo, setDeleteInfo }: DeleteDialogProps) => {
   const handleClose = () => {
-    dispatch(resetDeleteInfoAction());
+    setDeleteInfo({
+      title: '',
+      body: '',
+      onDelete: () => undefined
+    });
   };
 
   const handleDelete = () => {
