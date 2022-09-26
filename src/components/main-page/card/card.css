@@ -36,7 +36,7 @@
 }
 
 .card-list-item:hover {
-  background: var(--light-background-color-opacity);
+  background: var(--light-background-color);
 }
 
 .card-list-item__icon {

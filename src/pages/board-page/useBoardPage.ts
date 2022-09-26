@@ -6,6 +6,8 @@ import { getBoardById, createBoard, updateBoardById } from '../../services/board
 import { setBoardAction } from '../../slices/board/board-slice';
 import { ButtonType } from '../../custom-components/button/button';
 import { useNavigate } from 'react-router-dom';
+import { difference } from 'lodash';
+import { setSnackbarAction } from '../../slices/common/common-slice';
 
 export const useBoardPage = () => {
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ export const useBoardPage = () => {
   const [boardName, setBoardName] = useState<string>(stateBoard.name);
   const [columns, setColumns] = useState<BoardColumn[]>(stateBoard.columns || []);
   const [isEditName, setIsEditName] = useState<boolean>(false);
+  const [deletedColumnsIds, setDeletedColumnsIds] = useState<number[]>([]);
 
   const handleSaveName = useCallback(() => {
     setOpenNameSettingDialog(false);
@@ -45,9 +48,16 @@ export const useBoardPage = () => {
     !isEditName && (window.location.href = location.origin);
   }, [isEditName]);
 
-  const changeColumns = useCallback((newColumns: BoardColumn[]) => {
-    setColumns(newColumns);
-  }, []);
+  const changeColumns = useCallback(
+    (newColumns: BoardColumn[]) => {
+      if (columns.length > newColumns.length && stateBoard.id) {
+        const deletedColumnId = difference(columns, newColumns)[0].id;
+        setDeletedColumnsIds([...deletedColumnsIds, deletedColumnId]);
+      }
+      setColumns(newColumns);
+    },
+    [columns, deletedColumnsIds, stateBoard.id]
+  );
 
   const actions = [
     {
@@ -71,9 +81,14 @@ export const useBoardPage = () => {
         columns,
         tasks: []
       };
-      updateBoardById(board).then(() => {
-        location.href = location.origin + '/board/' + boardId;
-      });
+      updateBoardById(board, deletedColumnsIds)
+        .then(() => {
+          location.href = location.origin + '/board/' + boardId;
+        })
+        .catch((error) => {
+          console.log(error.response);
+          dispatch(setSnackbarAction({ message: error.response.data, variant: 'error', open: true }));
+        });
     } else {
       const board: Board = {
         id: null,
@@ -87,7 +102,7 @@ export const useBoardPage = () => {
         location.href = location.origin + '/board/' + res.id;
       });
     }
-  }, [boardName, columns, dispatch]);
+  }, [boardName, columns, deletedColumnsIds, dispatch]);
 
   const handleClickTitleEdit = useCallback(() => {
     setOpenNameSettingDialog(true);

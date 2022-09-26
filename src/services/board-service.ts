@@ -33,9 +33,9 @@ export const createBoard = async (data: Board): Promise<Board> => {
   }
 };
 
-export const updateBoardById = async (data: Board) => {
+export const updateBoardById = async (data: Board, deletedColumnsIds: number[]) => {
   try {
-    const response = await api.put(`/${BOARD_API}/${data.id}`, data);
+    const response = await api.put(`/${BOARD_API}/${data.id}`, { board: data, deletedColumnsIds });
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
