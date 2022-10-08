@@ -7,8 +7,9 @@ import { DropResult } from 'react-beautiful-dnd';
 import { setBoardTasksAction } from '../../../slices/board/board-slice';
 import { getTasksByBoard, updateTaskColumn } from '../../../services/task-service';
 import { setSnackbarAction } from '../../../slices/common/common-slice';
-import { getBoardOrTaskId } from '../../../common/helpers';
+import { getBoardOrTaskId, isEditPage } from '../../../common/helpers';
 import { isNumber } from 'lodash';
+import { addColumn, deleteColumnByBoard, renameColumn } from '../../../services/board-service';
 
 export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
   const dispatch = useDispatch();
@@ -30,22 +31,60 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
   }, []);
 
   const handleSave = useCallback(() => {
+    const boardId: number | null = getBoardOrTaskId();
+
     if (isNumber(editColumnId)) {
       const newColumns = [...columns].map((column) => {
         return column.id === editColumnId ? { ...column, name: columnTitle } : column;
       });
-      changeColumns(newColumns);
+
+      boardId &&
+        isEditPage() &&
+        renameColumn(
+          {
+            id: editColumnId,
+            name: columnTitle
+          },
+          boardId
+        )
+          .then(() => changeColumns(newColumns))
+          .catch((error) =>
+            dispatch(
+              setSnackbarAction({
+                message: error.response.data,
+                variant: 'error',
+                open: true
+              })
+            )
+          );
+
+      !isEditPage() && changeColumns(newColumns);
     } else {
-      changeColumns([
-        ...columns,
-        {
-          id: columns.length ? (columns.at(-1) as BoardColumn).id + 1 : 0,
-          name: columnTitle
-        }
-      ]);
+      const newColumn = {
+        id: columns.length ? (columns.at(-1) as BoardColumn).id + 1 : 0,
+        name: columnTitle
+      };
+
+      const newColumns = [...columns, newColumn];
+
+      boardId &&
+        isEditPage() &&
+        addColumn(newColumn, boardId)
+          .then(() => changeColumns(newColumns))
+          .catch((error) =>
+            dispatch(
+              setSnackbarAction({
+                message: error.response.data,
+                variant: 'error',
+                open: true
+              })
+            )
+          );
+
+      !isEditPage() && changeColumns(newColumns);
     }
     handleClose();
-  }, [editColumnId, handleClose, changeColumns, columns, columnTitle]);
+  }, [editColumnId, handleClose, columns, columnTitle, changeColumns, dispatch]);
 
   const actions = [
     {
@@ -69,7 +108,7 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
           dispatch(setBoardTasksAction(res));
         })
         .catch((error) => {
-          // todo
+          dispatch(setSnackbarAction({ message: error.response.data, variant: 'error', open: true }));
         });
   }, [dispatch]);
 
@@ -84,7 +123,7 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
       updateTaskColumn(sourceColumnId, targetColumnId, taskId)
         .then()
         .catch((error) => {
-          dispatch(setSnackbarAction({ message: error.message, variant: 'error', open: true }));
+          dispatch(setSnackbarAction({ message: error.response.data, variant: 'error', open: true }));
         });
     }
   };
@@ -101,10 +140,18 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
 
   const handleDeleteColumn = useCallback(
     (columnId: number) => {
+      const boardId: number | null = getBoardOrTaskId();
       const newColumns = [...columns].filter((column) => column.id !== columnId);
-      changeColumns(newColumns);
+      boardId &&
+        isEditPage() &&
+        deleteColumnByBoard(columnId, boardId)
+          .then(() => changeColumns(newColumns))
+          .catch((error) => {
+            dispatch(setSnackbarAction({ message: error.response.data, variant: 'error', open: true }));
+          });
+      !isEditPage() && changeColumns(newColumns);
     },
-    [changeColumns, columns]
+    [changeColumns, columns, dispatch]
   );
 
   return {
@@ -118,6 +165,7 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
     columnsAction: {
       handleEditColumnTitle,
       handleDeleteColumn
-    }
+    },
+    editColumnId
   };
 };

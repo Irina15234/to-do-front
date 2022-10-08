@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getBoardOrTaskId, isNewPage } from '../../common/helpers';
+import { getBoardOrTaskId, isEditPage, isNewPage } from '../../common/helpers';
 import { Board, BoardColumn, State } from '../../slices/types';
 import { useCallback, useEffect, useState } from 'react';
-import { getBoardById, createBoard, updateBoardById } from '../../services/board-service';
+import { getBoardById, createBoard, updateBoardById, renameBoard } from '../../services/board-service';
 import { setBoardAction } from '../../slices/board/board-slice';
 import { ButtonType } from '../../custom-components/button/button';
 import { useNavigate } from 'react-router-dom';
@@ -38,9 +38,27 @@ export const useBoardPage = () => {
   const [deletedColumnsIds, setDeletedColumnsIds] = useState<number[]>([]);
 
   const handleSaveName = useCallback(() => {
-    setOpenNameSettingDialog(false);
-    setIsEditName(false);
-  }, []);
+    if (isEditPage()) {
+      stateBoard.id &&
+        renameBoard(stateBoard.id, boardName)
+          .then(() => {
+            setOpenNameSettingDialog(false);
+            setIsEditName(false);
+          })
+          .catch((error) => {
+            dispatch(
+              setSnackbarAction({
+                message: error.response.data,
+                variant: 'error',
+                open: true
+              })
+            );
+          });
+    } else {
+      setOpenNameSettingDialog(false);
+      setIsEditName(false);
+    }
+  }, [boardName, dispatch, stateBoard.id]);
 
   const handleCloseNameSetting = useCallback(() => {
     setOpenNameSettingDialog(false);
@@ -86,7 +104,6 @@ export const useBoardPage = () => {
           location.href = location.origin + '/board/' + boardId;
         })
         .catch((error) => {
-          console.log(error.response);
           dispatch(setSnackbarAction({ message: error.response.data, variant: 'error', open: true }));
         });
     } else {

@@ -33,9 +33,15 @@ export const BoardPage = () => {
       {(isNewPage() || isEditPage()) && (
         <Panel>
           <>
-            <CustomButton buttonType={ButtonType.standard} onClick={handleSaveBoard} className="item-with-right-margin">
-              Save
-            </CustomButton>
+            {!isEditPage() && (
+              <CustomButton
+                buttonType={ButtonType.standard}
+                onClick={handleSaveBoard}
+                className="item-with-right-margin"
+              >
+                Save
+              </CustomButton>
+            )}
             <CustomButton buttonType={ButtonType.neutral} onClick={handleCloseEditMode}>
               Cancel
             </CustomButton>

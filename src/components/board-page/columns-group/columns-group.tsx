@@ -7,6 +7,7 @@ import { CustomDialog } from '../../../custom-components/dialog/dialog';
 import { CustomInput } from '../../../custom-components/input/input';
 import { useColumnsGroup } from './useColumnsGroup';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { isNumber } from 'lodash';
 
 export interface ColumnsGroupProps {
   columns: BoardColumn[];
@@ -22,7 +23,8 @@ export const ColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
     columnTitle,
     setColumnTitle,
     onDragEnd,
-    columnsAction
+    columnsAction,
+    editColumnId
   } = useColumnsGroup({
     columns,
     changeColumns
@@ -40,7 +42,12 @@ export const ColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
             <span className="columns-group__add-title">Add column</span>
           </div>
         )}
-        <CustomDialog open={openDialog} title="New column" onClose={handleClose} actions={actions}>
+        <CustomDialog
+          open={openDialog}
+          title={isNumber(editColumnId) ? 'Edit column' : 'New column'}
+          onClose={handleClose}
+          actions={actions}
+        >
           <div>
             <CustomInput
               value={columnTitle}

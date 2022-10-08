@@ -1,4 +1,4 @@
-import { Board, MainViewBoard, User } from '../slices/types';
+import { Board, BoardColumn, MainViewBoard, User } from '../slices/types';
 import { api } from './api';
 
 const BOARD_API = 'board';
@@ -56,6 +56,46 @@ export const deleteBoardById = async (id: number) => {
 export const getUsersByBoard = async (id: number): Promise<User[]> => {
   try {
     const response = await api.get(`/${BOARD_API}/users/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};
+
+export const deleteColumnByBoard = async (columnId: number, boardId: number) => {
+  try {
+    const response = await api.delete(`/${BOARD_API}/column/del`, { data: { columnId, boardId } });
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};
+
+export const renameColumn = async (column: BoardColumn, boardId: number) => {
+  try {
+    const response = await api.put(`/${BOARD_API}/column`, { column, boardId });
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};
+
+export const renameBoard = async (boardId: number, boardName: string) => {
+  try {
+    const response = await api.put(`/${BOARD_API}/board`, { boardName, boardId });
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};
+
+export const addColumn = async (column: BoardColumn, boardId: number) => {
+  try {
+    const response = await api.put(`/${BOARD_API}/column/add`, { column, boardId });
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
