@@ -2,9 +2,6 @@ import React from 'react';
 import { ThemeContext, themes } from './ThemeContext';
 
 const getTheme = () => {
-  // todo
-  return themes.light;
-
   const theme = `${window?.localStorage?.getItem('theme')}`;
   if (Object.values(themes).includes(theme)) return theme;
 
@@ -14,8 +11,7 @@ const getTheme = () => {
   return themes.light;
 };
 
-// @ts-ignore
-const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({ children }: { children: JSX.Element }) => {
   const [theme, setTheme] = React.useState(getTheme);
 
   React.useEffect(() => {

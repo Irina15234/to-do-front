@@ -20,6 +20,7 @@ export interface DeleteInfo {
 
 export interface CommonSettings {
   snackbar: Snackbar;
+  isOpenSidePanel: boolean;
 }
 
 export interface MainPage {

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getUserInfo } from '../../services/auth';
 import { setUserAction } from '../../slices/user/user-slice';
 import { Logout, Settings } from '@mui/icons-material';
+import { logout } from '../../common/auth';
 
 export const useUserInfo = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ export const useUserInfo = () => {
     {
       icon: <Logout style={{ color: 'var(--red-color)' }} />,
       title: 'Logout',
-      onClick: () => undefined
+      onClick: logout
     }
   ];
 

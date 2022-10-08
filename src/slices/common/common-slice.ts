@@ -6,7 +6,8 @@ const commonInitialState: CommonSettings = {
     open: false,
     message: '',
     variant: 'error'
-  }
+  },
+  isOpenSidePanel: false
 };
 
 const commonSlice = createSlice({
@@ -20,10 +21,18 @@ const commonSlice = createSlice({
     resetSnackbar: (state) => {
       state.snackbar.open = false;
       return state;
+    },
+    setOpenPanel: (state, { payload }: PayloadAction<boolean>) => {
+      state.isOpenSidePanel = payload;
+      return state;
     }
   }
 });
 
 export const commonReducer = commonSlice.reducer;
 
-export const { setSnackbar: setSnackbarAction, resetSnackbar: resetSnackbarAction } = commonSlice.actions;
+export const {
+  setSnackbar: setSnackbarAction,
+  resetSnackbar: resetSnackbarAction,
+  setOpenPanel: setOpenPanelAction
+} = commonSlice.actions;

@@ -5,6 +5,7 @@ import './layout.css';
 import { CustomSnackbar } from '../../custom-components/snackbar/snackbar';
 import { DeleteDialog } from '../../common/components/delete-dialog/delete-dialog';
 import { DeleteInfo } from '../../slices/types';
+import { SidePanel } from '../side-panel/side-panel';
 
 const defaultValue: { setDeleteInfo: React.Dispatch<React.SetStateAction<DeleteInfo>> } = {
   setDeleteInfo: () => undefined
@@ -25,6 +26,7 @@ export const Layout = () => {
       <main className="main-container">{<Outlet />}</main>
       <CustomSnackbar />
       <DeleteDialog deleteInfo={deleteInfo} setDeleteInfo={setDeleteInfo} />
+      <SidePanel />
     </Context.Provider>
   );
 };

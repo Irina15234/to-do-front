@@ -82,4 +82,21 @@ img {
 }
 
 :root[data-theme='dark'] {
+  --dark-background-color: #053430;
+  --light-background-color: #396662;
+  --light-background-color-opacity: rgba(57, 102, 98, 0.6);
+  --neutral-background-color: #0C1A1A;
+
+  --light-text-color: #444444;
+  --dark-text-color: #ffffff;
+
+  --light-border-color: #7D9093;
+  --neutral-border-color: #CFCFD1;
+  --dark-border-color: #396662;
+
+  --light-icon-color: #ac7e62;
+  --dark-icon-color: #ffffff;
+
+  --button-color: #ac7e62;
+  --secondary-button-color: #ba9a88;
 }

@@ -11,7 +11,6 @@ export const App = () => {
   useEffect(() => {
     if (!loggedIn() && location.pathname !== '/login') {
       logout();
-      location.pathname = '/login';
     }
   }, []);
 

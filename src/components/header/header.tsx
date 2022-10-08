@@ -3,10 +3,14 @@ import { CustomIconButton } from '../../custom-components/icon-button/icon-butto
 import { Apps, Home } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { UserInfo } from './user-info';
+import { useDispatch } from 'react-redux';
+import { setOpenPanelAction } from '../../slices/common/common-slice';
 
 export const Header = () => {
+  const dispatch = useDispatch();
+
   const handleClickMenu = () => {
-    // menu open
+    dispatch(setOpenPanelAction(true));
   };
 
   return (
