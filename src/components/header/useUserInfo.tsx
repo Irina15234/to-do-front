@@ -33,7 +33,7 @@ export const useUserInfo = () => {
     {
       icon: <Settings style={{ color: 'var(--grey-color)' }} />,
       title: 'Settings',
-      onClick: () => undefined
+      href: '/user'
     },
     {
       icon: <Logout style={{ color: 'var(--red-color)' }} />,

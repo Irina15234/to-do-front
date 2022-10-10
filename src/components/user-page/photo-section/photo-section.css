@@ -1,0 +1,18 @@
+.photo-section {
+    background: var(--neutral-background-color);
+    width: 100%;
+    height: fit-content;
+    padding: 40px 0;
+    margin-bottom: 16px;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.photo-section > *:first-child {
+    width: 140px;
+    height: 140px;
+    font-size: 52px;
+}

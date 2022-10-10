@@ -38,6 +38,7 @@
 .theme-block__toggle-title {
     color: var(--dark-text-color);
     font-size: 14px;
+    margin-right: 6px;
 }
 
 .theme-block__toggle {

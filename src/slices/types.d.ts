@@ -88,6 +88,16 @@ export interface User {
   photo: string | null;
 }
 
+export interface FullUserInfo {
+  id: number;
+  name: string;
+  phone: string;
+  email: string;
+  username: string;
+  password: string;
+  photo: string | null;
+}
+
 export interface Priority {
   name: string;
   icon: string;

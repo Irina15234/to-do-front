@@ -59,7 +59,7 @@ export const useAddTaskModal = ({ handleClose }: AddTaskModalProps) => {
   };
 
   const validate = (values: AddTaskValues) => {
-    const errors: any = {};
+    const errors: { [key: string]: string } = {};
 
     if (!values.name?.length) {
       errors.name = 'Required';

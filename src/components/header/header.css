@@ -66,15 +66,3 @@
   color: var(--light-text-color);
   margin: 0 10px;
 }
-
-.header__user-icon-container {
-  border-radius: 50%;
-  background: var(--neutral-background-color);
-  height: 100%;
-  color: var(--secondary-button-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bolder;
-  font-size: x-large;
-}

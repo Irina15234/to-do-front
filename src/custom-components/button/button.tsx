@@ -5,7 +5,8 @@ export enum ButtonType {
   'standard',
   'delete',
   'neutral',
-  'add'
+  'add',
+  'text'
 }
 
 export interface CustomButtonProps extends ButtonProps {
@@ -69,6 +70,20 @@ const AddButton = styled(Button)({
   }
 });
 
+const TextButton = styled(Button)({
+  padding: 0,
+  background: 'none',
+  color: 'var(--button-color, #ac7e62)',
+  boxShadow: 'none',
+  textTransform: 'capitalize',
+
+  '&:hover': {
+    boxShadow: 'none',
+    background: 'none',
+    color: 'var(--secondary-button-color, #ba9a88)'
+  }
+});
+
 export const CustomButton = ({ buttonType, startIconColor, ...props }: CustomButtonProps) => {
   switch (buttonType) {
     case ButtonType.standard:
@@ -98,6 +113,12 @@ export const CustomButton = ({ buttonType, startIconColor, ...props }: CustomBut
         >
           {props.children}
         </AddButton>
+      );
+    case ButtonType.text:
+      return (
+        <TextButton {...props} variant="contained">
+          {props.children}
+        </TextButton>
       );
   }
 };

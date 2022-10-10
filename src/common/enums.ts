@@ -3,3 +3,8 @@ export enum TaskView {
   main = 'MAIN',
   board = 'BOARD'
 }
+
+export enum UserInfoView {
+  full = 'FULL',
+  min = 'MIN'
+}
