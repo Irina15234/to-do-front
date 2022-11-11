@@ -2,6 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../slices/types';
 import { useCallback } from 'react';
 import { setOpenPanelAction } from '../../slices/common/common-slice';
+import { ThemeBlock } from './theme-block/theme-block';
+
+export interface ItemBlockI {
+  title: string;
+  children: JSX.Element;
+}
 
 export const useSidePanel = () => {
   const dispatch = useDispatch();
@@ -12,8 +18,16 @@ export const useSidePanel = () => {
     dispatch(setOpenPanelAction(false));
   }, [dispatch]);
 
+  const itemsBlocks: ItemBlockI[] = [
+    {
+      title: 'Visualization settings',
+      children: <ThemeBlock />
+    }
+  ];
+
   return {
     isOpenPanel,
-    handleClosePanel
+    handleClosePanel,
+    itemsBlocks
   };
 };
