@@ -18,7 +18,7 @@ export interface StyledIconButtonProps extends IconButtonProps {
 }
 
 const Square = styled(IconButton)({
-  borderRadius: '4px !important',
+  borderRadius: '8px !important',
   backgroundColor: 'rgba(255, 255, 255, 0.1) !important',
 
   '&:hover': {

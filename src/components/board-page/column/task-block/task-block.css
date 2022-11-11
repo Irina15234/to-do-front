@@ -1,6 +1,6 @@
 .task-block {
     background: var(--neutral-background-color);
-    border-radius: 4px;
+    border-radius: 8px;
     border: 1px solid var(--light-border-color);
     padding: 8px 6px;
     margin-bottom: 10px;

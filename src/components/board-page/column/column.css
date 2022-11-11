@@ -1,7 +1,7 @@
 .column {
     min-width: 300px;
     max-width: 300px;
-    border-radius: 4px;
+    border-radius: 8px;
     overflow: hidden;
     margin-right: 10px;
 }

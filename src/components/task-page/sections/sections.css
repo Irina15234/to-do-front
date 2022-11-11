@@ -22,7 +22,7 @@
 
 .section-block-container__head:hover {
     background-color: var(--light-background-color);
-    border-radius: 4px;
+    border-radius: 8px;
 }
 
 .section-block-container__title {

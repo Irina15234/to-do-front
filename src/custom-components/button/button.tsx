@@ -17,6 +17,7 @@ export interface CustomButtonProps extends ButtonProps {
 const StandardButton = styled(Button)({
   padding: '7px 10px',
   backgroundColor: 'var(--button-color, #ac7e62)',
+  borderRadius: '8px',
   color: 'var(--light-text-color, #ffffff)',
   boxShadow: 'none',
   textTransform: 'capitalize',
@@ -30,6 +31,7 @@ const StandardButton = styled(Button)({
 const DeleteButton = styled(Button)({
   padding: '7px 10px',
   backgroundColor: 'var(--red-color, #c7444a)',
+  borderRadius: '8px',
   color: 'var(--light-text-color, #ffffff)',
   boxShadow: 'none',
   textTransform: 'capitalize',
@@ -46,6 +48,7 @@ const NeutralButton = styled(Button)({
   backgroundColor: 'var(--neutral-background-color, #ffffff)',
   color: 'var(--dark-text-color, #444444)',
   border: '1px solid var(--light-border-color, #d2c8bc)',
+  borderRadius: '8px',
   boxShadow: 'none',
   textTransform: 'capitalize',
 
@@ -60,6 +63,7 @@ const AddButton = styled(Button)({
   backgroundColor: 'var(--neutral-background-color, #ffffff)',
   color: 'var(--dark-text-color, #444444)',
   border: '1px solid var(--light-border-color, #d2c8bc)',
+  borderRadius: '8px',
   boxShadow: 'none',
   textTransform: 'capitalize',
   transitionDuration: '0.8s',
