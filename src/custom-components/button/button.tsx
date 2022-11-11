@@ -109,7 +109,7 @@ export const CustomButton = ({ buttonType, startIconColor, ...props }: CustomBut
         <AddButton
           {...props}
           variant="contained"
-          startIcon={<AddCircleOutline style={{ color: startIconColor || 'var(--dark-background-color, #5b828e)' }} />}
+          startIcon={<AddCircleOutline style={{ color: startIconColor || 'var(--button-color-2, #5b828e)' }} />}
         >
           {props.children}
         </AddButton>

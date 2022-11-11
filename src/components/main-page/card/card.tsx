@@ -48,7 +48,7 @@ export const Card = ({ title, className, isBoards = false }: CardProps) => {
 
         {isBoards && (
           <div className="card-container__add-container">
-            <CustomButton buttonType={ButtonType.add} startIconColor="var(--dark-background-color)" href="/board/new">
+            <CustomButton buttonType={ButtonType.add} startIconColor="var(--button-color-2)" href="/board/new">
               Add new board
             </CustomButton>
           </div>
