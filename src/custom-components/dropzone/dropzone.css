@@ -1,0 +1,13 @@
+.dropzone-container {
+    border: 3px dashed var(--button-color);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.dropzone__file {
+
+}
