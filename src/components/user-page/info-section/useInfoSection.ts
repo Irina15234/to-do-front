@@ -1,10 +1,11 @@
 import { useFormik } from 'formik';
 import { useCallback, useEffect, useState } from 'react';
-import { getUserInfo, updateUserInfo } from '../../../services/auth';
+import { getUserInfo, updateUserInfo } from '../../../services/user';
 import { UserInfoView } from '../../../common/enums';
 import { setSnackbarAction } from '../../../slices/common/common-slice';
 import { useDispatch } from 'react-redux';
 import { ButtonType } from '../../../custom-components/button/button';
+import * as React from 'react';
 
 export interface UserValues {
   name: string;
@@ -119,7 +120,8 @@ export const useInfoSection = () => {
     {
       buttonType: ButtonType.standard,
       title: 'Save',
-      onClick: (event: any) => formik.handleSubmit(event)
+      onClick: (event: React.MouseEvent<HTMLElement>) =>
+        formik.handleSubmit(event as unknown as React.FormEvent<HTMLFormElement>)
     },
     {
       buttonType: ButtonType.neutral,

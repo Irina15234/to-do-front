@@ -34,3 +34,13 @@ export const updateUserInfo = async (data: UserValues) => {
     throw error;
   }
 };
+
+export const updateUserPhoto = async (photo: string) => {
+  try {
+    const response = await api.put(`${USER_API}/photo`, { photo });
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};

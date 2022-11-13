@@ -4,7 +4,7 @@ import { usePhotoDialog } from './usePhotoDialog';
 import { CustomDropzone } from '../../../../custom-components/dropzone/dropzone';
 
 export const PhotoDialog = () => {
-  const { isOpenDialog, toggleOpenDialog, actions } = usePhotoDialog();
+  const { isOpenDialog, toggleOpenDialog, actions, changeFile } = usePhotoDialog();
 
   return (
     <>
@@ -12,8 +12,15 @@ export const PhotoDialog = () => {
         Change photo
       </CustomButton>
 
-      <CustomDialog title="Upload photo" onClose={toggleOpenDialog} actions={actions} open={isOpenDialog}>
-        <CustomDropzone />
+      <CustomDialog
+        title="Upload photo"
+        onClose={toggleOpenDialog}
+        actions={actions}
+        open={isOpenDialog}
+        maxWidth="sm"
+        fullWidth
+      >
+        <CustomDropzone type="image" changeFile={changeFile} />
       </CustomDialog>
     </>
   );

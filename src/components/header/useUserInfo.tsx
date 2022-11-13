@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../slices/types';
 import React, { useEffect, useState } from 'react';
-import { getUserInfo } from '../../services/auth';
+import { getUserInfo } from '../../services/user';
 import { setUserAction } from '../../slices/user/user-slice';
 import { Logout, Settings } from '@mui/icons-material';
 import { logout } from '../../common/auth';
@@ -33,7 +33,8 @@ export const useUserInfo = () => {
     {
       icon: <Settings style={{ color: 'var(--grey-color)' }} />,
       title: 'Settings',
-      href: '/user'
+      href: '/user',
+      onClick: handleCloseUserMenu
     },
     {
       icon: <Logout style={{ color: 'var(--red-color)' }} />,

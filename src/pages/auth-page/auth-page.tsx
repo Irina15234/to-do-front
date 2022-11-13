@@ -3,7 +3,7 @@ import { CustomInput } from '../../custom-components/input/input';
 import { InputAdornment } from '@mui/material';
 import { AccountCircle, Key } from '@mui/icons-material';
 import { ButtonType, CustomButton } from '../../custom-components/button/button';
-import { login } from '../../services/auth';
+import { login } from '../../services/user';
 import { ChangeEvent, useState } from 'react';
 import { setToken } from '../../common/auth';
 

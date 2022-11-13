@@ -13,7 +13,8 @@ const taskInitialState: Task = {
     icon: '',
     id: -1
   },
-  boardId: -1
+  boardId: -1,
+  boardName: ''
 };
 
 const taskSlice = createSlice({

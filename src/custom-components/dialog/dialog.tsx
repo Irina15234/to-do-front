@@ -21,6 +21,7 @@ interface DialogAction {
   buttonType: ButtonType;
   title: string;
   onClick: () => void;
+  disabled?: boolean;
 }
 
 export interface CustomDialogProps extends DialogProps {
@@ -73,14 +74,19 @@ const CustomDialogTitle = (props: CustomDialogTitleProps) => {
   );
 };
 
-export const CustomDialog = ({ ...props }: CustomDialogProps) => {
+export const CustomDialog = ({ onClose, title, description, actions, children, ...props }: CustomDialogProps) => {
   return (
-    <StyledDialog open={props.open}>
-      <CustomDialogTitle title={props.title} description={props.description} onClose={props.onClose} />
-      <StyledContent>{props.children}</StyledContent>
+    <StyledDialog {...props}>
+      <CustomDialogTitle title={title} description={description} onClose={onClose} />
+      <StyledContent>{children}</StyledContent>
       <StyledActions>
-        {props.actions.map((button) => (
-          <CustomButton key={button.title} buttonType={button.buttonType} onClick={button.onClick}>
+        {actions.map((button) => (
+          <CustomButton
+            key={button.title}
+            buttonType={button.buttonType}
+            onClick={button.onClick}
+            disabled={button.disabled}
+          >
             {button.title}
           </CustomButton>
         ))}

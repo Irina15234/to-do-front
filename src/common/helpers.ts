@@ -21,3 +21,18 @@ export const getBoardOrTaskId = () => {
 export const formatDate = (date: string) => {
   return moment(date).format('DD.MM.YYYY HH:mm');
 };
+
+export const convertFileToImageUrl = (file: File) => {
+  return URL.createObjectURL(file);
+};
+
+export const fileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      resolve((event.target?.result as string) || '');
+    };
+
+    reader.readAsDataURL(file);
+  });
+};
