@@ -2,6 +2,7 @@ import { api } from './api';
 import { FullUserInfo, User } from '../slices/types';
 import { UserInfoView } from '../common/enums';
 import { UserValues } from '../components/user-page/info-section/useInfoSection';
+import { ParametersValues } from '../components/user-page/info-section/parameters-dialog/useParametersDialog';
 
 const USER_API = 'user';
 
@@ -38,6 +39,16 @@ export const updateUserInfo = async (data: UserValues) => {
 export const updateUserPhoto = async (photo: string) => {
   try {
     const response = await api.put(`${USER_API}/photo`, { photo });
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};
+
+export const updateUserAuthParameters = async (parameters: ParametersValues) => {
+  try {
+    const response = await api.put(`${USER_API}/parameters`, parameters);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);

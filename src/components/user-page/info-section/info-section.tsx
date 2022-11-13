@@ -1,7 +1,8 @@
 import './info-section.css';
 import { useInfoSection, UserValues } from './useInfoSection';
 import { CustomInput } from '../../../custom-components/input/input';
-import { ButtonType, CustomButton } from '../../../custom-components/button/button';
+import { CustomButton } from '../../../custom-components/button/button';
+import { ParametersDialog } from './parameters-dialog/parameters-dialog';
 
 export const InfoSection = () => {
   const { formik, fieldsList, actions } = useInfoSection();
@@ -39,9 +40,7 @@ export const InfoSection = () => {
         </div>
       </form>
 
-      <CustomButton buttonType={ButtonType.text} fullWidth={false}>
-        Change auth parameters
-      </CustomButton>
+      <ParametersDialog />
     </div>
   );
 };
