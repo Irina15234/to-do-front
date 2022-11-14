@@ -5,6 +5,10 @@ export const loggedIn = () => {
   return !!token && !isTokenExpired(token);
 };
 
+export const isLoginPage = () => {
+  return location.pathname === '/login' || location.pathname === '/registration';
+};
+
 export const isTokenExpired = (token: string) => {
   try {
     const decoded = decode(token);
@@ -24,6 +28,5 @@ export const getToken = () => {
 };
 
 export const logout = () => {
-  localStorage.removeItem('token');
   location.pathname = '/login';
 };

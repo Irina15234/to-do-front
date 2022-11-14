@@ -3,6 +3,7 @@ import { FullUserInfo, User } from '../slices/types';
 import { UserInfoView } from '../common/enums';
 import { UserValues } from '../components/user-page/info-section/useInfoSection';
 import { ParametersValues } from '../components/user-page/info-section/parameters-dialog/useParametersDialog';
+import { RegistrationValues } from '../components/registration-page/registration-form/useRegistrationForm';
 
 const USER_API = 'user';
 
@@ -49,6 +50,16 @@ export const updateUserPhoto = async (photo: string) => {
 export const updateUserAuthParameters = async (parameters: ParametersValues) => {
   try {
     const response = await api.put(`${USER_API}/parameters`, parameters);
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};
+
+export const createUserInfo = async (data: RegistrationValues) => {
+  try {
+    const response = await api.post(`${USER_API}`, data);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);

@@ -18,6 +18,12 @@ export interface DeleteInfo {
   onDelete: () => void;
 }
 
+export interface InfoDialogObject {
+  title: string;
+  body: string | null;
+  onClick: () => void;
+}
+
 export interface CommonSettings {
   snackbar: Snackbar;
   isOpenSidePanel: boolean;
