@@ -22,6 +22,8 @@ export const InfoDialog = ({ infoDialog, setInfoDialog }: InfoDialogProps) => {
     }
   ];
 
+  if (!infoDialog.body) return null;
+
   return (
     <CustomDialog onClose={handleClose} actions={actions} open={Boolean(infoDialog.body)} title={infoDialog.title}>
       <div className="info-dialog">
