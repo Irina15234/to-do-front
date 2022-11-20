@@ -27,6 +27,7 @@ export const useParametersDialog = () => {
             open: true
           })
         );
+        setIsOpenDialog(false);
       })
       .catch((error) => {
         dispatch(
