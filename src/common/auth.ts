@@ -29,4 +29,5 @@ export const getToken = () => {
 
 export const logout = () => {
   location.pathname = '/login';
+  localStorage.removeItem('token');
 };

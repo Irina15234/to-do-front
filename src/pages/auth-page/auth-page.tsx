@@ -62,7 +62,7 @@ export const AuthPage = () => {
           <CustomButton buttonType={ButtonType.standard} onClick={handleSignInClick}>
             Sign In
           </CustomButton>
-          <CustomButton buttonType={ButtonType.text} fullWidth={false} href="/registration">
+          <CustomButton buttonType={ButtonType.lightText} fullWidth={false} href="/registration">
             Registration
           </CustomButton>
         </div>
