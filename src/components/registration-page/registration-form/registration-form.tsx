@@ -19,8 +19,8 @@ export const RegistrationForm = () => {
           colorVariant="dark"
           fullWidth
           className="form-item-with-bottom-margin"
-          error={Boolean(formik.errors.name)}
-          helperText={formik.errors.name}
+          error={Boolean(formik.errors[field.name as keyof RegistrationValues])}
+          helperText={formik.errors[field.name as keyof RegistrationValues]}
           required
         />
       ))}
