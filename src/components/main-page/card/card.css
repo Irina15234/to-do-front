@@ -1,6 +1,9 @@
 .card-container {
   border-radius: 8px;
   overflow: hidden;
+  display: flex;
+  max-height: 100%;
+  flex-direction: column;
 }
 
 .card-container__header {
@@ -14,6 +17,7 @@
 .card-container__main {
   background-color: var(--neutral-background-color);
   color: var(--dark-text-color);
+  height: 100%;
 }
 
 .card-container__empty {

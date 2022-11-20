@@ -18,4 +18,11 @@
     flex: 1;
     display: flex;
     padding: 10px 12px;
+    overflow-y: auto;
+}
+
+@media (max-width: 660px) {
+    .task-page__main {
+        flex-direction: column;
+    }
 }

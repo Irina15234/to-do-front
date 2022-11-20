@@ -4,6 +4,8 @@
     border-radius: 8px;
     overflow: hidden;
     margin-right: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .column:last-child {
@@ -30,4 +32,16 @@
     background-color: var(--neutral-background-color);
     min-height: 50px;
     height: 100%;
+    overflow-y: auto;
+}
+
+@media (max-width: 660px) {
+    .column {
+        max-width: none;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .column:last-child {
+        margin-bottom: 0;
+    }
 }

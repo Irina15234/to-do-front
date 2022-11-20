@@ -55,6 +55,23 @@ img {
   max-height: 100%;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--dark-background-color) var(--light-background-color);
+}
+
+*::-webkit-scrollbar {
+  height: 12px;
+  width: 4px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--light-background-color);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--dark-background-color);
+  border-radius: 8px;
+}
+
 :root[data-theme='light'] {
   --dark-background-color: #5b828e;
   --light-background-color: #bbcfd7;

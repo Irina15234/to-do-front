@@ -8,6 +8,7 @@ import { Panel } from '../../components/board-page/panel/panel';
 import { BoardHeader } from '../../components/board-page/board-header/board-header';
 import { useBoardPage } from './useBoardPage';
 import { ButtonType, CustomButton } from '../../custom-components/button/button';
+import clsx from 'clsx';
 
 export const BoardPage = () => {
   const {
@@ -26,7 +27,7 @@ export const BoardPage = () => {
   return (
     <div className="board-page">
       <BoardHeader boardName={boardName} handleClickTitleEdit={handleClickTitleEdit} />
-      <div className="board-page__main">
+      <div className={clsx('board-page__main', { 'board-page__main_edit': isNewPage() || isEditPage() })}>
         <ColumnsGroup columns={columns} changeColumns={changeColumns} />
       </div>
 

@@ -35,3 +35,13 @@
 .section-block {
     margin: 14px 0;
 }
+
+@media (max-width: 660px) {
+    .right-section {
+        flex-basis: auto;
+        margin-right: 0;
+    }
+    .left-section {
+        flex-basis: auto;
+    }
+}
