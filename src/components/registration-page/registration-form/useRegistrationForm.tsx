@@ -2,8 +2,11 @@ import { useFormik } from 'formik';
 import { createUserInfo } from '../../../services/user';
 import { setSnackbarAction } from '../../../slices/common/common-slice';
 import { useDispatch } from 'react-redux';
-import { useContext } from 'react';
+import React, { ElementType, useContext } from 'react';
 import { GlobalContext } from '../../../App';
+import { PhoneMaskInput } from '../../../common/components/mask-inputs/phone-mask-input';
+import { InputBaseComponentProps } from '@mui/material';
+import { emailRegExp } from '../../../common/consts';
 
 export interface RegistrationValues {
   name: string;
@@ -24,7 +27,8 @@ const fields = [
   },
   {
     name: 'phone',
-    type: 'text'
+    type: 'text',
+    mask: PhoneMaskInput as ElementType<InputBaseComponentProps>
   },
   {
     name: 'username',
@@ -48,6 +52,15 @@ export const useRegistrationForm = () => {
         errors[field.name] = 'Required';
       }
     });
+
+    if (!errors['phone'] && values['phone'].includes('_')) {
+      errors['phone'] = 'Incorrect phone';
+    }
+
+    if (!errors['email']) {
+      const isCorrectEmail = String(values['email']).toLowerCase().match(emailRegExp);
+      !isCorrectEmail && (errors['email'] = 'Incorrect email');
+    }
 
     return errors;
   };
@@ -88,8 +101,12 @@ export const useRegistrationForm = () => {
     validateOnChange: false
   });
 
+  const onChangeMaskField = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    formik.handleChange(event);
+  };
   return {
     formik,
-    fields
+    fields,
+    onChangeMaskField
   };
 };
