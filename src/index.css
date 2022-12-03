@@ -41,7 +41,7 @@ input:focus::-webkit-textfield-decoration-container {
 .item-with-bottom-margin {
   margin-bottom: 20px !important;
 }
-.form-item-with-bottom-margin {
+.error-input-margin {
   margin-bottom: 34px !important;
 }
 .icon-link {
@@ -53,6 +53,22 @@ input:focus::-webkit-textfield-decoration-container {
 img {
   max-width: 100%;
   max-height: 100%;
+}
+
+form {
+  width: 100%;
+}
+
+.form-buttons {
+  display: flex;
+}
+
+.form-buttons > * {
+  margin-right: 8px !important;
+}
+
+.form-buttons > *:last-child {
+  margin-right: 0 !important;
 }
 
 * {

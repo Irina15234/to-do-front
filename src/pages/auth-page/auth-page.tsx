@@ -4,37 +4,61 @@ import { InputAdornment } from '@mui/material';
 import { AccountCircle, Key } from '@mui/icons-material';
 import { ButtonType, CustomButton } from '../../custom-components/button/button';
 import { login } from '../../services/user';
-import { ChangeEvent, useState } from 'react';
 import { setToken } from '../../common/auth';
+import { useFormik } from 'formik';
+import clsx from 'clsx';
+
+interface AuthValues {
+  username: string;
+  password: string;
+}
 
 export const AuthPage = () => {
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-
-  const handleChangeField = (
-    fieldName: 'username' | 'password',
-    event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
-    fieldName === 'username' ? setUsername(event.target.value) : setPassword(event.target.value);
-  };
-
-  const handleSignInClick = () => {
-    login(username, password).then((res) => {
+  const handleSignInClick = (values: AuthValues) => {
+    login(values.username, values.password).then((res) => {
       setToken(res.token);
       location.pathname = '/';
     });
   };
+
+  const validate = (values: AuthValues) => {
+    const errors: { [key: string]: string } = {};
+
+    if (!values.username?.length) {
+      errors.username = 'Required';
+    }
+    if (!values.password?.length) {
+      errors.password = 'Required';
+    }
+
+    return errors;
+  };
+
+  const formik = useFormik({
+    onSubmit: handleSignInClick,
+    initialValues: {
+      username: '',
+      password: ''
+    },
+    validate,
+    validateOnChange: false
+  });
 
   return (
     <div className="auth-page">
       <form>
         <div className="auth-page__title">Sign In</div>
         <CustomInput
-          value={username}
+          value={formik.values.username}
           label="Username"
-          onChange={(event) => handleChangeField('username', event)}
+          name="username"
+          onChange={formik.handleChange}
           colorVariant="light"
-          className="item-with-bottom-margin input-with-start-icon"
+          className={clsx('item-with-bottom-margin input-with-start-icon', {
+            'error-input-margin': Boolean(formik.errors.username)
+          })}
+          error={Boolean(formik.errors.username)}
+          helperText={formik.errors.username}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -44,11 +68,16 @@ export const AuthPage = () => {
           }}
         />
         <CustomInput
-          value={password}
+          value={formik.values.password}
           label="Password"
-          onChange={(event) => handleChangeField('password', event)}
+          name="password"
+          onChange={formik.handleChange}
           colorVariant="light"
-          className="item-with-bottom-margin input-with-start-icon"
+          className={clsx('item-with-bottom-margin input-with-start-icon', {
+            'error-input-margin': Boolean(formik.errors.password)
+          })}
+          error={Boolean(formik.errors.password)}
+          helperText={formik.errors.password}
           type="password"
           InputProps={{
             startAdornment: (
@@ -58,8 +87,8 @@ export const AuthPage = () => {
             )
           }}
         />
-        <div className="auth-page__buttons">
-          <CustomButton buttonType={ButtonType.standard} onClick={handleSignInClick}>
+        <div className="form-buttons">
+          <CustomButton buttonType={ButtonType.standard} onClick={() => formik.handleSubmit()}>
             Sign In
           </CustomButton>
           <CustomButton buttonType={ButtonType.lightText} fullWidth={false} href="/registration">

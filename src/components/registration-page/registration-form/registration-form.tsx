@@ -3,6 +3,7 @@ import { CustomInput } from '../../../custom-components/input/input';
 import { capitalizeFirstLetter } from '../../../common/helpers';
 import { ButtonType, CustomButton } from '../../../custom-components/button/button';
 import React from 'react';
+import clsx from 'clsx';
 
 export const RegistrationForm = () => {
   const { formik, fields, onChangeMaskField } = useRegistrationForm();
@@ -19,7 +20,9 @@ export const RegistrationForm = () => {
           onChange={formik.handleChange}
           colorVariant="dark"
           fullWidth
-          className="form-item-with-bottom-margin"
+          className={clsx('item-with-bottom-margin', {
+            'error-input-margin': Boolean(formik.errors[field.name as keyof RegistrationValues])
+          })}
           error={Boolean(formik.errors[field.name as keyof RegistrationValues])}
           helperText={formik.errors[field.name as keyof RegistrationValues]}
           required
@@ -27,9 +30,14 @@ export const RegistrationForm = () => {
         />
       ))}
 
-      <CustomButton buttonType={ButtonType.standard} onClick={() => formik.handleSubmit()}>
-        Save
-      </CustomButton>
+      <div className="form-buttons">
+        <CustomButton buttonType={ButtonType.standard} onClick={() => formik.handleSubmit()}>
+          Save
+        </CustomButton>
+        <CustomButton buttonType={ButtonType.neutral} href="/auth">
+          Cansel
+        </CustomButton>
+      </div>
     </form>
   );
 };

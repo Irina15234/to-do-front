@@ -3,6 +3,7 @@
     padding: 10px 12px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: var(--light-background-color);
 }
 
@@ -13,6 +14,7 @@
     font-size: 18px;
     font-weight: 500;
     color: var(--dark-text-color);
+    width: 100%;
 }
 
 .registration-page__main {
@@ -21,4 +23,8 @@
     border-radius: 8px;
     display: flex;
     padding: 10px 12px;
+}
+
+.registration-page__head, .registration-page__main {
+    max-width: 800px;
 }

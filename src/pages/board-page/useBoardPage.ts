@@ -81,7 +81,8 @@ export const useBoardPage = () => {
     {
       buttonType: ButtonType.standard,
       title: 'Save',
-      onClick: handleSaveName
+      onClick: handleSaveName,
+      disabled: !boardName.length
     },
     {
       buttonType: ButtonType.neutral,

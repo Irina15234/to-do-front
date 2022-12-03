@@ -86,7 +86,8 @@ export const useInfoSection = () => {
   const formik = useFormik({
     onSubmit: handleSave,
     initialValues,
-    validate
+    validate,
+    validateOnChange: false
   });
 
   useEffect(() => {
@@ -113,6 +114,7 @@ export const useInfoSection = () => {
   }, []);
 
   const revertForm = useCallback(() => {
+    formik.resetForm();
     formik.setValues(userInfo);
   }, [formik, userInfo]);
 

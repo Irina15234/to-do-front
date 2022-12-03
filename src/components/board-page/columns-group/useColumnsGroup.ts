@@ -17,11 +17,12 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
   const tasks = useSelector((state: State) => state.board.tasks);
 
   const [openDialog, setOpenDialog] = useState<boolean>(false);
-  const [columnTitle, setColumnTitle] = useState<string>('');
+  const [columnTitle, setColumnTitle] = useState<string>('Column');
   const [editColumnId, setEditColumnId] = useState<number | null>(null);
 
   const handleAddColumnClick = () => {
     setOpenDialog(true);
+    setColumnTitle('Column');
   };
 
   const handleClose = useCallback(() => {
@@ -90,7 +91,8 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
     {
       buttonType: ButtonType.standard,
       title: 'Save',
-      onClick: handleSave
+      onClick: handleSave,
+      disabled: !columnTitle.length
     },
     {
       buttonType: ButtonType.neutral,
@@ -133,7 +135,7 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
       setOpenDialog(true);
       setEditColumnId(columnId);
       const columnTitle = columns.find((column) => column.id === columnId)?.name;
-      setColumnTitle(columnTitle || '');
+      setColumnTitle(columnTitle || 'Column');
     },
     [columns]
   );

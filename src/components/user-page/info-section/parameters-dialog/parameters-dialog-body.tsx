@@ -2,6 +2,7 @@ import { ParametersValues } from './useParametersDialog';
 import { CustomInput } from '../../../../custom-components/input/input';
 import { FormikErrors } from 'formik/dist/types';
 import { ChangeEvent } from 'react';
+import clsx from 'clsx';
 
 interface ParametersDialogBodyProps {
   values: ParametersValues;
@@ -24,7 +25,10 @@ export const ParametersDialogBody = ({ values, onChangeValue, errors }: Paramete
           colorVariant="dark"
           fullWidth
           required={valueKey.includes('old')}
-          className={index === Object.keys(values).length - 1 ? '' : 'form-item-with-bottom-margin'}
+          className={clsx({
+            'error-input-margin': !!errors[valueKey as keyof ParametersValues],
+            'item-with-bottom-margin': index !== Object.keys(values).length - 1
+          })}
         />
       ))}
     </form>

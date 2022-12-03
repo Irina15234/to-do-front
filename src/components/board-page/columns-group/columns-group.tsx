@@ -54,7 +54,9 @@ export const ColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) => {
               label="Title"
               onChange={(event) => setColumnTitle(event.target.value)}
               colorVariant="dark"
+              error={!columnTitle.length}
               fullWidth={true}
+              required
             />
           </div>
         </CustomDialog>

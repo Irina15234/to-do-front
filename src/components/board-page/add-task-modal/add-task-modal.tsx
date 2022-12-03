@@ -2,6 +2,7 @@ import { CustomDialog } from '../../../custom-components/dialog/dialog';
 import { CustomInput } from '../../../custom-components/input/input';
 import { CustomSelect } from '../../../custom-components/select/select';
 import { useAddTaskModal } from './useAddTaskModal';
+import clsx from 'clsx';
 
 export interface AddTaskModalProps {
   handleClose: () => void;
@@ -20,7 +21,9 @@ export const AddTaskModal = ({ handleClose }: AddTaskModalProps) => {
           onChange={formik.handleChange}
           colorVariant="dark"
           fullWidth
-          className="form-item-with-bottom-margin"
+          className={clsx('item-with-bottom-margin', {
+            'error-input-margin': !!formik.errors.name
+          })}
           error={Boolean(formik.errors.name)}
           helperText={formik.errors.name}
           required
@@ -34,7 +37,9 @@ export const AddTaskModal = ({ handleClose }: AddTaskModalProps) => {
           value={formik.values.priorityId}
           colorVariant="dark"
           fullWidth
-          className="form-item-with-bottom-margin"
+          className={clsx('item-with-bottom-margin', {
+            'error-input-margin': !!formik.errors.priorityId
+          })}
           required
         />
         <CustomInput
@@ -44,7 +49,9 @@ export const AddTaskModal = ({ handleClose }: AddTaskModalProps) => {
           onChange={formik.handleChange}
           colorVariant="dark"
           fullWidth
-          className="form-item-with-bottom-margin"
+          className={clsx('item-with-bottom-margin', {
+            'error-input-margin': !!formik.errors.author
+          })}
           disabled
           required
         />
@@ -57,6 +64,9 @@ export const AddTaskModal = ({ handleClose }: AddTaskModalProps) => {
           value={formik.values.executorId}
           colorVariant="dark"
           fullWidth
+          className={clsx({
+            'error-input-margin': !!formik.errors.executorId
+          })}
           required
         />
       </form>

@@ -3,6 +3,7 @@ import { useInfoSection, UserValues } from './useInfoSection';
 import { CustomInput } from '../../../custom-components/input/input';
 import { CustomButton } from '../../../custom-components/button/button';
 import { ParametersDialog } from './parameters-dialog/parameters-dialog';
+import clsx from 'clsx';
 
 export const InfoSection = () => {
   const { formik, fieldsList, actions } = useInfoSection();
@@ -21,7 +22,10 @@ export const InfoSection = () => {
             helperText={formik.errors[field.name as keyof UserValues]}
             colorVariant="dark"
             fullWidth
-            className={index === fieldsList.length - 1 ? '' : 'form-item-with-bottom-margin'}
+            className={clsx({
+              'error-input-margin': !!formik.errors[field.name as keyof UserValues],
+              'item-with-bottom-margin': index !== fieldsList.length - 1
+            })}
             required
           />
         ))}

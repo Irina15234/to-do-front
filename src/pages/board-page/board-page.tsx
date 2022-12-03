@@ -57,7 +57,9 @@ export const BoardPage = () => {
             label="Board name"
             onChange={(event) => setBoardName(event.target.value)}
             colorVariant="dark"
+            error={!boardName.length}
             fullWidth={true}
+            required
           />
         </div>
       </CustomDialog>
