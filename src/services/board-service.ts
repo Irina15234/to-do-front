@@ -102,3 +102,13 @@ export const addColumn = async (column: BoardColumn, boardId: number) => {
     throw error;
   }
 };
+
+export const getColumnsByBoard = async (id: number): Promise<BoardColumn[]> => {
+  try {
+    const response = await api.get(`/${BOARD_API}/columns/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};

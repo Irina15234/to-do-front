@@ -1,21 +1,32 @@
 import { useDetails } from './useDetails';
 import { CustomSelect } from '../../../../../custom-components/select/select';
+import clsx from 'clsx';
 
 export const Details = () => {
-  const { formik, priorityListOptions, handleChangeValue } = useDetails();
+  const { detailsList } = useDetails();
 
   return (
     <div className="section-block">
-      <CustomSelect
-        labelId="task-priority"
-        label="Priority"
-        name="priorityId"
-        options={priorityListOptions}
-        onChange={handleChangeValue}
-        value={formik.values.priorityId}
-        colorVariant="dark"
-        fullWidth
-      />
+      {detailsList.map((item, index) => {
+        switch (item.type) {
+          case 'select':
+            return (
+              <CustomSelect
+                label={item.label}
+                name={item.name}
+                options={item.options}
+                onChange={item.onChange}
+                value={item.value}
+                colorVariant="dark"
+                fullWidth
+                className={clsx({
+                  'error-input-margin': !!item.error,
+                  'item-with-bottom-margin': detailsList.length - 1 !== index
+                })}
+              />
+            );
+        }
+      })}
     </div>
   );
 };

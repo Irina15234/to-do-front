@@ -24,7 +24,8 @@ export const useCardListItem = ({ source, type, updateSourceListAfterDeleting }:
 
   const handleClickEdit = () => {
     const path = type === CardType.task ? '/task/' : '/board/';
-    location.href = location.origin + path + source.id;
+    const endPath = type === CardType.task ? '' : 'edit';
+    location.href = location.origin + path + source.id + endPath;
   };
 
   const deleteItem = useCallback(() => {
