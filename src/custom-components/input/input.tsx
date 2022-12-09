@@ -6,8 +6,6 @@ export type CustomInputProps = {
 };
 
 const LightInput = styled(TextField)({
-  height: '40px',
-
   '& > .MuiInputLabel-root:not(.Mui-error)': {
     color: 'var(--light-text-color) !important'
   },
@@ -20,10 +18,14 @@ const LightInput = styled(TextField)({
     height: '40px',
     color: 'var(--light-text-color) !important',
     paddingLeft: '7px',
+    borderRadius: 8,
 
     '& > .MuiOutlinedInput-notchedOutline': {
       color: 'var(--light-text-color) !important'
     }
+  },
+  '& > .MuiInputBase-multiline': {
+    height: 'auto'
   },
   '& > .MuiInputBase-root:not(.Mui-error)': {
     '& > .MuiOutlinedInput-notchedOutline': {
@@ -36,8 +38,6 @@ const LightInput = styled(TextField)({
 });
 
 const DarkInput = styled(TextField)({
-  height: '40px',
-
   '& > .MuiInputLabel-root:not(.Mui-error)': {
     color: 'var(--dark-text-color) !important'
   },
@@ -50,10 +50,14 @@ const DarkInput = styled(TextField)({
     height: '40px',
     color: 'var(--dark-text-color) !important',
     paddingLeft: '7px',
+    borderRadius: 8,
 
     '& > .MuiOutlinedInput-notchedOutline': {
       color: 'var(--dark-text-color) !important'
     }
+  },
+  '& > .MuiInputBase-multiline': {
+    height: 'auto'
   },
   '& > .MuiInputBase-root:not(.Mui-error)': {
     '& > .MuiOutlinedInput-notchedOutline': {

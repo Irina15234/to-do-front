@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { BoardColumn, Priority, State } from '../../../../../slices/types';
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { getPriorities } from '../../../../../services/dictionary-service';
 import { useFormik } from 'formik';
 import { SelectChangeEvent } from '@mui/material';
@@ -18,7 +18,8 @@ export const useDetails = () => {
   const initialValues = useMemo(() => {
     return {
       priorityId: task.priority.id,
-      columnId: task.columnId
+      columnId: task.columnId,
+      description: task.description || ''
     };
   }, [task]);
 
@@ -67,7 +68,9 @@ export const useDetails = () => {
     [columnsList]
   );
 
-  const handleChangeValue = (event: SelectChangeEvent<unknown>) => {
+  const handleChangeValue = (
+    event: SelectChangeEvent<unknown> | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     formik.handleChange(event);
 
     updateTaskField(event.target.name, event.target.value, task.id).catch((error) => {
@@ -99,6 +102,14 @@ export const useDetails = () => {
       onChange: handleChangeValue,
       value: formik.values.columnId,
       error: formik.errors.columnId
+    },
+    {
+      type: 'textarea',
+      label: 'Description',
+      name: 'description',
+      onChange: handleChangeValue,
+      value: formik.values.description,
+      error: formik.errors.description
     }
   ];
 

@@ -10,8 +10,14 @@ import {
 } from '@mui/material';
 import React from 'react';
 
+export interface CustomSelectOption {
+  id: number | string;
+  value: string | number;
+  icon?: string;
+}
+
 export type CustomSelectProps = {
-  options: { id: number | string; value: string | number; icon?: string }[];
+  options: CustomSelectOption[];
   colorVariant: 'light' | 'dark';
 };
 
@@ -24,6 +30,7 @@ const StyledLabel = styled(InputLabel)((styledProps: { colorvariant: 'light' | '
 
 const StyledSelect = styled(Select)((styledProps: { colorvariant: 'light' | 'dark' }) => ({
   height: '40px',
+  borderRadius: 8,
 
   '& > .MuiInputLabel-root:not(.Mui-error)': {
     color: 'var(--light-text-color) !important'

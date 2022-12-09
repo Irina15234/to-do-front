@@ -86,6 +86,7 @@ export interface Task {
   date: string;
   boardId: number;
   boardName: string;
+  description: string;
 }
 
 export interface User {
