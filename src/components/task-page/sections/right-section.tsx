@@ -7,6 +7,7 @@ export const RightSection = () => {
     <div className="right-section">
       <Container type={BlockTypes.details} />
       <Container type={BlockTypes.subtasks} />
+      <Container type={BlockTypes.comments} />
     </div>
   );
 };

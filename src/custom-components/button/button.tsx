@@ -81,6 +81,7 @@ const TextButton = styled(Button)({
   color: 'var(--button-color, #ac7e62)',
   boxShadow: 'none',
   textTransform: 'capitalize',
+  minWidth: 'auto !important',
 
   '&:hover': {
     boxShadow: 'none',
@@ -95,6 +96,7 @@ const LightTextButton = styled(Button)({
   color: '#ffffff',
   boxShadow: 'none',
   textTransform: 'capitalize',
+  minWidth: 'auto !important',
 
   '&:hover': {
     boxShadow: 'none',

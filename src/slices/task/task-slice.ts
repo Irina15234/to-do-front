@@ -14,7 +14,8 @@ const taskInitialState: Task = {
     id: -1
   },
   boardId: -1,
-  boardName: ''
+  boardName: '',
+  description: ''
 };
 
 const taskSlice = createSlice({

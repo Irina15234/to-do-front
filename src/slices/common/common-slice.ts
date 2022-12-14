@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CommonSettings, Snackbar } from '../types';
+import { CommonSettings, ReplyComment, Snackbar } from '../types';
 
 const commonInitialState: CommonSettings = {
   snackbar: {
@@ -7,7 +7,11 @@ const commonInitialState: CommonSettings = {
     message: '',
     variant: 'error'
   },
-  isOpenSidePanel: false
+  isOpenSidePanel: false,
+  replyComment: {
+    commentId: null,
+    commentText: ''
+  }
 };
 
 const commonSlice = createSlice({
@@ -25,6 +29,10 @@ const commonSlice = createSlice({
     setOpenPanel: (state, { payload }: PayloadAction<boolean>) => {
       state.isOpenSidePanel = payload;
       return state;
+    },
+    setReplyComment: (state, { payload }: PayloadAction<ReplyComment>) => {
+      state.replyComment = payload;
+      return state;
     }
   }
 });
@@ -34,5 +42,6 @@ export const commonReducer = commonSlice.reducer;
 export const {
   setSnackbar: setSnackbarAction,
   resetSnackbar: resetSnackbarAction,
-  setOpenPanel: setOpenPanelAction
+  setOpenPanel: setOpenPanelAction,
+  setReplyComment: setReplyCommentAction
 } = commonSlice.actions;

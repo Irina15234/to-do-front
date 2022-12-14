@@ -1,0 +1,39 @@
+.comment {
+    border: 1px solid var(--dark-border-color);
+    border-radius: 8px;
+}
+
+.comment:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.comment__head {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--neutral-border-color);
+}
+
+.comment__body {
+    padding: 10px;
+    color: var(--dark-text-color);
+}
+
+.comment__footer {
+    padding: 10px;
+    border-top: 1px solid var(--neutral-border-color);
+}
+
+.comment__head-info {
+    margin-left: 10px;
+    color: var(--dark-text-color);
+}
+
+.comment__date {
+    font-size: 14px;
+    color: var(--grey-color);
+}
+
+.comment__author {
+    word-break: break-word;
+}

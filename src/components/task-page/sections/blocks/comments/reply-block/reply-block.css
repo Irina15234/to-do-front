@@ -1,0 +1,15 @@
+.reply-block {
+    display: flex;
+    align-items: center;
+}
+
+.reply-block__text {
+    color: var(--dark-text-color);
+    font-size: 14px;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 10px;
+    width: 100%;
+}

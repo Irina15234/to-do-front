@@ -24,9 +24,15 @@ export interface InfoDialogObject {
   onClick: () => void;
 }
 
+export interface ReplyComment {
+  commentId: number | null;
+  commentText: string;
+}
+
 export interface CommonSettings {
   snackbar: Snackbar;
   isOpenSidePanel: boolean;
+  replyComment: ReplyComment;
 }
 
 export interface MainPage {
@@ -109,4 +115,21 @@ export interface Priority {
   name: string;
   icon: string;
   id: number;
+}
+
+export interface TaskComment {
+  id: number;
+  children: TaskComment[] | null;
+  authorId: number;
+  authorName: string;
+  text: string;
+  date: string;
+  update: string | null;
+}
+
+export interface PostComment {
+  text: string;
+  taskId: number;
+  parentId?: number | null;
+  authorName: string;
 }
