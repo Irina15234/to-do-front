@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { TaskComment, State } from '../../../../../slices/types';
 import { getComments } from '../../../../../services/comment-service';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,8 @@ export const useComments = () => {
 
   const [comments, setComments] = useState<TaskComment[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const commentFormRef = useRef(null);
 
   useEffect(() => {
     task.id > -1 &&
@@ -31,6 +33,7 @@ export const useComments = () => {
 
   return {
     comments,
-    isLoading
+    isLoading,
+    commentFormRef
   };
 };

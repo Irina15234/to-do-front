@@ -11,6 +11,7 @@ export const CommentForm = () => {
     <form className="item-with-bottom-margin">
       <ReplyBlock />
       <CustomInput
+        id="comment-input"
         value={newComment}
         label="Comment"
         onChange={(event) => setNewComment(event.target.value)}

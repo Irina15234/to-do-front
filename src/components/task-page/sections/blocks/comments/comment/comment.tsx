@@ -6,13 +6,14 @@ import { formatDate } from '../../../../../../common/helpers';
 import { ButtonType, CustomButton } from '../../../../../../custom-components/button/button';
 import { useComment } from './useComment';
 
-interface CommentProps {
+export interface CommentProps {
   comment: TaskComment;
   deep?: number;
+  commentFormRef: React.MutableRefObject<any>;
 }
 
-export const Comment = ({ comment, deep = 0 }: CommentProps) => {
-  const { user, handleClickReply } = useComment(comment);
+export const Comment = ({ comment, commentFormRef, deep = 0 }: CommentProps) => {
+  const { user, handleClickReply } = useComment({ comment, commentFormRef, deep });
 
   return (
     <>
@@ -33,7 +34,9 @@ export const Comment = ({ comment, deep = 0 }: CommentProps) => {
         </div>
       </div>
       {comment.children?.length &&
-        comment.children.map((child) => <Comment key={child.id} comment={child} deep={++deep} />)}
+        comment.children.map((child) => (
+          <Comment key={child.id} comment={child} deep={++deep} commentFormRef={commentFormRef} />
+        ))}
     </>
   );
 };
