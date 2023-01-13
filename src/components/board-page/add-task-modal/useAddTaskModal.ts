@@ -76,7 +76,8 @@ export const useAddTaskModal = ({ handleClose }: AddTaskModalProps) => {
       executorId: 0,
       priorityId: priorityList.length ? priorityList[0].id : 0
     },
-    validate
+    validate,
+    validateOnChange: false
   });
 
   const actions = [

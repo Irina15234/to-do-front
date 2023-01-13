@@ -21,9 +21,7 @@ export const AddTaskModal = ({ handleClose }: AddTaskModalProps) => {
           onChange={formik.handleChange}
           colorVariant="dark"
           fullWidth
-          className={clsx('item-with-bottom-margin', {
-            'error-input-margin': !!formik.errors.name
-          })}
+          className={clsx('item-with-bottom-margin')}
           error={Boolean(formik.errors.name)}
           helperText={formik.errors.name}
           required
