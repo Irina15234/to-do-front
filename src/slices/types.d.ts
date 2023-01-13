@@ -125,6 +125,7 @@ export interface TaskComment {
   text: string;
   date: string;
   update: string | null;
+  isDeleted?: boolean;
 }
 
 export interface PostComment {

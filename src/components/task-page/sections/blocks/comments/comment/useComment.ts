@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../../../../../slices/types';
-import { setReplyCommentAction } from '../../../../../../slices/common/common-slice';
+import { setReplyCommentAction, setSnackbarAction } from '../../../../../../slices/common/common-slice';
 import { CommentProps } from './comment';
+import { deleteCommentById } from '../../../../../../services/comment-service';
 
 export const useComment = ({ comment, commentFormRef }: CommentProps) => {
   const dispatch = useDispatch();
@@ -13,8 +14,31 @@ export const useComment = ({ comment, commentFormRef }: CommentProps) => {
     document.getElementById('comment-input')?.focus();
   };
 
+  const deleteComment = () => {
+    deleteCommentById(comment.id).catch((error) => {
+      dispatch(
+        setSnackbarAction({
+          message: error.response?.data || 'error',
+          variant: 'error',
+          open: true
+        })
+      );
+    });
+  };
+
+  const startEditComment = () => {
+    commentFormRef?.current.scrollIntoView();
+    document.getElementById('comment-input')?.focus();
+  };
+
+  const changeComment = (type: string) => {
+    type === 'delete' && deleteComment();
+    type === 'edit' && startEditComment();
+  };
+
   return {
     user,
-    handleClickReply
+    handleClickReply,
+    changeComment
   };
 };

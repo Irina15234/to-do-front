@@ -22,3 +22,23 @@ export const createComment = async (data: PostComment) => {
     throw error;
   }
 };
+
+export const updateComment = async (id: number, text: string) => {
+  try {
+    const response = await api.put(`/${COMMENT_API}/${id}`, { text });
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};
+
+export const deleteCommentById = async (id: number) => {
+  try {
+    const response = await api.delete(`/${COMMENT_API}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};

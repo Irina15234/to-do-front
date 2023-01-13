@@ -22,6 +22,8 @@
 .comment__footer {
     padding: 10px;
     border-top: 1px solid var(--neutral-border-color);
+    display: flex;
+    justify-content: space-between;
 }
 
 .comment__head-info {
@@ -36,4 +38,18 @@
 
 .comment__author {
     word-break: break-word;
+}
+
+.comment_deleted {
+    border-color: var(--grey-color);
+}
+
+.comment__deleted-body {
+    display: flex;
+    padding: 12px;
+    opacity: 0.5;
+}
+
+.comment__deleted-body > p {
+    margin-left: 10px;
 }
