@@ -12,7 +12,7 @@
 }
 
 .task-block__head {
-
+    margin-bottom: 10px;
 }
 
 .task-block__title {
@@ -23,5 +23,11 @@
 }
 
 .task-block__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.column__main > a:last-child .task-block {
+    margin-bottom: 0;
 }

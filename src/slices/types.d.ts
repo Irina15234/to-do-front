@@ -62,6 +62,8 @@ export interface BoardTask {
   name: string;
   priorityIcon: string;
   columnId: number;
+  executorName?: string;
+  executorPhoto?: string;
 }
 
 export interface MainViewTask {
