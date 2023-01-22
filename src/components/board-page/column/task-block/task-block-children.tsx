@@ -11,7 +11,7 @@ export const TaskBlockChildren = ({ task, index }: TaskBlockChildrenProps) => {
   return (
     <>
       {task.children?.map((child) => (
-        <TaskBlock task={child} index={index} isChild={true} />
+        <TaskBlock key={child.id} task={child} index={index} isChild={true} />
       ))}
     </>
   );

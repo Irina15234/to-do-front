@@ -6,6 +6,7 @@ import { ButtonType, CustomButton } from '../../../custom-components/button/butt
 import { useCallback, useEffect, useState } from 'react';
 import { getBoardsList } from '../../../services/board-service';
 import { getTasksList } from '../../../services/task-service';
+import { useNavigate } from 'react-router-dom';
 
 interface CardProps {
   title: string;
@@ -14,6 +15,7 @@ interface CardProps {
 }
 
 export const Card = ({ title, className, isBoards = false }: CardProps) => {
+  const navigate = useNavigate();
   const [sourceList, setSourceList] = useState<MainViewBoard[] | MainViewTask[]>([]);
 
   useEffect(() => {
@@ -48,7 +50,11 @@ export const Card = ({ title, className, isBoards = false }: CardProps) => {
 
         {isBoards && (
           <div className="card-container__add-container">
-            <CustomButton buttonType={ButtonType.add} startIconColor="var(--button-color-2)" href="/board/new">
+            <CustomButton
+              buttonType={ButtonType.add}
+              startIconColor="var(--button-color-2)"
+              onClick={() => navigate(`/board/new`)}
+            >
               Add new board
             </CustomButton>
           </div>

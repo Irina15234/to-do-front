@@ -11,6 +11,7 @@ import { setSnackbarAction } from '../../slices/common/common-slice';
 
 export const useBoardPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const stateBoard = useSelector((state: State) => state.board);
 
@@ -63,8 +64,8 @@ export const useBoardPage = () => {
   const handleCloseNameSetting = useCallback(() => {
     setOpenNameSettingDialog(false);
     setIsEditName(false);
-    !isEditName && (window.location.href = location.origin);
-  }, [isEditName]);
+    !isEditName && navigate(`/`);
+  }, [isEditName, navigate]);
 
   const changeColumns = useCallback(
     (newColumns: BoardColumn[]) => {
@@ -102,7 +103,7 @@ export const useBoardPage = () => {
       };
       updateBoardById(board, deletedColumnsIds)
         .then(() => {
-          location.href = location.origin + '/board/' + boardId;
+          navigate(`/board/${boardId}`);
         })
         .catch((error) => {
           dispatch(setSnackbarAction({ message: error.response.data, variant: 'error', open: true }));
@@ -117,20 +118,18 @@ export const useBoardPage = () => {
 
       createBoard(board).then((res) => {
         dispatch(setBoardAction(res));
-        location.href = location.origin + '/board/' + res.id;
+        navigate(`/board/${res.id}`);
       });
     }
-  }, [boardName, columns, deletedColumnsIds, dispatch]);
+  }, [boardName, columns, deletedColumnsIds, dispatch, navigate]);
 
   const handleClickTitleEdit = useCallback(() => {
     setOpenNameSettingDialog(true);
     setIsEditName(true);
   }, []);
 
-  const navigate = useNavigate();
-
   const handleCloseEditMode = useCallback(() => {
-    navigate(`/board/${getBoardOrTaskId()}`);
+    isNewPage() ? navigate('/') : navigate(`/board/${getBoardOrTaskId()}`);
   }, [navigate]);
 
   return {
