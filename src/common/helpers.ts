@@ -19,7 +19,7 @@ export const getBoardOrTaskId = () => {
 };
 
 export const formatDate = (date: string) => {
-  return moment(date).format('DD.MM.YYYY HH:mm');
+  return moment(date.slice(0, date.length - 2)).format('DD.MM.YYYY HH:mm');
 };
 
 export const convertFileToImageUrl = (file: File) => {
