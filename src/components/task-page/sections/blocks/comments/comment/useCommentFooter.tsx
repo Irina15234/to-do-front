@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../../../../../layout/layout';
 import { DeleteInfo } from '../../../../../../slices/types';
-import { Delete, Edit } from '@mui/icons-material';
+import { Delete } from '@mui/icons-material';
 
 export const useCommentFooter = (changeComment: (type: string) => void) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -19,11 +19,6 @@ export const useCommentFooter = (changeComment: (type: string) => void) => {
     setAnchorEl(null);
   };
 
-  const handleClickEdit = () => {
-    handleClose();
-    changeComment('edit');
-  };
-
   const deleteItem = () => {
     changeComment('delete');
   };
@@ -39,11 +34,6 @@ export const useCommentFooter = (changeComment: (type: string) => void) => {
   };
 
   const menuList = [
-    {
-      icon: <Edit style={{ color: 'var(--grey-color)' }} />,
-      title: 'Edit',
-      onClick: handleClickEdit
-    },
     {
       icon: <Delete style={{ color: 'var(--red-color)' }} />,
       title: 'Delete',

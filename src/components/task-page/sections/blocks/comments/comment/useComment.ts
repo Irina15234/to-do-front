@@ -26,14 +26,8 @@ export const useComment = ({ comment, commentFormRef }: CommentProps) => {
     });
   };
 
-  const startEditComment = () => {
-    commentFormRef?.current.scrollIntoView();
-    document.getElementById('comment-input')?.focus();
-  };
-
   const changeComment = (type: string) => {
     type === 'delete' && deleteComment();
-    type === 'edit' && startEditComment();
   };
 
   return {
