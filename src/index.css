@@ -60,6 +60,10 @@ form {
   padding: 2px 0;
 }
 
+form > *:last-child .item-with-bottom-margin, form > *.item-with-bottom-margin:last-child {
+  margin-bottom: 0 !important;
+}
+
 .form-buttons {
   display: flex;
 }

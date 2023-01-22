@@ -1,64 +1,24 @@
 import { BoardColumn } from '../../../slices/types';
 import './column.css';
 import { CustomIconButton, IconButtonVariant } from '../../../custom-components/icon-button/icon-button';
-import { AddCircleOutline, Delete, Edit, MoreVert } from '@mui/icons-material';
+import { AddCircleOutline, MoreVert } from '@mui/icons-material';
 import { ModalMenu } from '../../../custom-components/modal-menu/modal-menu';
-import React, { useState } from 'react';
+import React from 'react';
 import { isEditPage, isNewPage } from '../../../common/helpers';
 import { ModalMenuItem } from '../../../custom-components/menu-item/menu-item';
 import { ColumnBody } from './column-body/column-body';
-import { AddTaskModal } from '../add-task-modal/add-task-modal';
+import { useColumn } from './useColumn';
 
-interface ColumnProps {
+export interface ColumnProps {
   column: BoardColumn;
   columnsAction: { handleEditColumnTitle: (columnId: number) => void; handleDeleteColumn: (columnId: number) => void };
 }
 
 export const Column = ({ column, columnsAction }: ColumnProps) => {
-  const [openTaskModal, setOpenTaskModal] = useState<boolean>(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-
-  const handleClickSettings = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClickAddTask = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    setOpenTaskModal(true);
-  };
-
-  const handleCloseAddTask = () => {
-    setOpenTaskModal(false);
-  };
-
-  const handleCloseSettings = () => {
-    setAnchorEl(null);
-  };
-
-  const handleClickEdit = () => {
-    columnsAction.handleEditColumnTitle(column.id);
-    handleCloseSettings();
-  };
-
-  const handleClickDelete = () => {
-    columnsAction.handleDeleteColumn(column.id);
-    handleCloseSettings();
-  };
-
-  const menuList = [
-    {
-      icon: <Edit style={{ color: 'var(--grey-color)' }} />,
-      title: 'Edit',
-      onClick: handleClickEdit
-    },
-    {
-      icon: <Delete style={{ color: 'var(--red-color)' }} />,
-      title: 'Delete',
-      onClick: handleClickDelete
-    }
-  ];
+  const { handleClickSettings, handleClickAddTask, handleCloseSettings, anchorEl, open, menuList } = useColumn({
+    column,
+    columnsAction
+  });
 
   return (
     <div className="column">
@@ -82,8 +42,6 @@ export const Column = ({ column, columnsAction }: ColumnProps) => {
         </ModalMenu>
       </div>
       <ColumnBody column={column} />
-
-      {openTaskModal && <AddTaskModal handleClose={handleCloseAddTask} />}
     </div>
   );
 };

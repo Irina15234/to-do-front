@@ -11,7 +11,9 @@ const commonInitialState: CommonSettings = {
   replyComment: {
     commentId: null,
     commentText: ''
-  }
+  },
+  isOpenAddTaskModal: false,
+  taskParentId: undefined
 };
 
 const commonSlice = createSlice({
@@ -33,6 +35,14 @@ const commonSlice = createSlice({
     setReplyComment: (state, { payload }: PayloadAction<ReplyComment>) => {
       state.replyComment = payload;
       return state;
+    },
+    toggleOpenAddTaskModal: (state, { payload }: PayloadAction<boolean>) => {
+      state.isOpenAddTaskModal = payload;
+      return state;
+    },
+    setTaskParentId: (state, { payload }: PayloadAction<number>) => {
+      state.taskParentId = payload;
+      return state;
     }
   }
 });
@@ -43,5 +53,7 @@ export const {
   setSnackbar: setSnackbarAction,
   resetSnackbar: resetSnackbarAction,
   setOpenPanel: setOpenPanelAction,
-  setReplyComment: setReplyCommentAction
+  setReplyComment: setReplyCommentAction,
+  toggleOpenAddTaskModal: toggleOpenAddTaskModalAction,
+  setTaskParentId: setTaskParentIdAction
 } = commonSlice.actions;

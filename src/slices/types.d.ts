@@ -33,6 +33,8 @@ export interface CommonSettings {
   snackbar: Snackbar;
   isOpenSidePanel: boolean;
   replyComment: ReplyComment;
+  isOpenAddTaskModal: boolean;
+  taskParentId?: number;
 }
 
 export interface MainPage {
@@ -64,6 +66,8 @@ export interface BoardTask {
   columnId: number;
   executorName?: string;
   executorPhoto?: string;
+  children?: BoardTask[];
+  parentId?: number;
 }
 
 export interface MainViewTask {
@@ -82,6 +86,7 @@ export interface CreateViewTask {
   columnId: number;
   date: string;
   boardId: number;
+  parentId?: number;
 }
 
 export interface Task {
