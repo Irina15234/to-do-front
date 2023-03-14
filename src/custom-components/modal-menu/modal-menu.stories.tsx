@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ModalMenu } from './modal-menu';
 import { MenuProps } from '@mui/material/Menu/Menu';
 import { ListItemIcon, MenuItem } from '@mui/material';
-import { Delete } from '@mui/icons-material';
+import { DeleteOutline } from '@mui/icons-material';
 import React from 'react';
 
 export default {
@@ -20,7 +20,7 @@ MenuWithIcon.args = {
   children: (
     <MenuItem>
       <ListItemIcon>
-        <Delete style={{ color: 'red' }} />
+        <DeleteOutline style={{ color: 'red' }} />
       </ListItemIcon>
       Delete
     </MenuItem>

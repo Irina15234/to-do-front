@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { Delete, Edit } from '@mui/icons-material';
+import { DeleteOutline, Edit } from '@mui/icons-material';
 import { CardListItemProps, CardType } from './card-list-item';
 import { DeleteInfo } from '../../../slices/types';
 import { deleteTaskById } from '../../../services/task-service';
@@ -51,7 +51,7 @@ export const useCardListItem = ({ source, type, updateSourceListAfterDeleting }:
       onClick: handleClickEdit
     },
     {
-      icon: <Delete style={{ color: 'var(--red-color)' }} />,
+      icon: <DeleteOutline style={{ color: 'var(--red-color)' }} />,
       title: 'Delete',
       onClick: handleClickDelete
     }

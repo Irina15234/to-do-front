@@ -1,7 +1,7 @@
 import { BoardTask } from '../../../../slices/types';
 import React from 'react';
 import { CustomTooltip } from '../../../../custom-components/tooltip/tooltip';
-import { Avatar } from '@mui/material';
+import { CustomAvatar } from '../../../../custom-components/avatar/avatar';
 
 interface TaskBlockMainProps {
   task: BoardTask;
@@ -16,9 +16,11 @@ export const TaskBlockMain = ({ task }: TaskBlockMainProps) => {
       <div className="task-block__main_right">
         <CustomTooltip title={task.executorName || 'Unknown'}>
           <div>
-            {task.executorPhoto && <Avatar sx={{ width: 24, height: 24 }} alt="" src={task.executorPhoto} />}
+            {task.executorPhoto && <CustomAvatar alt="" src={task.executorPhoto} size="small" type="img" />}
             {!task.executorPhoto && (
-              <Avatar sx={{ width: 24, height: 24 }}>{(task.executorName || 'Unknown').at(0)}</Avatar>
+              <CustomAvatar size="small" type="text">
+                {(task.executorName || 'Unknown').at(0)}
+              </CustomAvatar>
             )}
           </div>
         </CustomTooltip>

@@ -1,8 +1,10 @@
 import { TextFieldProps } from '@mui/material/TextField/TextField';
-import { styled, TextField } from '@mui/material';
+import { InputAdornment, styled, TextField } from '@mui/material';
+import { Search } from '@mui/icons-material';
 
 export type CustomInputProps = {
   colorVariant: 'light' | 'dark';
+  search?: boolean;
 };
 
 const LightInput = styled(TextField)({
@@ -69,12 +71,42 @@ const DarkInput = styled(TextField)({
   }
 });
 
-export const CustomInput = ({ colorVariant, ...props }: TextFieldProps & CustomInputProps) => {
+export const CustomInput = ({ colorVariant, search, ...props }: TextFieldProps & CustomInputProps) => {
   switch (colorVariant) {
     case 'light':
-      return <LightInput variant="outlined" autoComplete="off" InputLabelProps={{ shrink: true }} {...props} />;
+      return (
+        <LightInput
+          variant="outlined"
+          autoComplete="off"
+          InputLabelProps={{ shrink: true }}
+          {...props}
+          InputProps={{
+            startAdornment: search ? (
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            ) : null,
+            ...props.InputProps
+          }}
+        />
+      );
     case 'dark':
-      return <DarkInput variant="outlined" autoComplete="off" InputLabelProps={{ shrink: true }} {...props} />;
+      return (
+        <DarkInput
+          variant="outlined"
+          autoComplete="off"
+          InputLabelProps={{ shrink: true }}
+          {...props}
+          InputProps={{
+            startAdornment: search ? (
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            ) : null,
+            ...props.InputProps
+          }}
+        />
+      );
     default:
       return <DarkInput variant="outlined" autoComplete="off" InputLabelProps={{ shrink: true }} {...props} />;
   }

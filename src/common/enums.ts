@@ -8,3 +8,9 @@ export enum UserInfoView {
   full = 'FULL',
   min = 'MIN'
 }
+
+export enum BoardUserView {
+  full = 'FULL',
+  base = 'BASE',
+  inactive = 'INACTIVE'
+}

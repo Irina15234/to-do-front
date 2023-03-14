@@ -3,6 +3,7 @@ import { CustomIconButton, IconButtonVariant } from '../../../custom-components/
 import { Edit, Settings } from '@mui/icons-material';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BoardUsersContainer } from './board-users-container/board-users-container';
 
 interface BoardHeaderProps {
   boardName: string;
@@ -28,6 +29,8 @@ export const BoardHeader = ({ boardName, handleClickTitleEdit }: BoardHeaderProp
           </CustomIconButton>
         </Link>
       )}
+
+      <BoardUsersContainer />
     </div>
   );
 };

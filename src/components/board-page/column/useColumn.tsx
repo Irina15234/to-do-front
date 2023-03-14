@@ -1,6 +1,6 @@
 import { ColumnProps } from './column';
 import React, { useState } from 'react';
-import { Delete, Edit } from '@mui/icons-material';
+import { DeleteOutline, Edit } from '@mui/icons-material';
 import { toggleOpenAddTaskModalAction } from '../../../slices/common/common-slice';
 import { useDispatch } from 'react-redux';
 
@@ -41,7 +41,7 @@ export const useColumn = ({ column, columnsAction }: ColumnProps) => {
       onClick: handleClickEdit
     },
     {
-      icon: <Delete style={{ color: 'var(--red-color)' }} />,
+      icon: <DeleteOutline style={{ color: 'var(--red-color)' }} />,
       title: 'Delete',
       onClick: handleClickDelete
     }

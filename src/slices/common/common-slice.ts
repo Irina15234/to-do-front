@@ -13,7 +13,8 @@ const commonInitialState: CommonSettings = {
     commentText: ''
   },
   isOpenAddTaskModal: false,
-  taskParentId: undefined
+  taskParentId: undefined,
+  isOpenUsersBoardDialog: false
 };
 
 const commonSlice = createSlice({
@@ -43,6 +44,10 @@ const commonSlice = createSlice({
     setTaskParentId: (state, { payload }: PayloadAction<number>) => {
       state.taskParentId = payload;
       return state;
+    },
+    toggleOpenUsersBoardDialog: (state, { payload }: PayloadAction<boolean>) => {
+      state.isOpenUsersBoardDialog = payload;
+      return state;
     }
   }
 });
@@ -55,5 +60,6 @@ export const {
   setOpenPanel: setOpenPanelAction,
   setReplyComment: setReplyCommentAction,
   toggleOpenAddTaskModal: toggleOpenAddTaskModalAction,
-  setTaskParentId: setTaskParentIdAction
+  setTaskParentId: setTaskParentIdAction,
+  toggleOpenUsersBoardDialog: toggleOpenUsersBoardDialogAction
 } = commonSlice.actions;

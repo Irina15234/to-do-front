@@ -29,3 +29,8 @@
 .board-page__main_edit {
     height: calc(100% - 116px);
 }
+
+.board-page__users-container {
+    margin-left: auto;
+    cursor: pointer;
+}

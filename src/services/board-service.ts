@@ -1,5 +1,6 @@
-import { Board, BoardColumn, MainViewBoard, User } from '../slices/types';
+import { Board, BoardColumn, FullViewBoardUser, MainViewBoard, User } from '../slices/types';
 import { api } from './api';
+import { BoardUserView } from '../common/enums';
 
 const BOARD_API = 'board';
 
@@ -53,9 +54,12 @@ export const deleteBoardById = async (id: number) => {
   }
 };
 
-export const getUsersByBoard = async (id: number): Promise<User[]> => {
+export const getUsersByBoard = async (
+  id: number,
+  view: BoardUserView = BoardUserView.base
+): Promise<User[] | FullViewBoardUser[]> => {
   try {
-    const response = await api.get(`/${BOARD_API}/users/${id}`);
+    const response = await api.get(`/${BOARD_API}/users/${id}`, { params: { view } });
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);
@@ -106,6 +110,16 @@ export const addColumn = async (column: BoardColumn, boardId: number) => {
 export const getColumnsByBoard = async (id: number): Promise<BoardColumn[]> => {
   try {
     const response = await api.get(`/${BOARD_API}/columns/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Request failed: ${error}`);
+    throw error;
+  }
+};
+
+export const changeBoardUsers = async (users: FullViewBoardUser[], boardId: number) => {
+  try {
+    const response = await api.put(`/${BOARD_API}/users/${boardId}`, users);
     return response.data;
   } catch (error) {
     console.error(`Request failed: ${error}`);

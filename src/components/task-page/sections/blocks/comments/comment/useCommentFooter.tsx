@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../../../../../layout/layout';
 import { DeleteInfo } from '../../../../../../slices/types';
-import { Delete } from '@mui/icons-material';
+import { DeleteOutline } from '@mui/icons-material';
 
 export const useCommentFooter = (changeComment: (type: string) => void) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -35,7 +35,7 @@ export const useCommentFooter = (changeComment: (type: string) => void) => {
 
   const menuList = [
     {
-      icon: <Delete style={{ color: 'var(--red-color)' }} />,
+      icon: <DeleteOutline style={{ color: 'var(--red-color)' }} />,
       title: 'Delete',
       onClick: handleClickDelete
     }

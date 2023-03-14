@@ -1,12 +1,12 @@
 import { TaskComment } from '../../../../../../slices/types';
 import './comment.css';
-import { Avatar } from '@mui/material';
 import React from 'react';
 import { formatDate } from '../../../../../../common/helpers';
 import { useComment } from './useComment';
 import { CommentFooter } from './comment-footer';
 import { DeletedComment } from './deleted-comment';
 import clsx from 'clsx';
+import { CustomAvatar } from '../../../../../../custom-components/avatar/avatar';
 
 export interface CommentProps {
   comment: TaskComment;
@@ -24,8 +24,12 @@ export const Comment = ({ comment, commentFormRef, deep = 0 }: CommentProps) => 
         {!comment.isDeleted && (
           <>
             <div className="comment__head">
-              {user.photo && <Avatar alt="" src={user.photo} />}
-              {!user.photo && <Avatar>{user?.name?.at(0)}</Avatar>}
+              {user.photo && <CustomAvatar alt="" src={user.photo} size="large" type="img" />}
+              {!user.photo && (
+                <CustomAvatar size="large" type="text">
+                  {user?.name?.at(0)}
+                </CustomAvatar>
+              )}
               <div className="comment__head-info">
                 <div className="comment__author">{comment.authorName}</div>
                 <div className="comment__date">{formatDate(comment.date)}</div>

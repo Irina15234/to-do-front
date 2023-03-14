@@ -22,7 +22,6 @@ export type CustomSelectProps = {
 };
 
 const StyledLabel = styled(InputLabel)((styledProps: { colorvariant: 'light' | 'dark' }) => ({
-  top: '0 !important',
   color:
     styledProps.colorvariant === 'light' ? 'var(--light-text-color) !important' : 'var(--dark-text-color) !important',
   background: '#ffffff'
@@ -74,7 +73,7 @@ export const CustomSelect = ({ options, colorVariant, ...props }: SelectProps & 
   return (
     <FormControl fullWidth={props.fullWidth}>
       {props.label && (
-        <StyledLabel id={props.labelId} colorvariant={colorVariant} shrink={true}>
+        <StyledLabel id={props.labelId} colorvariant={colorVariant} shrink>
           {props.label}
         </StyledLabel>
       )}

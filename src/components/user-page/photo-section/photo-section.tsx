@@ -1,15 +1,20 @@
 import { usePhotoSection } from './usePhotoSection';
-import { Avatar } from '@mui/material';
 import './photo-section.css';
 import { PhotoDialog } from './photo-dialog/photo-dialog';
+import { CustomAvatar } from '../../../custom-components/avatar/avatar';
+import React from 'react';
 
 export const PhotoSection = () => {
   const { user } = usePhotoSection();
 
   return (
     <div className="photo-section">
-      {user.photo && <Avatar alt="" src={user.photo} />}
-      {!user.photo && <Avatar>{user?.name?.at(0)}</Avatar>}
+      {user.photo && <CustomAvatar alt="" src={user.photo} size="large" type="img" />}
+      {!user.photo && (
+        <CustomAvatar size="large" type="text">
+          {user?.name?.at(0)}
+        </CustomAvatar>
+      )}
       <PhotoDialog />
     </div>
   );

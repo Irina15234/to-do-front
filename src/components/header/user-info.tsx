@@ -3,7 +3,7 @@ import { ModalMenuItem } from '../../custom-components/menu-item/menu-item';
 import { ModalMenu } from '../../custom-components/modal-menu/modal-menu';
 import { useUserInfo } from './useUserInfo';
 import { Settings } from '@mui/icons-material';
-import { Avatar } from '@mui/material';
+import { CustomAvatar } from '../../custom-components/avatar/avatar';
 
 export const UserInfo = () => {
   const { user, handleClickUser, handleCloseUserMenu, anchorEl, menuList, open } = useUserInfo();
@@ -12,8 +12,12 @@ export const UserInfo = () => {
     <div className="header__user-block">
       <div className="header__user-name">{user.name}</div>
       <div className="header__user-img-container" role="button" tabIndex={-1} onClick={handleClickUser}>
-        {user.photo && <Avatar alt="" src={user.photo} />}
-        {!user.photo && <Avatar>{user?.name?.at(0)}</Avatar>}
+        {user.photo && <CustomAvatar alt="" src={user.photo} size="large" type="img" />}
+        {!user.photo && (
+          <CustomAvatar size="large" type="text">
+            {user?.name?.at(0)}
+          </CustomAvatar>
+        )}
         <Settings style={{ color: 'var(--grey-color)' }} className="header__user-button-icon" />
       </div>
 

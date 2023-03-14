@@ -7,9 +7,10 @@ import {
   DialogTitleProps,
   styled
 } from '@mui/material';
-import { CustomIconButton, IconButtonVariant } from '../icon-button/icon-button';
+import { CustomIconButton, IconButtonVariant, IconVariant } from '../icon-button/icon-button';
 import { Close } from '@mui/icons-material';
 import { ButtonType, CustomButton } from '../button/button';
+import { CustomTooltip } from '../tooltip/tooltip';
 
 interface CustomDialogTitleProps extends DialogTitleProps {
   title?: string;
@@ -24,11 +25,19 @@ interface DialogAction {
   disabled?: boolean;
 }
 
+interface DialogAdditionalAction {
+  title: string;
+  onClick: () => void;
+  disabled?: boolean;
+  icon: JSX.Element;
+}
+
 export interface CustomDialogProps extends DialogProps {
   title?: string;
   description?: string;
   onClose: () => void;
   actions: DialogAction[];
+  additionalActions?: DialogAdditionalAction[];
 }
 
 const StyledDialog = styled(Dialog)({
@@ -58,6 +67,10 @@ const StyledActions = styled(DialogActions)({
   borderTop: '1px solid var(--light-border-color, #d2c8bc)'
 });
 
+const StyledAdditionalActions = styled('div')({
+  marginRight: 'auto'
+});
+
 const CustomDialogTitle = (props: CustomDialogTitleProps) => {
   const { title, description, onClose } = props;
 
@@ -74,12 +87,37 @@ const CustomDialogTitle = (props: CustomDialogTitleProps) => {
   );
 };
 
-export const CustomDialog = ({ onClose, title, description, actions, children, ...props }: CustomDialogProps) => {
+export const CustomDialog = ({
+  onClose,
+  title,
+  description,
+  actions,
+  additionalActions,
+  children,
+  ...props
+}: CustomDialogProps) => {
   return (
     <StyledDialog {...props}>
       <CustomDialogTitle title={title} description={description} onClose={onClose} />
       <StyledContent>{children}</StyledContent>
       <StyledActions>
+        {additionalActions && (
+          <StyledAdditionalActions>
+            {additionalActions.map((button) => (
+              <CustomTooltip key={button.title} title={button.title}>
+                <div>
+                  <CustomIconButton
+                    iconvariant={IconVariant.secondary}
+                    onClick={button.onClick}
+                    disabled={button.disabled}
+                  >
+                    {button.icon}
+                  </CustomIconButton>
+                </div>
+              </CustomTooltip>
+            ))}
+          </StyledAdditionalActions>
+        )}
         {actions.map((button) => (
           <CustomButton
             key={button.title}

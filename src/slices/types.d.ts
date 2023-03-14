@@ -35,6 +35,7 @@ export interface CommonSettings {
   replyComment: ReplyComment;
   isOpenAddTaskModal: boolean;
   taskParentId?: number;
+  isOpenUsersBoardDialog: boolean;
 }
 
 export interface MainPage {
@@ -140,4 +141,25 @@ export interface PostComment {
   taskId: number;
   parentId?: number | null;
   authorName: string;
+}
+
+export interface Permission {
+  id: number;
+  name: string;
+}
+
+export interface Role {
+  id: number;
+  name: string;
+}
+
+export interface FullViewBoardUser {
+  name: string;
+  photo: string;
+  id: number;
+  role: Role | null;
+}
+
+export interface FullViewBoardActiveUser extends FullViewBoardUser {
+  changeType?: string;
 }

@@ -9,6 +9,7 @@ import { BoardHeader } from '../../components/board-page/board-header/board-head
 import { useBoardPage } from './useBoardPage';
 import { ButtonType, CustomButton } from '../../custom-components/button/button';
 import clsx from 'clsx';
+import { BoardUsersDialog } from '../../components/board-page/board-users-dialog/board-users-dialog';
 
 export const BoardPage = () => {
   const {
@@ -50,6 +51,7 @@ export const BoardPage = () => {
         </Panel>
       )}
 
+      <BoardUsersDialog />
       <CustomDialog open={openNameSettingDialog} title="New board" onClose={handleCloseNameSetting} actions={actions}>
         <div>
           <CustomInput
