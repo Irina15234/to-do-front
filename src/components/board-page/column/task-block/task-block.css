@@ -5,6 +5,7 @@
     padding: 8px 6px;
     margin-bottom: 10px;
     cursor: pointer;
+    transition: var(--hover-transition);
 }
 
 .task-block:not(.task-block_child):hover {

@@ -15,6 +15,7 @@ export const AddTaskDialog = () => {
             case 'input':
               return (
                 <CustomInput
+                  key={field.name}
                   name={field.name}
                   value={field.value}
                   label={field.label}
@@ -31,6 +32,7 @@ export const AddTaskDialog = () => {
             case 'select':
               return (
                 <CustomSelect
+                  key={field.name}
                   labelId={field.labelId}
                   name={field.name}
                   value={field.value}
