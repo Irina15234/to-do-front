@@ -118,7 +118,7 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
     const sourceColumnId = parseInt(result.source.droppableId);
     const targetColumnId = parseInt(result.destination?.droppableId || '-1');
 
-    if (targetColumnId > -1) {
+    if (targetColumnId > -1 && targetColumnId !== sourceColumnId) {
       const taskIndex = result.source.index;
       const taskId = tasks.filter((task) => task.columnId === sourceColumnId)[taskIndex].id;
 
