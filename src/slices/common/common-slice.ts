@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CommonSettings, ReplyComment, Snackbar } from '../types';
+import { WsStatus } from '../../common/enums';
 
 const commonInitialState: CommonSettings = {
   snackbar: {
@@ -14,7 +15,8 @@ const commonInitialState: CommonSettings = {
   },
   isOpenAddTaskModal: false,
   taskParentId: undefined,
-  isOpenUsersBoardDialog: false
+  isOpenUsersBoardDialog: false,
+  status: WsStatus.actual
 };
 
 const commonSlice = createSlice({
@@ -48,6 +50,10 @@ const commonSlice = createSlice({
     toggleOpenUsersBoardDialog: (state, { payload }: PayloadAction<boolean>) => {
       state.isOpenUsersBoardDialog = payload;
       return state;
+    },
+    setStatus: (state, { payload }: PayloadAction<WsStatus>) => {
+      state.status = payload;
+      return state;
     }
   }
 });
@@ -61,5 +67,6 @@ export const {
   setReplyComment: setReplyCommentAction,
   toggleOpenAddTaskModal: toggleOpenAddTaskModalAction,
   setTaskParentId: setTaskParentIdAction,
-  toggleOpenUsersBoardDialog: toggleOpenUsersBoardDialogAction
+  toggleOpenUsersBoardDialog: toggleOpenUsersBoardDialogAction,
+  setStatus: setStatusAction
 } = commonSlice.actions;

@@ -5,10 +5,12 @@ import { Task } from '../../slices/types';
 import { useDispatch } from 'react-redux';
 import { setTaskAction } from '../../slices/task/task-slice';
 import { Typography } from '@mui/material';
+import { useUpdateStatus } from '../../common/hooks/useUpdateStatus';
 
 export const useTaskPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  useUpdateStatus();
 
   const [task, setTask] = useState<Task>();
 

@@ -101,9 +101,9 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
     }
   ];
 
-  useEffect(() => {
-    const boardId: number | null = getBoardOrTaskId();
+  const boardId: number = getBoardOrTaskId() || -1;
 
+  useEffect(() => {
     boardId &&
       getTasksByBoard(boardId)
         .then((res) => {
@@ -112,7 +112,7 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
         .catch((error) => {
           dispatch(setSnackbarAction({ message: error.response.data, variant: 'error', open: true }));
         });
-  }, [dispatch]);
+  }, [boardId, dispatch]);
 
   const onDragEnd = (result: DropResult) => {
     const sourceColumnId = parseInt(result.source.droppableId);
@@ -122,10 +122,10 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
       const taskIndex = result.source.index;
       const taskId = tasks.filter((task) => task.columnId === sourceColumnId)[taskIndex].id;
 
-      updateTaskColumn(sourceColumnId, targetColumnId, taskId)
+      updateTaskColumn(sourceColumnId, targetColumnId, taskId, boardId)
         .then()
         .catch((error) => {
-          dispatch(setSnackbarAction({ message: error.response.data, variant: 'error', open: true }));
+          dispatch(setSnackbarAction({ message: error.response?.data, variant: 'error', open: true }));
         });
     }
   };

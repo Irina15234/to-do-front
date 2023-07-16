@@ -64,12 +64,18 @@ export const deleteTaskById = async (id: number) => {
   }
 };
 
-export const updateTaskColumn = async (sourceColumnId: number, targetColumnId: number, taskId: number) => {
+export const updateTaskColumn = async (
+  sourceColumnId: number,
+  targetColumnId: number,
+  taskId: number,
+  boardId: number
+) => {
   try {
     const response = await api.put(`/${TASK_API}/columns`, {
       sourceColumnId,
       targetColumnId,
-      taskId
+      taskId,
+      boardId
     });
 
     return response.data;

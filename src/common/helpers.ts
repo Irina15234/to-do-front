@@ -8,6 +8,10 @@ export const isNewPage = () => {
   return window.location.href.includes('new');
 };
 
+export const isBoardPage = () => {
+  return window.location.href.includes('board');
+};
+
 export const getBoardOrTaskId = () => {
   const lastHrefPath = window.location.href.split('/').pop();
 

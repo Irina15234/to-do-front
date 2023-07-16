@@ -8,12 +8,15 @@ import { ButtonType } from '../../custom-components/button/button';
 import { useNavigate } from 'react-router-dom';
 import { difference } from 'lodash';
 import { setSnackbarAction } from '../../slices/common/common-slice';
+import { useUpdateStatus } from '../../common/hooks/useUpdateStatus';
 
 export const useBoardPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const stateBoard = useSelector((state: State) => state.board);
+
+  useUpdateStatus();
 
   useEffect(() => {
     const loadBoard = () => {

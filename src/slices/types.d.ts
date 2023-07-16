@@ -1,3 +1,5 @@
+import { WsStatus } from '../common/enums';
+
 export interface State {
   mainPage: MainPage;
   user: User;
@@ -36,6 +38,7 @@ export interface CommonSettings {
   isOpenAddTaskModal: boolean;
   taskParentId?: number;
   isOpenUsersBoardDialog: boolean;
+  status: WsStatus;
 }
 
 export interface MainPage {

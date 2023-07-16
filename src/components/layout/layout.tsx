@@ -8,6 +8,7 @@ import { DeleteInfo, State } from '../../slices/types';
 import { SidePanel } from '../side-panel/side-panel';
 import { AddTaskDialog } from '../../common/components/add-task-dialog/add-task-dialog';
 import { useSelector } from 'react-redux';
+import { StatusSnackbar } from '../../common/components/status-snackbar/status-snackbar';
 
 const defaultValue: { setDeleteInfo: React.Dispatch<React.SetStateAction<DeleteInfo>> } = {
   setDeleteInfo: () => undefined
@@ -32,6 +33,7 @@ export const Layout = () => {
       <DeleteDialog deleteInfo={deleteInfo} setDeleteInfo={setDeleteInfo} />
       {isOpenAddTaskModal && <AddTaskDialog />}
       <SidePanel />
+      <StatusSnackbar />
     </Context.Provider>
   );
 };

@@ -14,3 +14,13 @@ export enum BoardUserView {
   base = 'BASE',
   inactive = 'INACTIVE'
 }
+
+export enum WsEventType {
+  board = 'BOARD_STATUS',
+  task = 'TASK_STATUS'
+}
+
+export enum WsStatus {
+  actual = 'ACTUAL',
+  outdated = 'OUTDATED'
+}
