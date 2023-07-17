@@ -7,6 +7,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { getBoardsList } from '../../../services/board-service';
 import { getTasksList } from '../../../services/task-service';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { resetBoardAction } from '../../../slices/board/board-slice';
 
 interface CardProps {
   title: string;
@@ -15,6 +17,7 @@ interface CardProps {
 }
 
 export const Card = ({ title, className, isBoards = false }: CardProps) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [sourceList, setSourceList] = useState<MainViewBoard[] | MainViewTask[]>([]);
 
@@ -32,6 +35,11 @@ export const Card = ({ title, className, isBoards = false }: CardProps) => {
     },
     [sourceList]
   );
+
+  const handleClickAddBoard = () => {
+    dispatch(resetBoardAction());
+    navigate(`/board/new`);
+  };
 
   return (
     <div className={clsx('card-container', className)}>
@@ -53,7 +61,7 @@ export const Card = ({ title, className, isBoards = false }: CardProps) => {
             <CustomButton
               buttonType={ButtonType.add}
               startIconColor="var(--button-color-2)"
-              onClick={() => navigate(`/board/new`)}
+              onClick={handleClickAddBoard}
             >
               Add new board
             </CustomButton>

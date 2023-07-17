@@ -16,6 +16,10 @@ const boardSlice = createSlice({
       state = { ...payload, tasks: state.tasks };
       return state;
     },
+    resetBoard: (state) => {
+      state = { ...boardInitialState };
+      return state;
+    },
     setBoardId: (state, { payload }: PayloadAction<number>) => {
       state.id = payload;
       return state;
@@ -31,6 +35,7 @@ export const boardReducer = boardSlice.reducer;
 
 export const {
   setBoard: setBoardAction,
+  resetBoard: resetBoardAction,
   setBoardId: setBoardIdAction,
   setBoardTasks: setBoardTasksAction
 } = boardSlice.actions;
