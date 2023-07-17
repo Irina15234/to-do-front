@@ -12,6 +12,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .columns-group__add:hover {
@@ -28,6 +29,7 @@
     .columns-group {
         display: flex;
         flex-direction: column;
+        overflow-x: hidden;
     }
     .columns-group__add {
         width: 100%;

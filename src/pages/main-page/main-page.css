@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   padding: 12px;
+  overflow-y: auto;
 }
 
 .main-page__dashboards-containers {

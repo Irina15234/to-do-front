@@ -15,6 +15,7 @@
   display: flex;
   align-items: center;
   margin-left: auto;
+  overflow: hidden;
 }
 
 .header__user-img-container {
@@ -65,4 +66,7 @@
 .header__user-name {
   color: var(--light-text-color);
   margin: 0 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

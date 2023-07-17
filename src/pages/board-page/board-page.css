@@ -24,6 +24,7 @@
     height: 100%;
     overflow-x: auto;
     overflow-y: hidden;
+    width: 100%;
 }
 
 .board-page__main_edit {
@@ -33,4 +34,11 @@
 .board-page__users-container {
     margin-left: auto;
     cursor: pointer;
+}
+
+@media (max-width: 660px) {
+    .board-page__main {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 }

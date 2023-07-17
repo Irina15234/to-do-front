@@ -19,3 +19,9 @@
 .info-section__buttons .info-section__button {
     margin-left: 8px;
 }
+
+@media (max-width: 660px) {
+    .info-section {
+        flex-basis: auto;
+    }
+}

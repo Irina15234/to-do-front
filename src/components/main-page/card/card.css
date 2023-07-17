@@ -4,6 +4,7 @@
   display: flex;
   max-height: 100%;
   flex-direction: column;
+  margin-bottom: 0 !important;
 }
 
 .card-container__header {
