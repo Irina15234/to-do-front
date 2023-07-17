@@ -123,7 +123,12 @@ export const useColumnsGroup = ({ columns, changeColumns }: ColumnsGroupProps) =
       const taskId = tasks.filter((task) => task.columnId === sourceColumnId)[taskIndex].id;
 
       updateTaskColumn(sourceColumnId, targetColumnId, taskId, boardId)
-        .then()
+        .then(() => {
+          const newTasks = tasks.map((task) => {
+            return task.id === taskId ? { ...task, columnId: targetColumnId } : task;
+          });
+          dispatch(setBoardTasksAction(newTasks));
+        })
         .catch((error) => {
           dispatch(setSnackbarAction({ message: error.response?.data, variant: 'error', open: true }));
         });
