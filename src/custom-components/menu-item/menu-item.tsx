@@ -5,7 +5,7 @@ import { Link, To } from 'react-router-dom';
 interface ModalMenuItemProps {
   icon: JSX.Element | null;
   title: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
   href?: To;
 }
 

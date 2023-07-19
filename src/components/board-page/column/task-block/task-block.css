@@ -23,10 +23,13 @@
     line-height: 16px;
     font-weight: 500;
     flex: 1;
+    word-break: break-all;
 }
 
 .task-block__action {
     margin-left: 10px;
+    display: flex;
+    height: fit-content;
 }
 
 .task-block__main {
