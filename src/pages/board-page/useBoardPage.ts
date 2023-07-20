@@ -15,6 +15,7 @@ export const useBoardPage = () => {
   const navigate = useNavigate();
 
   const stateBoard = useSelector((state: State) => state.board);
+  const isOpenUsersBoardDialog = useSelector((state: State) => state.common.isOpenUsersBoardDialog);
 
   useUpdateStatus();
 
@@ -145,6 +146,7 @@ export const useBoardPage = () => {
     handleCloseNameSetting,
     actions,
     setBoardName,
-    handleCloseEditMode
+    handleCloseEditMode,
+    isOpenUsersBoardDialog
   };
 };

@@ -22,7 +22,8 @@ export const BoardPage = () => {
     handleCloseNameSetting,
     actions,
     setBoardName,
-    handleCloseEditMode
+    handleCloseEditMode,
+    isOpenUsersBoardDialog
   } = useBoardPage();
 
   return (
@@ -51,7 +52,8 @@ export const BoardPage = () => {
         </Panel>
       )}
 
-      <BoardUsersDialog />
+      {isOpenUsersBoardDialog && <BoardUsersDialog />}
+
       <CustomDialog open={openNameSettingDialog} title="New board" onClose={handleCloseNameSetting} actions={actions}>
         <div>
           <CustomInput

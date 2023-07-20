@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { FullViewBoardActiveUser, Role, State } from '../../../slices/types';
+import { useDispatch } from 'react-redux';
+import { FullViewBoardActiveUser, Role } from '../../../slices/types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { setSnackbarAction, toggleOpenUsersBoardDialogAction } from '../../../slices/common/common-slice';
 import { ButtonType } from '../../../custom-components/button/button';
@@ -11,8 +11,6 @@ import { getRoles } from '../../../services/dictionary-service';
 
 export const useBoardUsersDialog = () => {
   const dispatch = useDispatch();
-
-  const isOpenUsersBoardDialog = useSelector((state: State) => state.common.isOpenUsersBoardDialog);
 
   const [activeUsers, setActiveUsers] = useState<FullViewBoardActiveUser[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<FullViewBoardActiveUser[]>([]);
@@ -134,7 +132,6 @@ export const useBoardUsersDialog = () => {
   const rolesListOptions = useMemo(() => rolesList.map((role) => ({ id: role.id, value: role.name })), [rolesList]);
 
   return {
-    isOpenUsersBoardDialog,
     handleCloseDialog,
     actions,
     filteredUsers,

@@ -7,7 +7,6 @@ import { AddUserDialog } from './add-user-dialog/add-user-dialog';
 
 export const BoardUsersDialog = () => {
   const {
-    isOpenUsersBoardDialog,
     handleCloseDialog,
     actions,
     filteredUsers,
@@ -21,7 +20,7 @@ export const BoardUsersDialog = () => {
 
   return (
     <CustomDialog
-      open={isOpenUsersBoardDialog}
+      open={true}
       title="Board users"
       onClose={handleCloseDialog}
       actions={actions}
