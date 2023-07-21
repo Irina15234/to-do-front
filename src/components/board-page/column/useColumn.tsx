@@ -2,10 +2,13 @@ import { ColumnProps } from './column';
 import React, { useState } from 'react';
 import { DeleteOutline, Edit } from '@mui/icons-material';
 import { toggleOpenAddTaskModalAction } from '../../../slices/common/common-slice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { State } from '../../../slices/types';
 
 export const useColumn = ({ column, columnsAction }: ColumnProps) => {
   const dispatch = useDispatch();
+
+  const permissions = useSelector((state: State) => state.board.permissions) || [];
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -53,6 +56,7 @@ export const useColumn = ({ column, columnsAction }: ColumnProps) => {
     handleCloseSettings,
     anchorEl,
     open,
-    menuList
+    menuList,
+    permissions
   };
 };

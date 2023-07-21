@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { CustomInput } from '../../../../../custom-components/input/input';
 
 export const Details = () => {
-  const { detailsList } = useDetails();
+  const { detailsList, permissions } = useDetails();
 
   return (
     <div className="section-block">
@@ -25,6 +25,7 @@ export const Details = () => {
                 className={clsx({
                   'item-with-bottom-margin': detailsList.length - 1 !== index
                 })}
+                disabled={!permissions.includes(2)}
               />
             );
           case 'textarea':
@@ -45,6 +46,7 @@ export const Details = () => {
                 })}
                 multiline
                 minRows={6}
+                disabled={!permissions.includes(2)}
               />
             );
         }

@@ -8,6 +8,7 @@ import { SelectChangeEvent } from '@mui/material';
 
 export const usePeople = () => {
   const task = useSelector((state: State) => state.task);
+  const permissions = task.permissions || [];
 
   const [usersList, setUsersList] = useState<User[]>([]);
 
@@ -61,6 +62,7 @@ export const usePeople = () => {
   return {
     formik,
     executorsListOptions,
-    handleChangeValue
+    handleChangeValue,
+    permissions
   };
 };

@@ -8,6 +8,7 @@ import { isEditPage, isNewPage } from '../../../common/helpers';
 import { ModalMenuItem } from '../../../custom-components/menu-item/menu-item';
 import { ColumnBody } from './column-body/column-body';
 import { useColumn } from './useColumn';
+import { PermissionsContainer } from '../../../common/components/permissions-container/permissions-container';
 
 export interface ColumnProps {
   column: BoardColumn;
@@ -15,10 +16,11 @@ export interface ColumnProps {
 }
 
 export const Column = ({ column, columnsAction }: ColumnProps) => {
-  const { handleClickSettings, handleClickAddTask, handleCloseSettings, anchorEl, open, menuList } = useColumn({
-    column,
-    columnsAction
-  });
+  const { handleClickSettings, handleClickAddTask, handleCloseSettings, anchorEl, open, menuList, permissions } =
+    useColumn({
+      column,
+      columnsAction
+    });
 
   return (
     <div className="column">
@@ -30,9 +32,11 @@ export const Column = ({ column, columnsAction }: ColumnProps) => {
           </CustomIconButton>
         )}
         {!isEditPage() && !isNewPage() && !column.id && (
-          <CustomIconButton size="small" variant={IconButtonVariant.icon} onClick={handleClickAddTask}>
-            <AddCircleOutline fontSize="small" style={{ color: 'var(--light-icon-color)' }} />
-          </CustomIconButton>
+          <PermissionsContainer permissions={permissions} needPermission={2}>
+            <CustomIconButton size="small" variant={IconButtonVariant.icon} onClick={handleClickAddTask}>
+              <AddCircleOutline fontSize="small" style={{ color: 'var(--light-icon-color)' }} />
+            </CustomIconButton>
+          </PermissionsContainer>
         )}
 
         <ModalMenu open={open} onClose={handleCloseSettings} anchorEl={anchorEl}>

@@ -3,7 +3,7 @@ import { usePeople } from './usePeople';
 import { CustomSelect } from '../../../../../custom-components/select/select';
 
 export const People = () => {
-  const { formik, executorsListOptions, handleChangeValue } = usePeople();
+  const { formik, executorsListOptions, handleChangeValue, permissions } = usePeople();
 
   return (
     <div className="section-block">
@@ -26,6 +26,7 @@ export const People = () => {
         value={formik.values.executorId}
         colorVariant="dark"
         fullWidth
+        disabled={!permissions.includes(2)}
       />
     </div>
   );

@@ -7,6 +7,7 @@ import { MainViewBoard, MainViewTask } from '../../../slices/types';
 import { ModalMenuItem } from '../../../custom-components/menu-item/menu-item';
 import clsx from 'clsx';
 import { useCardListItem } from './useCardListItem';
+import { PermissionsContainer } from '../../../common/components/permissions-container/permissions-container';
 
 export enum CardType {
   board = 'board',
@@ -36,9 +37,13 @@ export const CardListItem = ({ source, type, updateSourceListAfterDeleting }: Ca
             </div>
           )}
           <div className="card-list-item__name">{source.name}</div>
-          <CustomIconButton variant={IconButtonVariant.icon} onClick={handleClickSettings}>
-            <MoreVert style={{ color: 'var(--button-color)' }} />
-          </CustomIconButton>
+          {type === CardType.board && (
+            <PermissionsContainer permissions={(source as MainViewBoard).permissions} needPermission={1}>
+              <CustomIconButton variant={IconButtonVariant.icon} onClick={handleClickSettings}>
+                <MoreVert style={{ color: 'var(--button-color)' }} />
+              </CustomIconButton>
+            </PermissionsContainer>
+          )}
         </div>
       </Link>
 

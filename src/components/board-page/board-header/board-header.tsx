@@ -4,13 +4,15 @@ import { Edit, Settings } from '@mui/icons-material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BoardUsersContainer } from './board-users-container/board-users-container';
+import { PermissionsContainer } from '../../../common/components/permissions-container/permissions-container';
 
 interface BoardHeaderProps {
   boardName: string;
   handleClickTitleEdit: () => void;
+  permissions: number[];
 }
 
-export const BoardHeader = ({ boardName, handleClickTitleEdit }: BoardHeaderProps) => {
+export const BoardHeader = ({ boardName, handleClickTitleEdit, permissions }: BoardHeaderProps) => {
   return (
     <div className="board-page__header-container">
       <div className="board-page__title-container">
@@ -23,14 +25,18 @@ export const BoardHeader = ({ boardName, handleClickTitleEdit }: BoardHeaderProp
       </div>
 
       {!(isNewPage() || isEditPage()) && (
-        <Link to={`/board/${getBoardOrTaskId()}/edit`} className="icon-link">
-          <CustomIconButton variant={IconButtonVariant.icon} size="small">
-            <Settings style={{ color: 'var(--grey-color)' }} fontSize="small" />
-          </CustomIconButton>
-        </Link>
+        <PermissionsContainer needPermission={1} permissions={permissions}>
+          <Link to={`/board/${getBoardOrTaskId()}/edit`} className="icon-link">
+            <CustomIconButton variant={IconButtonVariant.icon} size="small">
+              <Settings style={{ color: 'var(--grey-color)' }} fontSize="small" />
+            </CustomIconButton>
+          </Link>
+        </PermissionsContainer>
       )}
 
-      <BoardUsersContainer />
+      <PermissionsContainer needPermission={1} permissions={permissions}>
+        <BoardUsersContainer />
+      </PermissionsContainer>
     </div>
   );
 };

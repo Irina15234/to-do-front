@@ -17,6 +17,8 @@ export const useBoardPage = () => {
   const stateBoard = useSelector((state: State) => state.board);
   const isOpenUsersBoardDialog = useSelector((state: State) => state.common.isOpenUsersBoardDialog);
 
+  const permissions = stateBoard.permissions || [];
+
   useUpdateStatus();
 
   useEffect(() => {
@@ -147,6 +149,7 @@ export const useBoardPage = () => {
     actions,
     setBoardName,
     handleCloseEditMode,
-    isOpenUsersBoardDialog
+    isOpenUsersBoardDialog,
+    permissions
   };
 };

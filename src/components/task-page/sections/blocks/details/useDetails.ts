@@ -11,6 +11,7 @@ import { setSnackbarAction } from '../../../../../slices/common/common-slice';
 export const useDetails = () => {
   const dispatch = useDispatch();
   const task = useSelector((state: State) => state.task);
+  const permissions = task.permissions || [];
 
   const [priorityList, setPriorityList] = useState<Priority[]>([]);
   const [columnsList, setColumnsList] = useState<BoardColumn[]>([]);
@@ -114,6 +115,7 @@ export const useDetails = () => {
   ];
 
   return {
-    detailsList
+    detailsList,
+    permissions
   };
 };

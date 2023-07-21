@@ -10,6 +10,7 @@ import { setBoardTasksAction } from '../../../../slices/board/board-slice';
 
 export const useTaskBlockHead = ({ name, taskId }: TaskBlockHeadProps) => {
   const tasks = useSelector((state: State) => state.board.tasks);
+  const permissions = useSelector((state: State) => state.board.permissions) || [];
 
   const dispatch = useDispatch();
   const handleClickAddSubtask = (event: React.MouseEvent<HTMLLIElement>) => {
@@ -74,6 +75,7 @@ export const useTaskBlockHead = ({ name, taskId }: TaskBlockHeadProps) => {
     handleClose,
     anchorEl,
     menuList,
-    open
+    open,
+    permissions
   };
 };

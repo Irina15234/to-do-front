@@ -23,12 +23,13 @@ export const BoardPage = () => {
     actions,
     setBoardName,
     handleCloseEditMode,
-    isOpenUsersBoardDialog
+    isOpenUsersBoardDialog,
+    permissions
   } = useBoardPage();
 
   return (
     <div className="board-page">
-      <BoardHeader boardName={boardName} handleClickTitleEdit={handleClickTitleEdit} />
+      <BoardHeader boardName={boardName} handleClickTitleEdit={handleClickTitleEdit} permissions={permissions} />
       <div className={clsx('board-page__main', { 'board-page__main_edit': isNewPage() || isEditPage() })}>
         <ColumnsGroup columns={columns} changeColumns={changeColumns} />
       </div>

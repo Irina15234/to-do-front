@@ -11,6 +11,8 @@ export const useCommentForm = () => {
   const replyComment = useSelector((state: State) => state.common.replyComment);
   const [newComment, setNewComment] = useState<string>('');
 
+  const permissions = task.permissions || [];
+
   const addComment = () => {
     const comment: PostComment = {
       text: newComment,
@@ -44,10 +46,13 @@ export const useCommentForm = () => {
     };
   }, [dispatch]);
 
+  const isDisabledComment = !newComment.length || !permissions.includes(2);
+
   return {
     newComment,
     setNewComment,
     addComment,
-    revertComment
+    revertComment,
+    isDisabledComment
   };
 };

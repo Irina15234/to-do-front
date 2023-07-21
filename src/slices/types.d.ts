@@ -54,6 +54,7 @@ export interface BoardColumn {
 export interface MainViewBoard {
   id: number;
   name: string;
+  permissions: number[];
 }
 
 export interface Board {
@@ -61,6 +62,7 @@ export interface Board {
   name: string;
   columns: BoardColumn[];
   tasks: BoardTask[];
+  permissions?: number[];
 }
 
 export interface BoardTask {
@@ -104,6 +106,7 @@ export interface Task {
   boardId: number;
   boardName: string;
   description: string;
+  permissions?: number[];
 }
 
 export interface User {
