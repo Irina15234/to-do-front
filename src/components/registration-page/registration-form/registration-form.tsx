@@ -35,7 +35,7 @@ export const RegistrationForm = () => {
           Save
         </CustomButton>
         <CustomButton buttonType={ButtonType.neutral} href="/auth">
-          Cansel
+          Cancel
         </CustomButton>
       </div>
     </form>
