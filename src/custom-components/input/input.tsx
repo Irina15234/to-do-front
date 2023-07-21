@@ -100,7 +100,7 @@ export const CustomInput = ({ colorVariant, search, ...props }: TextFieldProps &
           InputProps={{
             startAdornment: search ? (
               <InputAdornment position="start">
-                <Search />
+                <Search htmlColor="var(--grey-color)" />
               </InputAdornment>
             ) : null,
             ...props.InputProps

@@ -1,5 +1,7 @@
 import React from 'react';
 import { ThemeContext, themes } from './ThemeContext';
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 
 const getTheme = () => {
   const theme = `${window?.localStorage?.getItem('theme')}`;
@@ -11,6 +13,14 @@ const getTheme = () => {
   return themes.light;
 };
 
+const muiTheme = createTheme({
+  palette: {
+    background: {
+      paper: 'var(--mui-background-color)'
+    }
+  }
+});
+
 const ThemeProvider = ({ children }: { children: JSX.Element }) => {
   const [theme, setTheme] = React.useState(getTheme);
 
@@ -19,7 +29,12 @@ const ThemeProvider = ({ children }: { children: JSX.Element }) => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
+  return (
+    <MuiThemeProvider theme={muiTheme}>
+      <CssBaseline />
+      <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>
+    </MuiThemeProvider>
+  );
 };
 
 export default ThemeProvider;

@@ -21,15 +21,16 @@ export type CustomSelectProps = {
   colorVariant: 'light' | 'dark';
 };
 
-const StyledLabel = styled(InputLabel)((styledProps: { colorvariant: 'light' | 'dark' }) => ({
+const StyledLabel = styled(InputLabel)((styledProps: { colorVariant: 'light' | 'dark' }) => ({
   color:
-    styledProps.colorvariant === 'light' ? 'var(--light-text-color) !important' : 'var(--dark-text-color) !important',
-  background: '#ffffff'
+    styledProps.colorVariant === 'light' ? 'var(--light-text-color) !important' : 'var(--dark-text-color) !important'
 }));
 
-const StyledSelect = styled(Select)((styledProps: { colorvariant: 'light' | 'dark' }) => ({
+const StyledSelect = styled(Select)((styledProps: Partial<SelectProps & CustomSelectProps>) => ({
   height: '40px',
   borderRadius: 8,
+  color:
+    styledProps.colorVariant === 'light' ? 'var(--light-text-color) !important' : 'var(--dark-text-color) !important',
 
   '& > .MuiInputLabel-root:not(.Mui-error)': {
     color: 'var(--light-text-color) !important'
@@ -51,12 +52,12 @@ const StyledSelect = styled(Select)((styledProps: { colorvariant: 'light' | 'dar
   '& > .MuiSelect-nativeInput': {
     height: '40px',
     color:
-      styledProps.colorvariant === 'light' ? 'var(--light-text-color) !important' : 'var(--dark-text-color) !important'
+      styledProps.colorVariant === 'light' ? 'var(--light-text-color) !important' : 'var(--dark-text-color) !important'
   },
 
   '& > .MuiOutlinedInput-notchedOutline:not(.Mui-error)': {
     borderColor:
-      styledProps.colorvariant === 'light'
+      styledProps.colorVariant === 'light'
         ? 'var(--light-border-color) !important'
         : 'var(--dark-border-color) !important'
   },
@@ -73,11 +74,11 @@ export const CustomSelect = ({ options, colorVariant, ...props }: SelectProps & 
   return (
     <FormControl fullWidth={props.fullWidth}>
       {props.label && (
-        <StyledLabel id={props.labelId} colorvariant={colorVariant} shrink>
+        <StyledLabel id={props.labelId} colorVariant={colorVariant} shrink>
           {props.label}
         </StyledLabel>
       )}
-      <StyledSelect {...props} colorvariant={colorVariant}>
+      <StyledSelect {...props}>
         {options.map((option) => (
           <MenuItem key={option.value} value={option.id}>
             {option.icon && (

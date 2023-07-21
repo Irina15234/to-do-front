@@ -30,6 +30,7 @@
 
 .board-users__user-block__name {
     margin: 0 auto 0 8px;
+    color: var(--dark-text-color);
 }
 
 .board-users__user-block__action {
