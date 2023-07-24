@@ -15,7 +15,8 @@ const StyledBreadcrumbs = styled(Breadcrumbs)({
   },
 
   '& .MuiBreadcrumbs-separator': {
-    margin: 0
+    margin: 0,
+    color: 'var(--grey-color)'
   }
 });
 

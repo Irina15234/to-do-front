@@ -14,7 +14,7 @@
 .section-block-container__head {
     display: flex;
     cursor: pointer;
-    transition: background-color 0.5s ease;
+    transition: var(--hover-transition);
     padding: 0 5px;
     align-items: center;
     border-bottom: 1px solid var(--light-border-color);

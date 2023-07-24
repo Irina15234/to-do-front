@@ -33,7 +33,7 @@
   height: 36px;
   padding: 5px 10px;
   border-bottom: 1px solid var(--neutral-border-color);
-  transition: 1s;
+  transition: var(--hover-transition);
 }
 
 .card-list-item__task-link:last-child .card-list-item {
