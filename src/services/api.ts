@@ -11,7 +11,6 @@ const params = {
   }
 };
 
-// baseURL: process.env.REACT_APP_API,
 export const api = axios.create({
   baseURL: 'http://localhost:4000',
   ...params
