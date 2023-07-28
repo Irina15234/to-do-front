@@ -2,6 +2,9 @@
 
 An application for managing tasks.
 
+## Backend
+https://github.com/Irina15234/to-do-back
+
 ## Features
 
 - Creating boards with tasks and subtasks
