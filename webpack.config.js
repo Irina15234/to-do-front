@@ -19,9 +19,9 @@ module.exports = {
     }
   },
   output: {
-    path: path.resolve(__dirname, './public'), // путь к каталогу выходных файлов - папка public
-    publicPath: '/public/',
-    filename: 'bundle.js' // название создаваемого файла
+    path: path.resolve(__dirname, './build'),
+    publicPath: './',
+    filename: 'bundle.js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -33,7 +33,9 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: 'process/browser'
     }),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src', 'template.pug'),
+    })
   ],
   module: {
     rules: [
@@ -68,6 +70,10 @@ module.exports = {
             loader: require.resolve('storybook-addon-package-json/loader')
           }
         ]
+      },
+      {
+        test: /\.pug$/,
+        loader: 'pug-loader'
       }
     ]
   }

@@ -25,6 +25,8 @@
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
+    "pug": "^3.0.2",
+    "pug-loader": "^2.4.0",
     "randomcolor": "^0.6.2",
     "react": "^18.0.0",
     "react-beautiful-dnd": "^13.1.0",
